@@ -37,57 +37,39 @@
             text-transform: uppercase;
         }
 
-        .wrapper {
-            width: 200px;
-            height: auto;
-            border: solid 1px black;
-            position: relative;
-            padding: 20px;
-            margin: 20px;
-        }
-
-        .img-holder {
-            width: 80%;
-            position: relative;
-        }
-
         .img-holder img {
             width: 80%;
-        }
-
-        .price {
-            margin: 10px 0;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <form class="wrapper" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
-        @csrf
-        <div class="img-holder">
-            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg">
-        </div>
-        <h2 class="title">LG television 43``</h2>
-        <p class="desc">smartTV, Android 7.1, FullHD 1080px'</p>
-        <p class="price">20 USD</p>
-        <input class="w3-input w3-border" id="amount" type="hidden" name="amount" value="20">
-        <button class="w3-btn w3-blue">Pay with PayPal</button>
-    </form>
-
     @if ($message = Session::get('success'))
-        <div id="message-destroy-recipe" class="alert alert-success" role="alert">
+        <div id="message-destroy-recipe" class="alert alert-success mt-5" role="alert">
             <p>{!! $message !!}</p>
         </div>
         <?php Session::forget('success');?>
     @endif
 
     @if ($message = Session::get('error'))
-        <div id="message-destroy-recipe" class="alert alert-error" role="alert">
+        <div id="message-destroy-recipe" class="alert alert-error mt-5  " role="alert">
             <p>{!! $message !!}</p>
         </div>
         <?php Session::forget('error');?>
     @endif
+    <div class="order">
+        <button class="but-cart">Cart</button>
+        <div class="cart">
+            <button class="x">x</button>
+            <p class="total"></p>
+            <form class="wrapper-form" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
+                @CSRF
+                <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
+                <button class="w3-btn w3-blue">Pay with PayPal</button>
+            </form>
+        </div>
+    </div>
 </div>
 <script src="{{ asset('js/bundle.js') }}"></script>
 </body>

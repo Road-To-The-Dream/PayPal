@@ -20,14 +20,14 @@ class PaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount' => 'required'
+            'total-price' => 'required'
         ];
     }
 
     public function messages(): array
     {
         return [
-            'amount|required' => 'Field is empty'
+            'total-price|required' => 'Field is empty'
         ];
     }
 }

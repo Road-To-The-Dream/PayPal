@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PaymentRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use PayPal\Api\Amount;
@@ -51,14 +50,14 @@ class PaymentController extends Controller
         $item_1->setName('Телевизор')
             ->setCurrency('USD')
             ->setQuantity(1)
-            ->setPrice($request->get('amount'));
+            ->setPrice($request->get('total-price'));
 
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
 
         $amount = new Amount();
         $amount->setCurrency('USD')
-            ->setTotal($request->get('amount'));
+            ->setTotal($request->get('total-price'));
 
         $transaction = new Transaction();
         $transaction->setAmount($amount)
