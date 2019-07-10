@@ -43,7 +43,6 @@
     </style>
 </head>
 <body>
-
 <div class="container">
     @if ($message = Session::get('success'))
         <div id="message-destroy-recipe" class="alert alert-success mt-5" role="alert">
@@ -58,18 +57,25 @@
         </div>
         <?php Session::forget('error');?>
     @endif
-    <div class="order">
-        <button class="but-cart">Cart</button>
-        <div class="cart">
-            <button class="x">x</button>
-            <p class="total"></p>
-            <form class="wrapper-form" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
-                @CSRF
-                <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
-                <button class="w3-btn w3-blue">Pay with PayPal</button>
-            </form>
+
+    @error('total-price')
+    <div class="alert alert-danger mt-5">{{ $message }}</div>
+    @enderror
+        <div class="order">
+            <button class="but-cart">Cart</button>
+            <div class="cart">
+                <button class="x">x</button>
+                <p class="total"></p>
+                <div class='cart-cart'>
+
+                </div>
+                <form class="wrapper-form" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
+                    @csrf
+                    <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
+                    <button class="w3-btn w3-blue">Pay with PayPal</button>
+                </form>
+            </div>
         </div>
-    </div>
 </div>
 <script src="{{ asset('js/bundle.js') }}"></script>
 </body>

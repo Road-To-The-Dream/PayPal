@@ -438,6 +438,8 @@ body {
 }
 
 .cart {
+    border: solid 3px #aa2832;
+    border-radius: 20px;
     position: absolute;
     top: 50px;
     right: 20px;
@@ -447,8 +449,7 @@ body {
     margin: 0 auto;
     min-height: 100px;
     height: max-content;
-    border: solid 2px black;
-    border-radius: 10px;
+
     background-color: #ffffff;
     z-index: -1;
     text-align: center;
@@ -459,10 +460,29 @@ body {
     position: fixed;
     right: 20px;
     top: 20px;
+    border: solid 2px #aa2832;
+    background-color: #aa2832;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
 }
 
 .x {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 5px;
+    border: solid 2px #aa2832;
+    background-color: #aa2832;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.w3-btn {
+    margin: 20px 0 0 0;
+    border: solid 2px #aa2832;
+    background-color: #aa2832;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
 }

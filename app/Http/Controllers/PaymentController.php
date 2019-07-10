@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PaymentRequest;
+use App\Services\Product;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use PayPal\Api\Amount;
@@ -37,6 +38,10 @@ class PaymentController extends Controller
 
     public function index()
     {
+        $product = Product::getProductsData();
+
+        $arr = array("tes"=>'123','key'=>'value');
+
         return view('welcome');
     }
 

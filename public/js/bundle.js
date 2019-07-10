@@ -1,56 +1,57 @@
-let total = document.querySelector('.total')
-let counter = 0;
-let data = [
-    {
-        img: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
-        title: 'lg tv',
-        description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
-        prise: '20',
-        id: '0001'
-    },
-    {
-        img: 'https://www.lg.com/au/images/tvs/42ln5400/gallery/medium01.jpg',
-        title: 'lg tv',
-        description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
-        prise: '30',
-        id: '0002'
-    },
-    {
-        img: 'https://www.lg.com/ca_en/images/desktop-monitors/md05883096/gallery/28LJ4540_d1_270917.jpg',
-        title: 'lg tv',
-        description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
-        prise: '10',
-        id: '0003'
-    },
-    {
-        img: 'https://www.lg.com/ru/images/televisions/md05934072/gallery/49SK8500_logo_medium.jpg',
-        title: 'lg tv',
-        description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
-        prise: '100',
-        id: '0004'
-    },
-    {
-        img: 'https://www.lg.com/ru/images/televisions/md05934072/gallery/49SK8500_logo_medium.jpg',
-        title: 'lg tv',
-        description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
-        prise: '70',
-        id: '0005'
-    },
-    {
-        img: 'https://www.lg.com/ru/images/televisions/md05934072/gallery/49SK8500_logo_medium.jpg',
-        title: 'lg tv',
-        description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
-        prise: '55',
-        id: '0006'
-    },
-    {
-        img: 'https://www.lg.com/ru/images/televisions/md05934072/gallery/49SK8500_logo_medium.jpg',
-        title: 'lg tv',
-        description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
-        prise: '43',
-        id: '0007'
-    }
-]
+var total = document.querySelector('.total')
+total.innerHTML = 'total price:'
+var counter = 0;
+// var data = [
+//     {
+//         img: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
+//         title: 'lg tv',
+//         description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
+//         prise: '25000',
+//         id: '0001'
+//     },
+//     {
+//         img: 'https://www.lg.com/au/images/tvs/42ln5400/gallery/medium01.jpg',
+//         title: 'lg tv',
+//         description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
+//         prise: '17000',
+//         id: '0002'
+//     },
+//     {
+//         img: 'https://www.lg.com/ca_en/images/desktop-monitors/md05883096/gallery/28LJ4540_d1_270917.jpg',
+//         title: 'lg tv',
+//         description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
+//         prise: '20000',
+//         id: '0003'
+//     },
+//     {
+//         img: 'https://www.lg.com/ru/images/televisions/md05934072/gallery/49SK8500_logo_medium.jpg',
+//         title: 'lg tv',
+//         description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
+//         prise: '55000',
+//         id: '0004'
+//     },
+//     {
+//         img: 'https://www.lg.com/ru/images/televisions/md05934072/gallery/49SK8500_logo_medium.jpg',
+//         title: 'lg tv',
+//         description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
+//         prise: '55000',
+//         id: '0005'
+//     },
+//     {
+//         img: 'https://www.lg.com/ru/images/televisions/md05934072/gallery/49SK8500_logo_medium.jpg',
+//         title: 'lg tv',
+//         description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
+//         prise: '55000',
+//         id: '0006'
+//     },
+//     {
+//         img: 'https://www.lg.com/ru/images/televisions/md05934072/gallery/49SK8500_logo_medium.jpg',
+//         title: 'lg tv',
+//         description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
+//         prise: '55000',
+//         id: '0007'
+//     }
+// ]
 
 class CustomElementNew extends HTMLElement {
     constructor () {
@@ -78,17 +79,30 @@ class CustomElementNew extends HTMLElement {
             .wrapper{
                 width: 200px;
                 height: auto;
-                border: solid 1px black;
+                border: solid 3px #aa2832;
+                border-radius: 20px;
                 position: relative;
                 padding: 20px;
                 margin: 20px;
-            } 
+            }
+            .button-item{
+                border: solid 2px #aa2832;
+                background-color: #aa2832;
+                color: white;
+                cursor: pointer;
+                border-radius: 10px;
+            }
+            .button-item:hover{
+                background-color: #ffffff;
+                color: #aa2832;
+                border: solid 2px #aa2832;
+            }
             .img-holder{
-                width: 80%
-                position: relative;
+                max-width: fit-content;
             }
             .img-holder img{
-                width: 80%;
+                width: auto;
+                max-height: 120px;
             }
         `
         this.imgHolder.appendChild(this.imgItem)
@@ -102,14 +116,21 @@ class CustomElementNew extends HTMLElement {
         this.shadow.appendChild(wrapper)
     }
     addToCart(){
-        let elem = document.querySelector('.cart')
+        let elem = document.querySelector('.cart-cart')
         let div = document.createElement('div')
         div.style.display = 'flex'
         let x = document.createElement('button')
         x.textContent = 'x'
-        x.style.position = 'absolute'
+        x.style = `
+        position: absolute; 
+        border: solid 2px #aa2832;
+        background-color: #aa2832;
+        color: white;
+        cursor: pointer;
+        border-radius: 10px;`
         x.onclick = e => {
             this.buttonItem.style.display = 'block'
+            this.itemDescription.style.display = 'block'
             document.querySelector('.order').appendChild(this)
             x.remove()
             total.textContent = `total price: ${counter > 0 ?
@@ -118,6 +139,7 @@ class CustomElementNew extends HTMLElement {
             document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
         }
         this.buttonItem.style.display = 'none'
+        this.itemDescription.style.display = 'none'
         div.appendChild(this)
         div.appendChild(x)
         elem.appendChild(div)
@@ -130,18 +152,28 @@ class CustomElementNew extends HTMLElement {
 }
 customElements.define ( 'new-element', CustomElementNew )
 
+function getData ( ref ) {
+    let data
+    return fetch ( 'https://my-json-server.typicode.com/andvetall/data/' + ref )
+        .then ( response => response.json () )
+}
+Promise.all ([
+    getData ( "data" )
+]).then (
 
-data.forEach(item => {
-    let elem = document.createElement('new-element')
-    elem.idNum.textContent = item.id
-    elem.imgItem.src = item.img
-    elem.itemTitle.innerHTML = item.title
-    elem.itemDescription.innerHTML = item.description
-    elem.itemPrise.innerHTML = `${item.prise} USD`
-    document.querySelector('.order').appendChild(elem)
-})
-
-
+    function (response){
+        [data] = response
+        data.forEach(item => {
+            let elem = document.createElement('new-element')
+            elem.idNum.textContent = `product ID: ${item.id}`
+            elem.imgItem.src = item.img
+            elem.itemTitle.innerHTML = item.title
+            elem.itemDescription.innerHTML = item.description
+            elem.itemPrise.innerHTML = `${item.prise} USD`
+            document.querySelector('.order').appendChild(elem)
+        })
+    }
+)
 let button = document.querySelector('.but-cart')
 button.onclick =  e => document.querySelector('.cart').style = `display: block; z-index: 999;`
 let x = document.querySelector('.x')
