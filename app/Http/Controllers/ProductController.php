@@ -102,7 +102,7 @@ class ProductController extends Controller
     {
         $product = Product::find($request->get('productId'));
 
-        $product->update(['amount' => $product->amount + 1]);
+        $product->update(['amount' => $product->amount + $request->input('productAmount', 1)]);
 
         return response()->json(true);
     }

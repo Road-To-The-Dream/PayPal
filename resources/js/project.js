@@ -164,8 +164,6 @@ class CustomElementNew extends HTMLElement {
     }
 
     increaseProductAmount() {
-        let amount = this.counterItem;
-        let totalPrice = this.itemPrise.textContent;
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -177,6 +175,7 @@ class CustomElementNew extends HTMLElement {
             type: 'POST',
             data: {
                 productId: this.idNum.id,
+                productAmount: this.counterItem.textContent
             },
             success: function (response) {
                 console.log("Sergey");
@@ -226,6 +225,7 @@ class CustomElementNew extends HTMLElement {
                 counter -= parseInt(this.itemPrise.textContent) :
                 null}`
             document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
+            this.increaseProductAmount();
         }
         this.minusPlus.style.display = 'block'
         this.buttonItem.style.display = 'none'
@@ -256,6 +256,4 @@ data.forEach(item => {
 let button = document.querySelector('.but-cart')
 button.onclick = e => document.querySelector('.cart').style = `display: block; z-index: 999;`
 let x = document.querySelector('.x')
-x.onclick = e => {
-    document.querySelector('.cart').style = `display: none; z-index: -1;`
-}
+x.onclick = e => document.querySelector('.cart').style = `display: none; z-index: -1;`
