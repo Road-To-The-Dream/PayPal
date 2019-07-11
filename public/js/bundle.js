@@ -202,6 +202,10 @@ class CustomElementNew extends HTMLElement {
         })
     }
 
+    addNotification(){
+
+    }
+
     addToCart() {
         let elem = document.querySelector('.cart-cart')
         let div = document.createElement('div')
