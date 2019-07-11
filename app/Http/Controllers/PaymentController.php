@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PaymentRequest;
-use App\Product;
+use App\Http\Resources\ProductResource;
+use App\Model\Product;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use PayPal\Api\Amount;
@@ -38,9 +39,7 @@ class PaymentController extends Controller
 
     public function index()
     {
-        //$product = Product::getProductsData();
-
-        $arr = \App\Http\Resources\Product::collection(Product::all());
+        $arr = ProductResource::collection(Product::all());
 
         return view('welcome', [
             'products' => json_encode($arr)
