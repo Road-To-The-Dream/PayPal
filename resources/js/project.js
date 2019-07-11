@@ -140,6 +140,7 @@ class CustomElementNew extends HTMLElement {
         x.onclick = e => {
             this.buttonItem.style.display = 'block'
             this.itemDescription.style.display = 'block'
+            this.minusPlus.style.display = 'none'
             document.querySelector('.order').appendChild(this)
             x.remove()
             total.textContent = `total price: ${counter > 0 ?
