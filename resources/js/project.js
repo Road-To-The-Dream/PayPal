@@ -1,7 +1,7 @@
 var total = document.querySelector('.total')
 total.innerHTML = 'total price:'
 var counter = 0;
-let test = '';
+let data = JSON.parse(products)
 // var data = [
 //     {
 //         img: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
@@ -153,28 +153,16 @@ class CustomElementNew extends HTMLElement {
 }
 customElements.define ( 'new-element', CustomElementNew )
 
-function getData ( ref ) {
-    let data
-    return fetch ( 'https://my-json-server.typicode.com/andvetall/data/' + ref )
-        .then ( response => response.json () )
-}
-Promise.all ([
-    getData ( "data" )
-]).then (
 
-    function (response){
-        [data] = response
-        data.forEach(item => {
-            let elem = document.createElement('new-element')
-            elem.idNum.textContent = `product ID: ${item.id}`
-            elem.imgItem.src = item.img
-            elem.itemTitle.innerHTML = item.title
-            elem.itemDescription.innerHTML = item.description
-            elem.itemPrise.innerHTML = `${item.prise} USD`
-            document.querySelector('.order').appendChild(elem)
-        })
-    }
-)
+data.forEach(item => {
+    let elem = document.createElement('new-element')
+    elem.idNum.textContent = `product ID: ${item.id}`
+    elem.imgItem.src = item.img
+    elem.itemTitle.innerHTML = item.title
+    elem.itemDescription.innerHTML = item.description
+    elem.itemPrise.innerHTML = `${item.prise} USD`
+    document.querySelector('.order').appendChild(elem)
+})
 let button = document.querySelector('.but-cart')
 button.onclick =  e => document.querySelector('.cart').style = `display: block; z-index: 999;`
 let x = document.querySelector('.x')
