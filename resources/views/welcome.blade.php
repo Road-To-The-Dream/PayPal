@@ -61,22 +61,27 @@
     @error('total-price')
     <div class="alert alert-danger mt-5">{{ $message }}</div>
     @enderror
-        <div class="order">
-            <button class="but-cart">Cart</button>
-            <div class="cart">
-                <button class="x">x</button>
-                <p class="total"></p>
-                <div class='cart-cart'>
+    <div class="order">
+        <button class="but-cart">Cart</button>
+        <div class="cart">
+            <button class="x">x</button>
+            <p class="total"></p>
+            <div class='cart-cart'>
 
-                </div>
-                <form class="wrapper-form" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
-                    @csrf
-                    <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
-                    <button class="w3-btn w3-blue">Pay with PayPal</button>
-                </form>
             </div>
+            <form class="wrapper-form" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
+                @csrf
+                <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
+                <button class="w3-btn w3-blue">Pay with PayPal</button>
+            </form>
         </div>
+    </div>
 </div>
+<script>
+    let product = ('<?=$products?>');
+
+    console.log(JSON.parse(product));
+</script>
 <script src="{{ asset('js/bundle.js') }}"></script>
 </body>
 </html>
