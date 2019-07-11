@@ -79,9 +79,7 @@
     </div>
 </div>
 <script>
-    let product = ('<?=$products?>');
-
-    console.log(JSON.parse(product));
+    let products = ('<?=$products?>');
 </script>
 <script src="{{ asset('js/bundle.js') }}"></script>
 </body>
