@@ -1,6 +1,7 @@
 var total = document.querySelector('.total')
 total.innerHTML = 'total price:'
 var counter = 0;
+let test = '';
 // var data = [
 //     {
 //         img: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
