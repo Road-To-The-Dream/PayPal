@@ -2,12 +2,25 @@ var total = document.querySelector('.total')
 total.innerHTML = 'total price:'
 var counter = 0;
 let data = JSON.parse(products)
+let currentCounter = 1
 
 class CustomElementNew extends HTMLElement {
     constructor () {
         super()
         let wrapper = document.createElement ( 'div' )
         wrapper.className = 'wrapper'
+        this.minusPlus = document.createElement('div')
+        this.minusPlus.className = 'plus-minus'
+        this.buttonMinus = document.createElement('button')
+        this.buttonMinus.className = 'minus'
+        this.buttonMinus.textContent = '-'
+        this.buttonMinus.onclick = this.minusItem.bind(this)
+        this.counterItem = document.createElement('p')
+        this.counterItem.innerHTML = currentCounter
+        this.buttonPlus = document.createElement('button')
+        this.buttonPlus.className = 'plus'
+        this.buttonPlus.textContent = '+'
+        this.buttonPlus.onclick = this.plusItem.bind(this)
         this.idNum = document.createElement('p')
         this.idNum.className = 'id-num'
         this.imgHolder = document.createElement('dvi')
@@ -35,6 +48,37 @@ class CustomElementNew extends HTMLElement {
                 padding: 20px;
                 margin: 20px;
             }
+            .plus-minus{
+                position: absolute;
+                top: 10%;
+                right: -50px;
+                display: none;
+            }
+            .plus-minus button{
+                text-align: center;
+                border: solid 2px #aa2832;
+                background-color: #aa2832;
+                color: white;
+                cursor: pointer;
+                margin: 0;
+                padding: 0;
+                height: 35px;
+                width: 35px;
+            }
+            .plus-minus p{
+                text-align: center;
+                border: solid 2px #aa2832;
+                margin: 0;
+                padding: 0;
+                height: 25px;
+                width: 31px;
+            }
+            .minus{
+                border-radius: 0px 0px 15px 15px;
+            }
+            .plus{
+                border-radius: 15px 15px 0px 0px;
+            }
             .button-item{
                 border: solid 2px #aa2832;
                 background-color: #aa2832;
@@ -56,6 +100,10 @@ class CustomElementNew extends HTMLElement {
             }
         `
         this.imgHolder.appendChild(this.imgItem)
+        this.minusPlus.appendChild(this.buttonPlus)
+        this.minusPlus.appendChild(this.counterItem)
+        this.minusPlus.appendChild(this.buttonMinus)
+        wrapper.appendChild(this.minusPlus)
         wrapper.appendChild(this.idNum)
         wrapper.appendChild(this.imgHolder)
         wrapper.appendChild(this.itemTitle)
@@ -64,6 +112,17 @@ class CustomElementNew extends HTMLElement {
         wrapper.appendChild(this.buttonItem)
         this.shadow.appendChild(style)
         this.shadow.appendChild(wrapper)
+    }
+    plusItem(){
+        this.counterItem.textContent = currentCounter += 1
+        total.textContent = `total price: ${parseInt(total.textContent.slice(12)) + parseInt(this.itemPrise.textContent)}`
+
+    }
+    minusItem(){
+        if(currentCounter >= 1){
+            this.counterItem.textContent = currentCounter -= 1
+            total.textContent = `total price: ${parseInt(total.textContent.slice(12)) - parseInt(this.itemPrise.textContent)}`
+        }else{alert('looser')}
     }
     addToCart(){
         let elem = document.querySelector('.cart-cart')
@@ -88,6 +147,7 @@ class CustomElementNew extends HTMLElement {
                 null}`
             document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
         }
+        this.minusPlus.style.display = 'block'
         this.buttonItem.style.display = 'none'
         this.itemDescription.style.display = 'none'
         div.appendChild(this)
