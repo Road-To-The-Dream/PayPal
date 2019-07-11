@@ -1,57 +1,7 @@
 var total = document.querySelector('.total')
 total.innerHTML = 'total price:'
 var counter = 0;
-// var data = [
-//     {
-//         img: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
-//         title: 'lg tv',
-//         description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
-//         prise: '25000',
-//         id: '0001'
-//     },
-//     {
-//         img: 'https://www.lg.com/au/images/tvs/42ln5400/gallery/medium01.jpg',
-//         title: 'lg tv',
-//         description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
-//         prise: '17000',
-//         id: '0002'
-//     },
-//     {
-//         img: 'https://www.lg.com/ca_en/images/desktop-monitors/md05883096/gallery/28LJ4540_d1_270917.jpg',
-//         title: 'lg tv',
-//         description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
-//         prise: '20000',
-//         id: '0003'
-//     },
-//     {
-//         img: 'https://www.lg.com/ru/images/televisions/md05934072/gallery/49SK8500_logo_medium.jpg',
-//         title: 'lg tv',
-//         description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
-//         prise: '55000',
-//         id: '0004'
-//     },
-//     {
-//         img: 'https://www.lg.com/ru/images/televisions/md05934072/gallery/49SK8500_logo_medium.jpg',
-//         title: 'lg tv',
-//         description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
-//         prise: '55000',
-//         id: '0005'
-//     },
-//     {
-//         img: 'https://www.lg.com/ru/images/televisions/md05934072/gallery/49SK8500_logo_medium.jpg',
-//         title: 'lg tv',
-//         description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
-//         prise: '55000',
-//         id: '0006'
-//     },
-//     {
-//         img: 'https://www.lg.com/ru/images/televisions/md05934072/gallery/49SK8500_logo_medium.jpg',
-//         title: 'lg tv',
-//         description: 'wrwerwr rtgtvte tvevtvr rtrgetgfe rtrtegt rt r',
-//         prise: '55000',
-//         id: '0007'
-//     }
-// ]
+let data = JSON.parse(products)
 
 class CustomElementNew extends HTMLElement {
     constructor () {
@@ -152,28 +102,16 @@ class CustomElementNew extends HTMLElement {
 }
 customElements.define ( 'new-element', CustomElementNew )
 
-function getData ( ref ) {
-    let data
-    return fetch ( 'https://my-json-server.typicode.com/andvetall/data/' + ref )
-        .then ( response => response.json () )
-}
-Promise.all ([
-    getData ( "data" )
-]).then (
 
-    function (response){
-        [data] = response
-        data.forEach(item => {
-            let elem = document.createElement('new-element')
-            elem.idNum.textContent = `product ID: ${item.id}`
-            elem.imgItem.src = item.img
-            elem.itemTitle.innerHTML = item.title
-            elem.itemDescription.innerHTML = item.description
-            elem.itemPrise.innerHTML = `${item.prise} USD`
-            document.querySelector('.order').appendChild(elem)
-        })
-    }
-)
+data.forEach(item => {
+    let elem = document.createElement('new-element')
+    elem.idNum.textContent = `product ID: ${item.id}`
+    elem.imgItem.src = item.img
+    elem.itemTitle.innerHTML = item.title
+    elem.itemDescription.innerHTML = item.description
+    elem.itemPrise.innerHTML = `${item.price} USD`
+    document.querySelector('.order').appendChild(elem)
+})
 let button = document.querySelector('.but-cart')
 button.onclick =  e => document.querySelector('.cart').style = `display: block; z-index: 999;`
 let x = document.querySelector('.x')

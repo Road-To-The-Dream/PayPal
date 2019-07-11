@@ -44,7 +44,6 @@
 </head>
 <body>
 <div class="container">
-    <p>SUCCESS</p>
     @if ($message = Session::get('success'))
         <div id="message-destroy-recipe" class="alert alert-success mt-5" role="alert">
             <p>{!! $message !!}</p>

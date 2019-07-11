@@ -40,7 +40,7 @@ class PaymentController extends Controller
     {
         //$product = Product::getProductsData();
 
-        $arr = new \App\Http\Resources\Product(Product::find(1));
+        $arr = \App\Http\Resources\Product::collection(Product::all());
 
         return view('welcome', [
             'products' => json_encode($arr)
