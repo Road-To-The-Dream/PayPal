@@ -1,6 +1,10 @@
 <?php
 
-Route::get('/', 'PayPalController@index');
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/home', 'PayPalController@index');
 
 // route for processing payment
 Route::post('paypal', 'PayPalController@pay');
