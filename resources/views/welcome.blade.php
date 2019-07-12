@@ -89,43 +89,15 @@
             </li>
         </ul>
     </div>
-    <div class="order">
+        <div class="order">
 
-        <button class="but-cart"><img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart</button>
-
-        <button class="but-cart">
-            <div class="miltiply-items-button"></div>
-            <img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart
-        </button>
-        <div class="cart">
-            <button class="x">x</button>
-            <p class="total"></p>
-            <div class='cart-cart'>
-                </li>
-                <li class="main_tab"><a href="#">Fixing Services</a>
-                </li>
-                </ul>
-            </div>
-            <div class="order">
-
-                <button class="but-cart"><img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart
-                </button>
-
-                <button class="but-cart">
-                    <div class="miltiply-items-button"></div>
-                    <img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart
-                </button>
-                <div class="cart">
-                    <button class="x">x</button>
-                    <p class="total"></p>
-                    <div class='cart-cart'>
-                    </div>
-                    <form class="wrapper-form" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
-                        @csrf
-                        <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
-                        <button class="w3-btn w3-blue">Pay with PayPal</button>
-                    </form>
-                </div>
+            <button class="but-cart">
+                <div class="miltiply-items-button"></div>
+                <img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart</button>
+            <div class="cart">
+                <button class="x">x</button>
+                <p class="total"></p>
+                <div class='cart-cart'></div>
                 <form class="wrapper-form" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
                     @csrf
                     <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
@@ -133,6 +105,7 @@
                 </form>
             </div>
         </div>
+
         <footer>
             <div class="bottom_page">
                 <div class="bottom_page_logo">
