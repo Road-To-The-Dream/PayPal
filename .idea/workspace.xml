@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="52060d48-8d87-453e-b5d6-d9c53b127f0f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/css/css1.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/css1.css" afterDir="false" />
-    </list>
+    <list default="true" id="52060d48-8d87-453e-b5d6-d9c53b127f0f" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +28,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/css/css1.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
+            <state relative-caret-position="-1008">
               <caret line="412" column="1" lean-forward="true" selection-start-line="412" selection-start-column="1" selection-end-line="412" selection-end-column="1" />
             </state>
           </provider>
@@ -230,16 +228,15 @@
       <option name="presentableId" value="Default" />
       <updated>1562831773447</updated>
       <workItem from="1562831774510" duration="1575000" />
-      <workItem from="1562914131677" duration="3724000" />
+      <workItem from="1562914131677" duration="4876000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8337000" />
+    <option name="totallyTimeSpent" value="9489000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="970" y="0" width="950" height="1051" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25995576" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -298,7 +295,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/css/css1.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
+        <state relative-caret-position="-1008">
           <caret line="412" column="1" lean-forward="true" selection-start-line="412" selection-start-column="1" selection-end-line="412" selection-end-column="1" />
         </state>
       </provider>
