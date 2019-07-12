@@ -416,29 +416,28 @@ body{
     margin: 0 auto;
 }
 .order{
-    min-height: 700px;
-    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     padding: 0 250px;
 }
 .cart{
-    overflow-y: auto;
     border: solid 3px #aa2832;
     border-radius: 20px;
     position: absolute;
-    top: 90px;
+    top: 330px;
     right: 20px;
     display: none;
     width: 360px;
     padding: 20px;
     margin: 0 auto;
     min-height: 100px;
-    max-height: 500px;
+    height: max-content;
+
     background-color: #ffffff;
     z-index: -1;
     text-align: center;
+    background-color: white;
 }
 .but-cart{
     font-size: 24px;
@@ -446,7 +445,7 @@ body{
     height: 60px;
     position: absolute;
     right: 20px;
-    top: 20px;
+    top: 250px;
     border: solid 2px #aa2832;
     background-color: #aa2832;
     color: white;
@@ -467,6 +466,18 @@ body{
     color: white;
     cursor: pointer;
     border-radius: 10px;
+}
+.miltiply-items-button{
+    display: none;
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    width: 40px;
+    height: 40px;
+    border: solid 3px #aa2832;
+    background-color: #ffffff;
+    color: #aa2832;
+    border-radius: 50%;
 }
 .w3-btn{
     margin: 20px 0 0 0;

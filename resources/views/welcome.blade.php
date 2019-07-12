@@ -92,7 +92,9 @@
         </div>
         <div class="order">
 
-            <button class="but-cart"><img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart</button>
+            <button class="but-cart">
+                <div class="miltiply-items-button"></div>
+                <img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart</button>
             <div class="cart">
                 <button class="x">x</button>
                 <p class="total"></p>
