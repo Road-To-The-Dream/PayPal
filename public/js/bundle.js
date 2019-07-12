@@ -131,55 +131,20 @@ class CustomElementNew extends HTMLElement {
     }
 
     plusItem() {
-        let amount = this.counterItem;
-        let totalPrice = this.itemPrise.textContent;
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $.ajax({
-            url: 'decrease-product-amount',
-            type: 'POST',
-            data: {
-                productId: this.idNum.id,
-            },
-            success: function (response) {
-                if (response === true) {
-                    amount.textContent = parseInt(amount.textContent) + 1;
-                    total.textContent = `total price: ${parseInt(total.textContent.slice(12)) + parseInt(totalPrice)}`;
-                }
-            }
-        })
+        this.increaseDecreaseProductAmount('decrease-product-amount');
+        this.counterItem.textContent = parseInt(this.counterItem.textContent) + 1;
+        total.textContent = `total price: ${parseInt(total.textContent.slice(12)) + parseInt(this.itemPrise.textContent)}`;
     }
 
     minusItem() {
         if (this.counterItem.textContent > 1) {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                url: 'increase-product-amount',
-                type: 'POST',
-                data: {
-                    productId: this.idNum.id
-                },
-                success: function (response) {
-
-                }
-            });
+            this.increaseDecreaseProductAmount('increase-product-amount');
             this.counterItem.textContent = parseInt(this.counterItem.textContent) - 1
             total.textContent = `total price: ${parseInt(total.textContent.slice(12)) - parseInt(this.itemPrise.textContent)}`
-        } else {
-            console.log('looser')
         }
     }
 
-    increaseProductAmount() {
+    increaseDecreaseProductAmount(url) {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -187,33 +152,13 @@ class CustomElementNew extends HTMLElement {
         });
 
         $.ajax({
-            url: 'increase-product-amount',
-            type: 'POST',
-            data: {
-                productId: this.idNum.id,
-                productAmount: this.counterItem.textContent
-            },
-            success: function (response) {
-                console.log("Sergey");
-            }
-        })
-    }
-
-    decreaseProductAmount() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $.ajax({
-            url: 'decrease-product-amount',
+            url: url,
             type: 'POST',
             data: {
                 productId: this.idNum.id,
             },
             success: function (response) {
-                console.log("Sergey");
+                console.log(url + ", success");
             }
         })
     }
@@ -228,7 +173,7 @@ class CustomElementNew extends HTMLElement {
         elem.appendChild(this)
         total.textContent = `total price: ${counter += parseInt(this.itemPrise.textContent)}`
         document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
-        this.decreaseProductAmount();
+        this.increaseDecreaseProductAmount('add-to-cart')
     }
 
     multiplyItemsCart() {
@@ -266,6 +211,12 @@ data.forEach(item => {
     document.querySelector('.order').appendChild(elem)
 })
 let button = document.querySelector('.but-cart')
-button.onclick = e => document.querySelector('.cart').style = `display: block; z-index: 999;`
+button.onclick =  e => {
+    document.querySelector('.cart').style = `display: block; z-index: 999;`
+    document.documentElement.style.overflow = 'hidden'
+}
 let x = document.querySelector('.x')
-x.onclick = e => document.querySelector('.cart').style = `display: none; z-index: -1;`
+x.onclick =  e => {
+    document.querySelector('.cart').style = `display: none; z-index: -1;`
+    document.documentElement.style.overflow = 'auto'
+}

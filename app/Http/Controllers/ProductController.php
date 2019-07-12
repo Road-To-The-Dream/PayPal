@@ -85,25 +85,29 @@ class ProductController extends Controller
         //
     }
 
+    public function addToCart(Request $request)
+    {
+        $request->session()->push('productsId', [$request->get('productId')]);
+    }
+
+    public function deleteFromCart(Request $request)
+    {
+        $productKeys = array_keys($request->session()->get('productId'));
+
+        for ($i = 0; $i < count($request->session()->get('productId')); $i++) {
+            if ($request->session()->get("productId.{$productKeys}.0") === $request->get('productId')) {
+                $request->session()->forget("productId.{$productKeys[$i]}");
+            }
+        }
+    }
+
     public function decreaseAmount(Request $request)
     {
-        $product = Product::find($request->get('productId'));
-
-        if ($product->amount < 1) {
-            return response()->json(false);
-        }
-
-        $product->update(['amount' => $product->amount - 1]);
-
-        return response()->json(true);
+        $request->session()->push('productsId', [$request->get('productId')]);
     }
 
     public function increaseAmount(Request $request)
     {
-        $product = Product::find($request->get('productId'));
-
-        $product->update(['amount' => $product->amount + $request->input('productAmount', 1)]);
-
-        return response()->json(true);
+        $request->session()->push('productsId', [$request->get('productId')]);
     }
 }
