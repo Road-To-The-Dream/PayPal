@@ -5,9 +5,9 @@ let data = JSON.parse(products)
 let currentCounter = 1
 
 class CustomElementNew extends HTMLElement {
-    constructor () {
+    constructor() {
         super()
-        let wrapper = document.createElement ( 'div' )
+        let wrapper = document.createElement('div')
         wrapper.className = 'wrapper'
         this.minusPlus = document.createElement('div')
         this.minusPlus.className = 'plus-minus'
@@ -30,7 +30,7 @@ class CustomElementNew extends HTMLElement {
         this.itemTitle.className = 'item-title'
         this.itemDescription = document.createElement('p')
         this.itemDescription.className = 'item-description'
-        this.itemPrise =document.createElement('p')
+        this.itemPrise = document.createElement('p')
         this.itemPrise.className = 'item-prise'
         this.buttonItem = document.createElement('button')
         this.buttonItem.className = 'button-item'
@@ -40,8 +40,8 @@ class CustomElementNew extends HTMLElement {
         this.xButton.className = 'x-button'
         this.xButton.textContent = 'x'
         this.xButton.onclick = this.removeItemFromCart.bind(this)
-        this.shadow = this.attachShadow ( { mode: 'open' } )
-        let style = document.createElement ( 'style' )
+        this.shadow = this.attachShadow({mode: 'open'})
+        let style = document.createElement('style')
         style.textContent = `
             .wrapper{
                 width: 200px;
@@ -226,17 +226,19 @@ class CustomElementNew extends HTMLElement {
         this.itemDescription.style.display = 'none'
         this.xButton.style.display = 'block'
         elem.appendChild(this)
-        total.textContent = `total price: ${counter+=parseInt(this.itemPrise.textContent)}`
+        total.textContent = `total price: ${counter += parseInt(this.itemPrise.textContent)}`
         document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
         this.decreaseProductAmount();
     }
-    multiplyItemsCart(){
+
+    multiplyItemsCart() {
         let multiplyItemsCartCounter = 0
         let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
         multiplyItemsCartButton.style.display = 'block'
         multiplyItemsCartButton.textContent = (multiplyItemsCartCounter += 1) && (+multiplyItemsCartButton.textContent + 1)
     }
-    removeItemFromCart(){
+
+    removeItemFromCart() {
         let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
         multiplyItemsCartButton.textContent = +multiplyItemsCartButton.textContent - 1
         this.buttonItem.style.display = 'block'
@@ -245,7 +247,7 @@ class CustomElementNew extends HTMLElement {
         document.querySelector('.order').appendChild(this)
         this.xButton.style.display = 'none'
         total.textContent = `total price: ${counter > 0 ?
-            counter-=parseInt(this.itemPrise.textContent) :
+            counter -= parseInt(this.itemPrise.textContent) :
             null}`
         document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
     }

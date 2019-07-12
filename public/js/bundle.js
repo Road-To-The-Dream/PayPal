@@ -16,7 +16,7 @@ class CustomElementNew extends HTMLElement {
         this.buttonMinus.textContent = '-'
         this.buttonMinus.onclick = this.minusItem.bind(this)
         this.counterItem = document.createElement('p')
-        this.counterItem.textContent = currentCounter
+        this.counterItem.innerHTML = currentCounter
         this.buttonPlus = document.createElement('button')
         this.buttonPlus.className = 'plus'
         this.buttonPlus.textContent = '+'
@@ -36,6 +36,10 @@ class CustomElementNew extends HTMLElement {
         this.buttonItem.className = 'button-item'
         this.buttonItem.innerHTML = 'add to cart'
         this.buttonItem.onclick = this.addToCart.bind(this)
+        this.xButton = document.createElement('button')
+        this.xButton.className = 'x-button'
+        this.xButton.textContent = 'x'
+        this.xButton.onclick = this.removeItemFromCart.bind(this)
         this.shadow = this.attachShadow({mode: 'open'})
         let style = document.createElement('style')
         style.textContent = `
@@ -98,11 +102,23 @@ class CustomElementNew extends HTMLElement {
                 width: auto;
                 max-height: 120px;
             }
+            .x-button{
+                display: none;
+                position: absolute; 
+                left: -10px;
+                top: -10px;
+                border: solid 2px #aa2832;
+                background-color: #aa2832;
+                color: white;
+                cursor: pointer;
+                border-radius: 10px;
+            }
         `
         this.imgHolder.appendChild(this.imgItem)
         this.minusPlus.appendChild(this.buttonPlus)
         this.minusPlus.appendChild(this.counterItem)
         this.minusPlus.appendChild(this.buttonMinus)
+        wrapper.appendChild(this.xButton)
         wrapper.appendChild(this.minusPlus)
         wrapper.appendChild(this.idNum)
         wrapper.appendChild(this.imgHolder)
@@ -202,46 +218,38 @@ class CustomElementNew extends HTMLElement {
         })
     }
 
-    addNotification(){
-
-    }
-
     addToCart() {
+        this.multiplyItemsCart()
         let elem = document.querySelector('.cart-cart')
-        let div = document.createElement('div')
-        div.style.display = 'flex'
-        let x = document.createElement('button')
-        x.textContent = 'x'
-        x.style = `
-        position: absolute; 
-        border: solid 2px #aa2832;
-        background-color: #aa2832;
-        color: white;
-        cursor: pointer;
-        border-radius: 10px;`
-        x.onclick = e => {
-            this.buttonItem.style.display = 'block'
-            this.itemDescription.style.display = 'block'
-            this.minusPlus.style.display = 'none'
-            document.querySelector('.order').appendChild(this)
-            x.remove()
-            total.textContent = `total price: ${counter > 0 ?
-                counter -= parseInt(this.itemPrise.textContent) :
-                null}`
-            document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
-            this.increaseProductAmount();
-        }
         this.minusPlus.style.display = 'block'
         this.buttonItem.style.display = 'none'
         this.itemDescription.style.display = 'none'
-        div.appendChild(this)
-        div.appendChild(x)
-        elem.appendChild(div)
-        console.log(this)
+        this.xButton.style.display = 'block'
+        elem.appendChild(this)
         total.textContent = `total price: ${counter += parseInt(this.itemPrise.textContent)}`
         document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
-
         this.decreaseProductAmount();
+    }
+
+    multiplyItemsCart() {
+        let multiplyItemsCartCounter = 0
+        let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
+        multiplyItemsCartButton.style.display = 'block'
+        multiplyItemsCartButton.textContent = (multiplyItemsCartCounter += 1) && (+multiplyItemsCartButton.textContent + 1)
+    }
+
+    removeItemFromCart() {
+        let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
+        multiplyItemsCartButton.textContent = +multiplyItemsCartButton.textContent - 1
+        this.buttonItem.style.display = 'block'
+        this.itemDescription.style.display = 'block'
+        this.minusPlus.style.display = 'none'
+        document.querySelector('.order').appendChild(this)
+        this.xButton.style.display = 'none'
+        total.textContent = `total price: ${counter > 0 ?
+            counter -= parseInt(this.itemPrise.textContent) :
+            null}`
+        document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
     }
 }
 
