@@ -1,12 +1,12 @@
 <?php
 
-Route::get('/', 'PaymentController@index');
+Route::get('/', 'PayPalController@index');
 
 // route for processing payment
-Route::post('paypal', 'PaymentController@payWithPayPal');
+Route::post('paypal', 'PayPalController@pay');
 
 // route for check status of the payment
-Route::get('status', 'PaymentController@getPaymentStatus');
+Route::get('status', 'PayPalController@getPaymentStatus');
 
 Route::post('increase-product-amount', 'ProductController@increaseAmount');
 

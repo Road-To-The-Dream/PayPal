@@ -22,7 +22,7 @@ use Redirect;
 use Session;
 use URL;
 
-class PaymentController extends Controller
+class PayPalController extends Controller implements \App\Services\Payment
 {
     private $apiContext;
 
@@ -46,7 +46,7 @@ class PaymentController extends Controller
         ]);
     }
 
-    public function payWithPayPal(PaymentRequest $request)
+    public function pay(PaymentRequest $request)
     {
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
