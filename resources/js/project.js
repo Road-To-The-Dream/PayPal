@@ -266,6 +266,12 @@ data.forEach(item => {
     document.querySelector('.order').appendChild(elem)
 })
 let button = document.querySelector('.but-cart')
-button.onclick = e => document.querySelector('.cart').style = `display: block; z-index: 999;`
+button.onclick =  e => {
+    document.querySelector('.cart').style = `display: block; z-index: 999;`
+    document.documentElement.style.overflow = 'hidden'
+}
 let x = document.querySelector('.x')
-x.onclick = e => document.querySelector('.cart').style = `display: none; z-index: -1;`
+x.onclick =  e => {
+    document.querySelector('.cart').style = `display: none; z-index: -1;`
+    document.documentElement.style.overflow = 'auto'
+}
