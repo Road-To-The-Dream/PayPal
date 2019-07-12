@@ -399,7 +399,7 @@ template {
     display: none;
 }
 ::-webkit-scrollbar { width: 5px; height: 3px;}
-::-webkit-scrollbar-button {  background-color: #aa2832; }
+::-webkit-scrollbar-button {  background-color: transparent; }
 ::-webkit-scrollbar-track {  background-color: #999;}
 ::-webkit-scrollbar-track-piece { background-color: #ffffff;}
 ::-webkit-scrollbar-thumb { height: 50px; background-color: #aa2832; border-radius: 5px;}
