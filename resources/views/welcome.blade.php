@@ -84,8 +84,6 @@
 
             </li>
             <li class="main_tab"><a href="#">Fixing Services</a>
-
-<<<<<<< HEAD
             </li>
             <li class="main_tab"><a href="#">Fixing Services</a>
             </li>
@@ -103,84 +101,84 @@
             <button class="x">x</button>
             <p class="total"></p>
             <div class='cart-cart'>
-=======
                 </li>
                 <li class="main_tab"><a href="#">Fixing Services</a>
                 </li>
-            </ul>
-        </div>
-        <div class="order">
+                </ul>
+            </div>
+            <div class="order">
 
-            <button class="but-cart"><img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart</button>
+                <button class="but-cart"><img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart
+                </button>
 
-            <button class="but-cart">
-                <div class="miltiply-items-button"></div>
-                <img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart</button>
-            <div class="cart">
-                <button class="x">x</button>
-                <p class="total"></p>
-                <div class='cart-cart'>
+                <button class="but-cart">
+                    <div class="miltiply-items-button"></div>
+                    <img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart
+                </button>
+                <div class="cart">
+                    <button class="x">x</button>
+                    <p class="total"></p>
+                    <div class='cart-cart'>
+                    </div>
+                    <form class="wrapper-form" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
+                        @csrf
+                        <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
+                        <button class="w3-btn w3-blue">Pay with PayPal</button>
+                    </form>
                 </div>
                 <form class="wrapper-form" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
                     @csrf
                     <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
                     <button class="w3-btn w3-blue">Pay with PayPal</button>
                 </form>
->>>>>>> b37d84b6b42968bfdca55c270995ff3fbebd6979
             </div>
-            <form class="wrapper-form" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
-                @csrf
-                <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
-                <button class="w3-btn w3-blue">Pay with PayPal</button>
-            </form>
         </div>
-    </div>
-    <footer>
-        <div class="bottom_page">
-            <div class="bottom_page_logo">
-                <a href="#"><img src="https://www.w3.org/Graphics/PNG/alphatest.png" alt="top_log"></a>
-                <p class="under_logo_bottom">© TEST test</p>
-            </div>
-            <div class="bottom_page_navigation">
-                <div class="bottom_page_navigation_tabs">
-                    <p class="tabs_titles">Контакты</p>
-                    <p class="tab_contact"><a href="#">Phone: (057) 719-69-30</p></a>
-                    <p class="tab_contact"><a href="#">Phone: (050) 424-77-52</p></a>
-                    <p class="tab_contact"><a href="#">Phone: (068) 761-86-63</p></a>
+        <footer>
+            <div class="bottom_page">
+                <div class="bottom_page_logo">
+                    <a href="#"><img src="https://www.w3.org/Graphics/PNG/alphatest.png" alt="top_log"></a>
+                    <p class="under_logo_bottom">© TEST test</p>
                 </div>
-                <div class="bottom_page_navigation_tabs">
-                    <p class="tabs_titles">Где мы находимся</p>
-                    <p class="tabs_adress">г. Харьков, проспект Гагарина, 20
+                <div class="bottom_page_navigation">
+                    <div class="bottom_page_navigation_tabs">
+                        <p class="tabs_titles">Контакты</p>
+                        <p class="tab_contact"><a href="#">Phone: (057) 719-69-30</p></a>
+                        <p class="tab_contact"><a href="#">Phone: (050) 424-77-52</p></a>
+                        <p class="tab_contact"><a href="#">Phone: (068) 761-86-63</p></a>
+                    </div>
+                    <div class="bottom_page_navigation_tabs">
+                        <p class="tabs_titles">Где мы находимся</p>
+                        <p class="tabs_adress">г. Харьков, проспект Гагарина, 20
 
-                    </p>
-                    <p class="tabs_adress">c 9.00 до 20.00 без выходных</p>
-                    <p class="tabs_adress"><img src="https://www.seeking.com/img/google-play-badge.png"></p>
-                </div>
-                <div class="bottom_page_navigation_tabs">
-                    <p class="tabs_titles">Где нас найти</p>
-                    <p class="tabs_links"><a href="#">e-mail: shop@electrodim.com</p></a>
-                    <div class="socials">
-                        <a href="#">
-                            <div class="ellipse_socials"><img
-                                        src="http://www.benandpets.com/wp-content/uploads/2019/06/87390.png"></div>
-                        </a>
-                        <a href="#">
-                            <div class="ellipse_socials"><img
-                                        src="http://www.benandpets.com/wp-content/uploads/2019/06/87390.png"></div>
-                        </a>
-                        <a href="#">
-                            <div class="ellipse_socials"><img
-                                        src="http://www.benandpets.com/wp-content/uploads/2019/06/87390.png"></div>
-                        </a>
+                        </p>
+                        <p class="tabs_adress">c 9.00 до 20.00 без выходных</p>
+                        <p class="tabs_adress"><img src="https://www.seeking.com/img/google-play-badge.png"></p>
+                    </div>
+                    <div class="bottom_page_navigation_tabs">
+                        <p class="tabs_titles">Где нас найти</p>
+                        <p class="tabs_links"><a href="#">e-mail: shop@electrodim.com</p></a>
+                        <div class="socials">
+                            <a href="#">
+                                <div class="ellipse_socials"><img
+                                            src="http://www.benandpets.com/wp-content/uploads/2019/06/87390.png"></div>
+                            </a>
+                            <a href="#">
+                                <div class="ellipse_socials"><img
+                                            src="http://www.benandpets.com/wp-content/uploads/2019/06/87390.png"></div>
+                            </a>
+                            <a href="#">
+                                <div class="ellipse_socials"><img
+                                            src="http://www.benandpets.com/wp-content/uploads/2019/06/87390.png"></div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-</div>
-<script>
-    let products = ('<?=$products?>');
-</script>
-<script src="{{ asset('js/bundle.js') }}"></script>
+        </footer>
+    </div>
+    <script>
+        let products = ('<?=$products?>');
+    </script>
+    <script src="{{ asset('js/bundle.js') }}"></script>
 </body>
 </html>
