@@ -91,7 +91,14 @@
             </ul>
         </div>
         <div class="order">
+<<<<<<< HEAD
             <button class="but-cart"><img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart</button>
+=======
+
+            <button class="but-cart">
+                <div class="miltiply-items-button"></div>
+                <img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart</button>
+>>>>>>> e940a1154bc5b26f0a0114ce6c78f3de5f4a9d62
             <div class="cart">
                 <button class="x">x</button>
                 <p class="total"></p>
