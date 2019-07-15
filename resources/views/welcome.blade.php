@@ -42,7 +42,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="onloadPage()">
 <div class="container">
     @if ($message = Session::get('success'))
         <div id="message-destroy-recipe" class="alert alert-success mt-5" role="alert">

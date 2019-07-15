@@ -117,6 +117,6 @@ class ProductController extends Controller
     {
         //$productKeys = array_keys($request->session()->get('productsId'));
 
-        return response()->json(Product::find(1), 200);
+        return response()->json(Product::whereIn('id', [1])->get(), 200);
     }
 }

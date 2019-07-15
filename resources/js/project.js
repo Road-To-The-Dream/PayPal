@@ -1,5 +1,5 @@
 var total = document.querySelector('.total')
-total.innerHTML = 'total price:'
+total.innerHTML = `total price: ${0}`
 var counter = 0;
 let currentCounter = 1
 
@@ -182,24 +182,28 @@ class CustomElementNew extends HTMLElement {
     }
 
     addToCart() {
-        this.multiplyItemsCart()
-        let elem = document.querySelector('.cart-cart')
-        let elemCart = document.createElement('new-element')
-        elemCart.minusPlus.style.display = 'block'
-        elemCart.buttonItem.style.display = 'none'
-        elemCart.itemDescription.style.display = 'none'
-        elemCart.xButton.style.display = 'block'
-        elemCart.id = `${this.id}copy`
-        elemCart.idNum.textContent = `product ID: ${this.idNum.textContent}`
-        elemCart.idNum.id = `${this.id}`
-        elemCart.imgItem.src = this.imgItem.src
-        elemCart.itemTitle.textContent = this.itemTitle.textContent
-        elemCart.itemDescription.style.display = 'none'
-        elemCart.itemPrise.textContent = `${this.itemPrise.textContent} USD`
-        elem.appendChild(elemCart)
-        total.textContent = `total price: ${counter += parseInt(elemCart.itemPrise.textContent)}`
-        document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
-        this.increaseDecreaseProductAmount('add-to-cart')
+
+        if ( Array.from(document.querySelector('.cart-cart').children)
+            .find(item => this.idNum.textContent != item.idNum.textContent)) {
+                this.multiplyItemsCart()
+                let elem = document.querySelector('.cart-cart')
+                let elemCart = document.createElement('new-element')
+                elemCart.minusPlus.style.display = 'block'
+                elemCart.buttonItem.style.display = 'none'
+                elemCart.itemDescription.style.display = 'none'
+                elemCart.xButton.style.display = 'block'
+                elemCart.id = `${this.id}copy`
+                elemCart.idNum.textContent = `${this.idNum.textContent}`
+                elemCart.idNum.id = `${this.id}`
+                elemCart.imgItem.src = this.imgItem.src
+                elemCart.itemTitle.textContent = this.itemTitle.textContent
+                elemCart.itemDescription.style.display = 'none'
+                elemCart.itemPrise.textContent = `${this.itemPrise.textContent}`
+                elem.appendChild(elemCart)
+                total.textContent = `total price: ${+total.textContent.slice(12) + parseInt(elemCart.itemPrise.textContent)}`
+                document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
+                this.increaseDecreaseProductAmount('add-to-cart')
+        }else { alert('matches wit item in cart')}
     }
 
     multiplyItemsCart() {
@@ -212,10 +216,11 @@ class CustomElementNew extends HTMLElement {
     removeItemFromCart() {
         let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
         multiplyItemsCartButton.textContent = +multiplyItemsCartButton.textContent - 1
-        total.textContent = `total price: ${counter > 0 ?
-            counter -= parseInt(this.itemPrise.textContent) :
+        console.log(+total.textContent.slice(12), parseInt(this.itemPrise.textContent))
+        total.textContent = `total price: ${+total.textContent.slice(12) > 0 ?
+            +total.textContent.slice(12) - parseInt(this.itemPrise.textContent) :
             null}`
-        document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
+        // document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
         this.deleteItemFromCart('delete-from-cart');
         this.remove()
     }
@@ -234,7 +239,6 @@ onloadGetData = function () {
     }
     return JSON.parse(xhr.response).forEach(item => {
         let elem = document.createElement('new-element')
-
         elem.id = item.id
         elem.idNum.textContent = `product ID: ${item.id}`
         elem.idNum.id = `${item.id}`
@@ -249,13 +253,18 @@ onloadGetData()
 
 onloadPage = function () {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `/`, false);
+    xhr.open('GET', `/get-products-cart`, false);
     xhr.send();
     if (xhr.status != 200) {
         alert( xhr.status + ': ' + xhr.statusText );
     } else {
         null
     }
+    console.log(JSON.parse(xhr.response))
+
+    let result = JSON.parse(xhr.response).reduce((a,b) => a+b.price, 0)
+    console.log(result)
+
     return JSON.parse(xhr.response).forEach(item => {
         let elem = document.createElement('new-element')
         elem.minusPlus.style.display = 'block'
@@ -270,6 +279,9 @@ onloadPage = function () {
         elem.itemDescription.style.display = 'none'
         elem.itemPrise.textContent = `${item.price} USD`
         document.querySelector('.cart-cart').appendChild(elem)
+        total.textContent = `total price: ${result -= +total.textContent.slice(12)}`
+        let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
+        multiplyItemsCartButton.textContent = document.querySelector('.cart-cart').children.length
     })
 }
 
