@@ -44,7 +44,7 @@ class PayPalController extends Controller implements \App\Services\Payment
 
     public function  getProducts()
     {
-        return response(json_encode(ProductResource::collection(Product::all())), 200);
+        return response()->json(Product::all(), 200);
     }
 
     public function pay(PaymentRequest $request)
