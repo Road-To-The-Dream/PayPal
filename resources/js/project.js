@@ -296,3 +296,105 @@ x.onclick =  e => {
     document.querySelector('.cart').style = `display: none; z-index: -1;`
     document.documentElement.style.overflow = 'auto'
 }
+
+
+
+
+
+
+
+let elemLogIn = document.querySelector('.ellipse_user')
+let elemFormReg = document.querySelector('.registration_div')
+let elemFormLog = document.querySelector('.log_in_div')
+let elemCloseFormReg = document.querySelector('.close_form_registration')
+let elemCloseFormLog = document.querySelector('.close_form_log_in')
+let elemOrEnter = document.querySelector('.or_enter')
+let elemOrRegister = document.querySelector('.or_register')
+let elemTopLogReg = document.querySelector('.enter_registration')
+let elemTopRegReg = document.querySelector('.reg_registration')
+let elemTopLogLog = document.querySelector('.enter_log_in')
+let elemTopRegLog = document.querySelector('.reg_log_in')
+let switchItems = function(par1, par2){
+    par1.style = `opacity: 0; z-index: -1;`
+    par2.style = `opacity: 1; z-index: 999999;`
+}
+let closeItem = function(par){
+    par.style = `opacity: 0; z-index: -1;`
+}
+elemLogIn.onclick = function (e) {
+    elemFormReg.style = `opacity: 1; z-index: 999999;`
+    document.documentElement.style.overflow = 'hidden'
+    document.querySelector('.reg_registration_a').style.color = '#aa2832'
+}
+elemCloseFormReg.onclick = function (e) {
+    closeItem(elemFormReg)
+    document.documentElement.style.overflow = 'auto'
+}
+elemCloseFormLog.onclick = function (e) {
+    closeItem(elemFormLog)
+    document.documentElement.style.overflow = 'auto'
+}
+elemOrEnter.onclick = function (e) {
+    switchItems(elemFormReg, elemFormLog)
+    document.querySelector('.enter_log_in_a').style.color = '#aa2832'
+}
+elemOrRegister.onclick = function (e) {
+    switchItems(elemFormLog, elemFormReg)
+}
+elemTopLogLog.onclick = function (e) {
+    switchItems(elemFormReg, elemFormLog)
+
+}
+elemTopRegLog.onclick = function (e) {
+    switchItems(elemFormLog, elemFormReg)
+}
+elemTopLogReg.onclick = function (e) {
+    switchItems(elemFormReg, elemFormLog)
+    document.querySelector('.enter_log_in_a').style.color = '#aa2832'
+}
+elemTopRegReg.onclick = function (e) {
+    switchItems(elemFormLog, elemFormReg)
+}
+
+
+function diplay_hide (blockId)
+{
+    if ($(blockId).css('display') == 'none')
+    {
+        $(blockId).animate({height: 'show'}, 500);
+        $('html').css('overflow', 'hidden');
+        $(document.querySelector('.menu_rect1')).css('transform', 'rotate(315deg)')
+        $(document.querySelector('.menu_rect1')).css('margin-right', '5px')
+        $(document.querySelector('.menu_rect1')).css('margin-top', '12px')
+        $(document.querySelector('.menu_rect3')).css('transform', 'rotate(-315deg)')
+        $(document.querySelector('.menu_rect3')).css('margin-right', '5px')
+        $(document.querySelector('.menu_rect1')).css('margin-bottom', '-12px')
+        $(document.querySelector('.menu_rect2')).css('opacity', '0')
+    }
+    else
+    {
+        $(blockId).animate({height: 'hide'}, 500);
+        $('html').css('overflow', 'auto')
+        $('html').css('overflow-x', 'hidden')
+        $(document.querySelector('.menu_rect1')).css('transform', 'rotate(0deg)')
+        $(document.querySelector('.menu_rect3')).css('transform', 'rotate(0deg)')
+        $(document.querySelector('.menu_rect2')).css('opacity', '1')
+        $(document.querySelector('.menu_rect1')).css('margin', '0')
+        $(document.querySelector('.menu_rect3')).css('margin', '0')
+    }}
+
+
+
+
+
+$('.language-select').click(function(){
+    $(this).toggleClass('open');
+})
+
+$('.language-select li').click(function(){
+    var setLang = $('.language-select').data('location'),
+        dataLangSelect = $(this).data('lang')
+    $('.language-select').data('location', dataLangSelect);
+    $('.language-select li').removeClass('active');
+    $(this).toggleClass('active');
+})

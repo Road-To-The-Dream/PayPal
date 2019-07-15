@@ -61,34 +61,77 @@
     @error('total-price')
     <div class="alert alert-danger mt-5">{{ $message }}</div>
     @enderror
-    <header class="header">
-        <img class="bottom_page_logo img" src="https://www.w3.org/Graphics/PNG/alphatest.png"/>
-        <a href="#">Contacts</a>
-        <a href="#">Shop</a>
-        <a href="#">Details</a>
-        <img src="https://www.seeking.com/img/google-play-badge.png">
-    </header>
-    <div class="menu">
-        <ul class="top_page_main_menu">
-            <li class="main_tab"><a href="#">Fixing Services</a>
-                <ul class="submenu">
-                    <li><a href=#>TV Fixing</a></li>
-                    <li><a href=#>TV Fixing</a></li>
-                    <li><a href=#>TV Fixing</a></li>
-                    <li><a href=#>TV Fixing</a></li>
-                    <li><a href=#>TV Fixing</a></li>
-                    <li><a href=#>TV Fixing</a></li>
-                </ul>
-            </li>
-            <li class="main_tab"><a href="#">Fixing Services</a>
+        <header>
+            <div class="top_page">
+                <div class="top_page_logo">
+                    <a href="#"><img src="https://www.w3.org/Graphics/PNG/alphatest.png" alt="top_log"></a>
+                </div>
+                <div class="top_page_logo_small">
+                    <a href="#"><img src="https://www.w3.org/Graphics/PNG/alphatest.png" alt="top_log"></a>
+                </div>
+                <div class="top_page_navigation">
+                    <span><a href="#">Contacts</a></span>
+                    <span><a href="#">Shop</a></span>
 
-            </li>
-            <li class="main_tab"><a href="#">Fixing Services</a>
-            </li>
-            <li class="main_tab"><a href="#">Fixing Services</a>
-            </li>
-        </ul>
-    </div>
+                    <span>
+						<ul class="language-select">
+		  					<li class="active" data-lang="ru">RU</li>
+		 					<li data-lang="ua">UA</li>
+		 					<li data-lang="en">eng</li>
+						</ul>
+					</span>
+
+                    <div class="menu_rects" onclick="diplay_hide('.top_page_main_menu')">
+                        <div class="menu_rect1"></div>
+                        <div class="menu_rect2"></div>
+                        <div class="menu_rect3"></div>
+                    </div>
+                    <div class="ellipse_user">
+                        <img src="../img/user.png">
+                    </div>
+                </div>
+            </div>
+            <ul class="top_page_main_menu">
+                <li class="tab_navi"><a href="#">Shop</a>
+
+                </li>
+                <li class="tab_navi"><a href="#">Contacts</a>
+
+                </li>
+                <li class="main_tab"><a href="#">Repearing servise</a>
+                    <ul class="submenu">
+                        <li><a href=#>Repearing servise</a></li>
+                        <li><a href=#>Repearing servise</a></li>
+                        <li><a href=#>Repearing servise</a></li>
+                        <li><a href=#>Repearing servise</a></li>
+                        <li><a href=#>Repearing servise</a></li>
+                        <li><a href=#>Repearing servise</a></li>
+                    </ul>
+                </li>
+                <li class="main_tab"><a href="#">Repearing servise</a>
+
+                </li>
+                <li class="main_tab"><a href="#">Repearing servise</a>
+
+                </li>
+                <li class="main_tab"><a href="#">Repearing servise</a>
+{{--                    <ul class="submenu_last">--}}
+{{--                        <li><a href=#>Ремонт телефонов</a></li>--}}
+{{--                        <li><a href=#>Ремонт планшетов</a></li>--}}
+{{--                        <li><a href=#>Ремнонт ноутбуков</a></li>--}}
+{{--                        <li><a href=#>Ремнонт компьютеров</a></li>--}}
+{{--                        <li><a href=#>Ремнонт телевизоров и мониторов</a></li>--}}
+{{--                        <li><a href=#>Ремнонт бытовой техники</a></li>--}}
+{{--                    </ul>--}}
+                </li>
+                <li class="main_tab_lang"><a href="#">Choose your language</a>
+                    <ul class="submenu">
+                        <li><a href=#>Russian</a></li>
+                        <li><a href=#>English</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </header>
         <div class="order">
 
             <button class="but-cart">
@@ -105,49 +148,91 @@
                 </form>
             </div>
         </div>
-
         <footer>
             <div class="bottom_page">
                 <div class="bottom_page_logo">
                     <a href="#"><img src="https://www.w3.org/Graphics/PNG/alphatest.png" alt="top_log"></a>
-                    <p class="under_logo_bottom">© TEST test</p>
+                    <p class="under_logo_bottom">© Test-TEST 2019</p>
                 </div>
                 <div class="bottom_page_navigation">
                     <div class="bottom_page_navigation_tabs">
-                        <p class="tabs_titles">Контакты</p>
-                        <p class="tab_contact"><a href="#">Phone: (057) 719-69-30</p></a>
-                        <p class="tab_contact"><a href="#">Phone: (050) 424-77-52</p></a>
-                        <p class="tab_contact"><a href="#">Phone: (068) 761-86-63</p></a>
+                        <p class="tabs_titles">Contacts</p>
+                        <p class="tab_contact"><a href="#">Phone: (000) 000 00 00</p></a>
+                        <p class="tab_contact"><a href="#">Phone: (000) 000 00 00</p></a>
+                        <p class="tab_contact"><a href="#">Phone: (000) 000 00 00 </p></a>
                     </div>
                     <div class="bottom_page_navigation_tabs">
-                        <p class="tabs_titles">Где мы находимся</p>
-                        <p class="tabs_adress">г. Харьков, проспект Гагарина, 20
-
-                        </p>
-                        <p class="tabs_adress">c 9.00 до 20.00 без выходных</p>
-                        <p class="tabs_adress"><img src="https://www.seeking.com/img/google-play-badge.png"></p>
+                        <p class="tabs_titles">How to find us</p>
+                        <p class="tabs_adress">Test ave. Twest 000/123</p>
+                        <p class="tabs_adress">from 9.00 til 20.00 No OFFs</p>
+                        <p class="tabs_adress"><img src="../img/image4.4.png"></p>
                     </div>
                     <div class="bottom_page_navigation_tabs">
-                        <p class="tabs_titles">Где нас найти</p>
-                        <p class="tabs_links"><a href="#">e-mail: shop@electrodim.com</p></a>
+                        <p class="tabs_titles">How to find us</p>
+                        <p class="tabs_links"><a href="#">e-mail: test@test_test.com</p></a>
                         <div class="socials">
-                            <a href="#">
-                                <div class="ellipse_socials"><img
-                                            src="http://www.benandpets.com/wp-content/uploads/2019/06/87390.png"></div>
-                            </a>
-                            <a href="#">
-                                <div class="ellipse_socials"><img
-                                            src="http://www.benandpets.com/wp-content/uploads/2019/06/87390.png"></div>
-                            </a>
-                            <a href="#">
-                                <div class="ellipse_socials"><img
-                                            src="http://www.benandpets.com/wp-content/uploads/2019/06/87390.png"></div>
-                            </a>
+                            <a href="#"><div class="ellipse_socials"><img src="../img/facebook.png"></div></a>
+                            <a href="#"><div class="ellipse_socials"><img src="../img/instagram.png"></div></a>
+                            <a href="#"><div class="ellipse_socials"><img src="../img/pinterest.png"></div></a>
                         </div>
                     </div>
                 </div>
             </div>
         </footer>
+
+
+        <div class="registration_div">
+            <form class="registration">
+                <div class="top_form_registration">
+                    <span class="enter_registration"><a class="enter_registration_a" href="#">Sign IN</a></span>
+                    <span class="reg_registration"><a class="reg_registration_a" href="#">Registration</a></span>
+                    <div class="close_form_registration"><img src="../img/times.svg"></div>
+                </div>
+                <div class="inputs_registration">
+                    <label>
+                        <span>Name</span>
+                        <input type="text" name="name">
+                    </label>
+                    <label for="email">
+                        <span>Email</span>
+                        <input type="text" name="email">
+                    </label>
+                    <label>
+                        <span>Password</span>
+                        <input type="password" name="passwor">
+                    </label>
+                    <label>
+                        <span>Confirm password</span>
+                        <input type="password" name="passwor">
+                    </label>
+                    <button type="button" name="submit" class="form_button_registration">Go on</button>
+                </div>
+                <p class="or_enter_p">or</p>
+                <p><a href="#" class="or_enter">sign in</a></p>
+            </form>
+        </div>
+        <div class="log_in_div">
+            <form class="log_in">
+                <div class="top_form_log_in">
+                    <span class="enter_log_in"><a class="enter_log_in_a" href="#">Sign IN</a></span>
+                    <span class="reg_log_in"><a class="reg_log_in_a" href="#">Registration</a></span>
+                    <div class="close_form_log_in"><img src="../img/times.svg"></div>
+                </div>
+                <div class="inputs_log_in">
+                    <label for="email">
+                        <span>Email</span>
+                        <input type="text" name="email">
+                    </label>
+                    <label for="password">
+                        <span>Password</span>
+                        <input type="password" name="password">
+                    </label>
+                    <button type="button" name="submit" class="form_button_log_in">Go on</button>
+                </div>
+                <p class="or_register_p">or</p>
+                <p><a href="#" class="or_register">register</a></p>
+            </form>
+        </div>
     </div>
     <script src="{{ asset('js/bundle.js') }}"></script>
 </body>

@@ -21,3 +21,5 @@ mix.scripts([
 mix.styles([
     'resources/css/css1.css',
 ], 'public/css/welcome.css');
+
+mix.copyDirectory('resources/img', 'public/img');
