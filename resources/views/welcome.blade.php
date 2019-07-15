@@ -43,8 +43,11 @@
     </style>
 </head>
 <body onload="onloadPage()">
+<<<<<<< HEAD
 <div class="container">
 
+=======
+>>>>>>> f66cf52d0152a124dce5473f57f63d6e852395f9
 
     @if ($message = Session::get('success'))
         <div id="message-destroy-recipe" class="alert alert-success mt-5" role="alert">
@@ -116,8 +119,21 @@
         <ul class="top_page_main_menu">
             <li class="tab_navi"><a href="#">Shop</a>
 
+<<<<<<< HEAD
             </li>
             <li class="tab_navi"><a href="#">Contacts</a>
+=======
+    <div class="product-info">
+        <div class="close-info">X</div>
+        <p class="product-info-id"></p>
+        <div class="slider single-item"></div>
+        <h2 class="product-info-title"></h2>
+        <h3 class="product-info-description"></h3>
+        <p class="product-info-characteristics"></p>
+        <h3 class="product-info-price"></h3>
+    </div>
+
+>>>>>>> f66cf52d0152a124dce5473f57f63d6e852395f9
 
             </li>
             <li class="main_tab"><a href="#">Repearing servise</a>
@@ -207,6 +223,7 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </footer>
 
     <div class="registration_div">
@@ -265,5 +282,9 @@
     </div>
 </div>
 <script src="{{ asset('js/bundle.js') }}"></script>
+=======
+
+    <script src="{{ asset('js/bundle.js') }}"></script>
+>>>>>>> f66cf52d0152a124dce5473f57f63d6e852395f9
 </body>
 </html>
