@@ -115,8 +115,12 @@ class ProductController extends Controller
 
     public function getProductsFromCart(Request $request)
     {
-        //$productKeys = array_keys($request->session()->get('productsId'));
+        $productsId = [];
 
-        return response()->json(Product::whereIn('id', [1])->get(), 200);
+        foreach ($request->session()->get('productsId') as $product) {
+            array_push($productsId, $product[0]);
+        }
+
+        return response()->json(Product::whereIn('id', $productsId)->get(), 200);
     }
 }

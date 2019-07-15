@@ -42,7 +42,7 @@ class PayPalController extends Controller implements \App\Services\Payment
         return view('welcome');
     }
 
-    public function  getProducts()
+    public function getProducts()
     {
         return response()->json(Product::all(), 200);
     }
