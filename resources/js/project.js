@@ -225,7 +225,7 @@ class CustomElementNew extends HTMLElement {
         elemCart.buttonItem.style.display = 'none'
         elemCart.itemDescription.style.display = 'none'
         elemCart.xButton.style.display = 'block'
-        elemCart.id = this.id
+        elemCart.id = `${this.id}copy`
         elemCart.idNum.textContent = `product ID: ${this.idNum.textContent}`
         elemCart.idNum.id = `${this.id}`
         elemCart.imgItem.src = this.imgItem.src
