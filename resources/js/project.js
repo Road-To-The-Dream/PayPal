@@ -183,8 +183,8 @@ class CustomElementNew extends HTMLElement {
 
     addToCart() {
 
-        if ( Array.from(document.querySelector('.cart-cart').children)
-            .find(item => this.idNum.textContent != item.idNum.textContent)) {
+        if (!Array.from(document.querySelector('.cart-cart').children)
+            .find(item => item.idNum.textContent.slice(12) === this.idNum.textContent.slice(12))){
                 this.multiplyItemsCart()
                 let elem = document.querySelector('.cart-cart')
                 let elemCart = document.createElement('new-element')
