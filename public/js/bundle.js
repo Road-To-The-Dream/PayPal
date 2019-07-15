@@ -295,11 +295,7 @@ onloadPage = function () {
     } else {
         null
     }
-    console.log(JSON.parse(xhr.response))
-
     let result = JSON.parse(xhr.response).reduce((a,b) => a+b.price, 0)
-    console.log(result)
-
     return JSON.parse(xhr.response).forEach(item => {
         let elem = document.createElement('new-element')
         elem.minusPlus.style.display = 'block'
@@ -333,6 +329,10 @@ x.onclick =  e => {
 }
 
 document.querySelector('.close-info').onclick = () => {
+    let elemq = document.querySelector('.slider')
+    while (elemq.firstChild) {
+        elemq.removeChild(elemq.firstChild);
+    }
     document.querySelector('.product-info')
         .style = `display: none; z-index: -1;`
 }
