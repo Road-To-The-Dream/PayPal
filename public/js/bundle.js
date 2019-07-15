@@ -8,6 +8,7 @@ class CustomElementNew extends HTMLElement {
         super()
         let wrapper = document.createElement('div')
         wrapper.className = 'wrapper'
+        // wrapper.onclick = this.showInfo.bind(this)
         this.minusPlus = document.createElement('div')
         this.minusPlus.className = 'plus-minus'
         this.buttonMinus = document.createElement('button')
@@ -39,10 +40,17 @@ class CustomElementNew extends HTMLElement {
         this.xButton.className = 'x-button'
         this.xButton.textContent = 'x'
         this.xButton.onclick = this.removeItemFromCart.bind(this)
+
+        this.iButton = document.createElement('button')
+        this.iButton.className = 'i-button'
+        this.iButton.textContent = 'i'
+        this.iButton.onclick = this.showInfo.bind(this)
+
         this.shadow = this.attachShadow({mode: 'open'})
         let style = document.createElement('style')
         style.textContent = `
             .wrapper{
+                cursor: pointer;
                 width: 200px;
                 height: auto;
                 border: solid 3px #aa2832;
@@ -112,12 +120,23 @@ class CustomElementNew extends HTMLElement {
                 cursor: pointer;
                 border-radius: 10px;
             }
+              .i-button{
+                position: absolute; 
+                top: 10px;
+                right: 10px;
+                border: solid 2px #aa2832;
+                background-color: #aa2832;
+                color: white;
+                cursor: pointer;
+                border-radius: 10px;
+            }
         `
         this.imgHolder.appendChild(this.imgItem)
         this.minusPlus.appendChild(this.buttonPlus)
         this.minusPlus.appendChild(this.counterItem)
         this.minusPlus.appendChild(this.buttonMinus)
         wrapper.appendChild(this.xButton)
+        wrapper.appendChild(this.iButton)
         wrapper.appendChild(this.minusPlus)
         wrapper.appendChild(this.idNum)
         wrapper.appendChild(this.imgHolder)
@@ -127,6 +146,22 @@ class CustomElementNew extends HTMLElement {
         wrapper.appendChild(this.buttonItem)
         this.shadow.appendChild(style)
         this.shadow.appendChild(wrapper)
+    }
+
+    showInfo(){
+        document.querySelector('.slider')
+            .appendChild(document.createElement('img'))
+            .src = this.imgItem.src
+        document.querySelector('.product-info-id')
+            .textContent = this.idNum.textContent
+        document.querySelector('.product-info-title')
+            .textContent = this.itemTitle.textContent
+        document.querySelector('.product-info-description')
+            .textContent = this.itemDescription.textContent
+        document.querySelector('.product-info-price')
+            .textContent = this.itemPrise.textContent
+        let infoBox = document.querySelector('.product-info')
+        infoBox.style = `display: block; z-index: 9999999999;`
     }
 
     plusItem() {
@@ -297,7 +332,10 @@ x.onclick =  e => {
     document.documentElement.style.overflow = 'auto'
 }
 
-
+document.querySelector('.close-info').onclick = () => {
+    document.querySelector('.product-info')
+        .style = `display: none; z-index: -1;`
+}
 
 
 
