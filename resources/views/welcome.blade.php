@@ -43,11 +43,8 @@
     </style>
 </head>
 <body onload="onloadPage()">
-<<<<<<< HEAD
-=======
 <div class="container">
 
->>>>>>> 3fcc21a2b3115e889809355f0f67499f2557cc62
 
     @if ($message = Session::get('success'))
         <div id="message-destroy-recipe" class="alert alert-success mt-5" role="alert">
@@ -119,21 +116,8 @@
         <ul class="top_page_main_menu">
             <li class="tab_navi"><a href="#">Shop</a>
 
-<<<<<<< HEAD
-    <div class="product-info">
-        <div class="close-info">X</div>
-        <p class="product-info-id"></p>
-        <div class="slider single-item"></div>
-        <h2 class="product-info-title"></h2>
-        <h3 class="product-info-description"></h3>
-        <p class="product-info-characteristics"></p>
-        <h3 class="product-info-price"></h3>
-    </div>
-
-=======
             </li>
             <li class="tab_navi"><a href="#">Contacts</a>
->>>>>>> 3fcc21a2b3115e889809355f0f67499f2557cc62
 
             </li>
             <li class="main_tab"><a href="#">Repearing servise</a>
@@ -223,11 +207,17 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-
-    <script src="{{ asset('js/bundle.js') }}"></script>
-=======
     </footer>
+
+        <div class="product-info">
+            <div class="close-info">X</div>
+            <p class="product-info-id"></p>
+            <div class="slider single-item"></div>
+            <h2 class="product-info-title"></h2>
+            <h3 class="product-info-description"></h3>
+            <p class="product-info-characteristics"></p>
+            <h3 class="product-info-price"></h3>
+        </div>
 
     <div class="registration_div">
         <form class="registration" method="POST" action="{{ route('register') }}">
@@ -285,6 +275,5 @@
     </div>
 </div>
 <script src="{{ asset('js/bundle.js') }}"></script>
->>>>>>> 3fcc21a2b3115e889809355f0f67499f2557cc62
 </body>
 </html>

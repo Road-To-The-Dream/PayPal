@@ -1,3 +1,4 @@
+
 var total = document.querySelector('.total')
 total.innerHTML = `total price: ${0}`
 var counter = 0;
@@ -45,6 +46,9 @@ class CustomElementNew extends HTMLElement {
         this.iButton.className = 'i-button'
         this.iButton.textContent = 'i'
         this.iButton.onclick = this.showInfo.bind(this)
+
+
+
 
         this.shadow = this.attachShadow({mode: 'open'})
         let style = document.createElement('style')
@@ -164,6 +168,9 @@ class CustomElementNew extends HTMLElement {
         infoBox.style = `display: block; z-index: 9999999999;`
     }
 
+
+
+
     plusItem() {
         this.increaseDecreaseProductAmount('decrease-product-amount');
         this.counterItem.textContent = parseInt(this.counterItem.textContent) + 1;
@@ -220,24 +227,24 @@ class CustomElementNew extends HTMLElement {
 
         if (!Array.from(document.querySelector('.cart-cart').children)
             .find(item => item.idNum.textContent.slice(12) === this.idNum.textContent.slice(12))){
-                this.multiplyItemsCart()
-                let elem = document.querySelector('.cart-cart')
-                let elemCart = document.createElement('new-element')
-                elemCart.minusPlus.style.display = 'block'
-                elemCart.buttonItem.style.display = 'none'
-                elemCart.itemDescription.style.display = 'none'
-                elemCart.xButton.style.display = 'block'
-                elemCart.id = `${this.id}copy`
-                elemCart.idNum.textContent = `${this.idNum.textContent}`
-                elemCart.idNum.id = `${this.id}`
-                elemCart.imgItem.src = this.imgItem.src
-                elemCart.itemTitle.textContent = this.itemTitle.textContent
-                elemCart.itemDescription.style.display = 'none'
-                elemCart.itemPrise.textContent = `${this.itemPrise.textContent}`
-                elem.appendChild(elemCart)
-                total.textContent = `total price: ${+total.textContent.slice(12) + parseInt(elemCart.itemPrise.textContent)}`
-                document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
-                this.increaseDecreaseProductAmount('add-to-cart')
+            this.multiplyItemsCart()
+            let elem = document.querySelector('.cart-cart')
+            let elemCart = document.createElement('new-element')
+            elemCart.minusPlus.style.display = 'block'
+            elemCart.buttonItem.style.display = 'none'
+            elemCart.itemDescription.style.display = 'none'
+            elemCart.xButton.style.display = 'block'
+            elemCart.id = `${this.id}copy`
+            elemCart.idNum.textContent = `${this.idNum.textContent}`
+            elemCart.idNum.id = `${this.id}`
+            elemCart.imgItem.src = this.imgItem.src
+            elemCart.itemTitle.textContent = this.itemTitle.textContent
+            elemCart.itemDescription.style.display = 'none'
+            elemCart.itemPrise.textContent = `${this.itemPrise.textContent}`
+            elem.appendChild(elemCart)
+            total.textContent = `total price: ${+total.textContent.slice(12) + parseInt(elemCart.itemPrise.textContent)}`
+            document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
+            this.increaseDecreaseProductAmount('add-to-cart')
         }else { alert('matches wit item in cart')}
     }
 
@@ -262,6 +269,9 @@ class CustomElementNew extends HTMLElement {
 }
 
 customElements.define('new-element', CustomElementNew)
+
+
+
 
 onloadGetData = function () {
     let xhr = new XMLHttpRequest();
@@ -313,7 +323,6 @@ onloadPage = function () {
         total.textContent = `total price: ${result -= +total.textContent.slice(12)}`
         let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
         multiplyItemsCartButton.textContent = document.querySelector('.cart-cart').children.length
-        document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
     })
 }
 
@@ -337,7 +346,6 @@ document.querySelector('.close-info').onclick = () => {
     document.querySelector('.product-info')
         .style = `display: none; z-index: -1;`
 }
-
 
 
 
