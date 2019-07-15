@@ -259,7 +259,6 @@ class CustomElementNew extends HTMLElement {
 customElements.define('new-element', CustomElementNew)
 
 onloadGetData = function () {
-    console.log('ertyjhcfgh')
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `/all-products`, false);
     xhr.send();
@@ -268,10 +267,9 @@ onloadGetData = function () {
     } else {
         null
     }
-    console.log(JSON.parse(xhr.response))
-
     return JSON.parse(xhr.response).forEach(item => {
         let elem = document.createElement('new-element')
+
         elem.id = item.id
         elem.idNum.textContent = `product ID: ${item.id}`
         elem.idNum.id = `${item.id}`
@@ -283,6 +281,33 @@ onloadGetData = function () {
     })
 }
 onloadGetData()
+
+onloadPage = function () {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', `/`, false);
+    xhr.send();
+    if (xhr.status != 200) {
+        alert( xhr.status + ': ' + xhr.statusText );
+    } else {
+        null
+    }
+    return JSON.parse(xhr.response).forEach(item => {
+        let elem = document.createElement('new-element')
+        elem.minusPlus.style.display = 'block'
+        elem.buttonItem.style.display = 'none'
+        elem.itemDescription.style.display = 'none'
+        elem.xButton.style.display = 'block'
+        elem.id = `${item.id}copy`
+        elem.idNum.textContent = `product ID: ${item.id}`
+        elem.idNum.id = `${item.id}`
+        elem.imgItem.src = item.img
+        elem.itemTitle.textContent = item.title
+        elem.itemDescription.style.display = 'none'
+        elem.itemPrise.textContent = `${item.price} USD`
+        document.querySelector('.cart-cart').appendChild(elem)
+    })
+}
+
 
 let button = document.querySelector('.but-cart')
 button.onclick =  e => {
