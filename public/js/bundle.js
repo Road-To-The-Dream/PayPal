@@ -162,6 +162,25 @@ class CustomElementNew extends HTMLElement {
         })
     }
 
+    deleteItemFromCart(url) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                productId: this.idNum.id,
+            },
+            success: function (response) {
+                console.log(url + ", success");
+            }
+        })
+    }
+
     addToCart() {
         this.multiplyItemsCart()
         let elem = document.querySelector('.cart-cart')
@@ -197,6 +216,7 @@ class CustomElementNew extends HTMLElement {
             counter -= parseInt(this.itemPrise.textContent) :
             null}`
         document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
+        this.deleteItemFromCart('delete-from-cart');
         this.remove()
     }
 }

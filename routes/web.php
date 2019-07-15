@@ -21,3 +21,5 @@ Route::post('increase-product-amount', 'ProductController@increaseAmount');
 Route::post('decrease-product-amount', 'ProductController@decreaseAmount');
 
 Route::post('delete-from-cart', 'ProductController@deleteFromCart');
+
+Route::get('get-products-cart', 'ProductController@getProductsFromCart');

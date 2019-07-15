@@ -92,11 +92,13 @@ class ProductController extends Controller
 
     public function deleteFromCart(Request $request)
     {
-        $productKeys = array_keys($request->session()->get('productId'));
+        $productKeys = array_keys($request->session()->get('productsId'));
 
-        for ($i = 0; $i < count($request->session()->get('productId')); $i++) {
-            if ($request->session()->get("productId.{$productKeys}.0") === $request->get('productId')) {
-                $request->session()->forget("productId.{$productKeys[$i]}");
+        for ($i = 0; $i < count($request->session()->get('productsId')); $i++) {
+            if ($request->session()->get("productsId.{$productKeys[$i]}.0") === $request->get('productId')) {
+                $request->session()->forget("productsId.{$productKeys[$i]}");
+
+                break;
             }
         }
     }
@@ -109,5 +111,12 @@ class ProductController extends Controller
     public function increaseAmount(Request $request)
     {
         $request->session()->push('productsId', [$request->get('productId')]);
+    }
+
+    public function getProductsFromCart(Request $request)
+    {
+        //$productKeys = array_keys($request->session()->get('productsId'));
+
+        return response()->json(Product::find(1), 200);
     }
 }
