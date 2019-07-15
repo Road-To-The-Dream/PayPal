@@ -2,9 +2,7 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
-
-Route::get('/home', 'PayPalController@index');
+Route::get('/', 'PayPalController@index');
 
 Route::get('/all-products', 'PayPalController@getProducts');
 
@@ -23,3 +21,5 @@ Route::post('decrease-product-amount', 'ProductController@decreaseAmount');
 Route::post('delete-from-cart', 'ProductController@deleteFromCart');
 
 Route::get('get-products-cart', 'ProductController@getProductsFromCart');
+
+Route::resource('product', 'ProductController');

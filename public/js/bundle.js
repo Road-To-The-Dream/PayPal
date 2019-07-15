@@ -313,6 +313,7 @@ onloadPage = function () {
         total.textContent = `total price: ${result -= +total.textContent.slice(12)}`
         let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
         multiplyItemsCartButton.textContent = document.querySelector('.cart-cart').children.length
+        document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
     })
 }
 

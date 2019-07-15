@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ProductCollection;
-use App\Http\Resources\ProductResource;
 use App\Model\Product;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -48,7 +47,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $roles = Product::find(1)->images()->get();
+
+        return response()->json($roles, 200);
     }
 
     /**
@@ -115,8 +116,16 @@ class ProductController extends Controller
 
     public function getProductsFromCart(Request $request)
     {
-        //$productKeys = array_keys($request->session()->get('productsId'));
+        if ($request->session()->has('productsId')) {
+            $productsId = [];
 
-        return response()->json(Product::whereIn('id', [1])->get(), 200);
+            foreach ($request->session()->get('productsId') as $product) {
+                array_push($productsId, $product[0]);
+            }
+
+            return response()->json(Product::whereIn('id', $productsId)->get(), 200);
+        }
+
+        return response()->json(200);
     }
 }
