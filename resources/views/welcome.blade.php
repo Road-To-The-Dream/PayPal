@@ -149,9 +149,6 @@
             </div>
         </footer>
     </div>
-    <script>
-        let products = ('<?=$products?>');
-    </script>
     <script src="{{ asset('js/bundle.js') }}"></script>
 </body>
 </html>

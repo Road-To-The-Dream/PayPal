@@ -1,7 +1,6 @@
 var total = document.querySelector('.total')
 total.innerHTML = 'total price:'
 var counter = 0;
-let data = JSON.parse(products)
 let currentCounter = 1
 
 class CustomElementNew extends HTMLElement {
@@ -221,12 +220,20 @@ class CustomElementNew extends HTMLElement {
     addToCart() {
         this.multiplyItemsCart()
         let elem = document.querySelector('.cart-cart')
-        this.minusPlus.style.display = 'block'
-        this.buttonItem.style.display = 'none'
-        this.itemDescription.style.display = 'none'
-        this.xButton.style.display = 'block'
-        elem.appendChild(this)
-        total.textContent = `total price: ${counter += parseInt(this.itemPrise.textContent)}`
+        let elemCart = document.createElement('new-element')
+        elemCart.minusPlus.style.display = 'block'
+        elemCart.buttonItem.style.display = 'none'
+        elemCart.itemDescription.style.display = 'none'
+        elemCart.xButton.style.display = 'block'
+        elemCart.id = this.id
+        elemCart.idNum.textContent = `product ID: ${this.idNum.textContent}`
+        elemCart.idNum.id = `${this.id}`
+        elemCart.imgItem.src = this.imgItem.src
+        elemCart.itemTitle.textContent = this.itemTitle.textContent
+        elemCart.itemDescription.style.display = 'none'
+        elemCart.itemPrise.textContent = `${this.itemPrise.textContent} USD`
+        elem.appendChild(elemCart)
+        total.textContent = `total price: ${counter += parseInt(elemCart.itemPrise.textContent)}`
         document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
         this.decreaseProductAmount();
     }
@@ -241,30 +248,42 @@ class CustomElementNew extends HTMLElement {
     removeItemFromCart() {
         let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
         multiplyItemsCartButton.textContent = +multiplyItemsCartButton.textContent - 1
-        this.buttonItem.style.display = 'block'
-        this.itemDescription.style.display = 'block'
-        this.minusPlus.style.display = 'none'
-        document.querySelector('.order').appendChild(this)
-        this.xButton.style.display = 'none'
         total.textContent = `total price: ${counter > 0 ?
             counter -= parseInt(this.itemPrise.textContent) :
             null}`
         document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
+        this.remove()
     }
 }
 
 customElements.define('new-element', CustomElementNew)
 
-data.forEach(item => {
-    let elem = document.createElement('new-element')
-    elem.idNum.textContent = `product ID: ${item.id}`
-    elem.idNum.id = `${item.id}`
-    elem.imgItem.src = item.img
-    elem.itemTitle.innerHTML = item.title
-    elem.itemDescription.innerHTML = item.description
-    elem.itemPrise.innerHTML = `${item.price} USD`
-    document.querySelector('.order').appendChild(elem)
-})
+onloadGetData = function () {
+    console.log('ertyjhcfgh')
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', `/all-products`, false);
+    xhr.send();
+    if (xhr.status != 200) {
+        alert( xhr.status + ': ' + xhr.statusText );
+    } else {
+        null
+    }
+    console.log(JSON.parse(xhr.response))
+
+    return JSON.parse(xhr.response).forEach(item => {
+        let elem = document.createElement('new-element')
+        elem.id = item.id
+        elem.idNum.textContent = `product ID: ${item.id}`
+        elem.idNum.id = `${item.id}`
+        elem.imgItem.src = item.img
+        elem.itemTitle.innerHTML = item.title
+        elem.itemDescription.innerHTML = item.description
+        elem.itemPrise.innerHTML = `${item.price} USD`
+        document.querySelector('.order').appendChild(elem)
+    })
+}
+onloadGetData()
+
 let button = document.querySelector('.but-cart')
 button.onclick =  e => {
     document.querySelector('.cart').style = `display: block; z-index: 999;`

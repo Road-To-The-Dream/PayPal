@@ -2,6 +2,8 @@
 
 Route::get('/', 'PayPalController@index');
 
+Route::get('/all-products', 'PayPalController@getProducts');
+
 // route for processing payment
 Route::post('paypal', 'PayPalController@pay');
 
