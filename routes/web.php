@@ -2,9 +2,7 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
-
-Route::get('/home', 'PayPalController@index');
+Route::get('/', 'PayPalController@index');
 
 Route::get('/all-products', 'PayPalController@getProducts');
 
