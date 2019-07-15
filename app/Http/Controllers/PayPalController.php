@@ -39,11 +39,12 @@ class PayPalController extends Controller implements \App\Services\Payment
 
     public function index()
     {
-        $arr = ProductResource::collection(Product::all());
+        return view('welcome');
+    }
 
-        return view('welcome', [
-            'products' => json_encode($arr)
-        ]);
+    public function  getProducts()
+    {
+        return response(json_encode(ProductResource::collection(Product::all())), 200);
     }
 
     public function pay(PaymentRequest $request)

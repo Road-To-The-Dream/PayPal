@@ -474,7 +474,6 @@ body{
     border-radius: 10px;
 }
 .miltiply-items-button{
-    display: none;
     position: absolute;
     left: -20px;
     top: -20px;
