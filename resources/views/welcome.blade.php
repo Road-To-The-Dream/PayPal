@@ -173,8 +173,8 @@
             <div class="bottom_page_navigation">
                 <div class="bottom_page_navigation_tabs">
                     <p class="tabs_titles">Contacts</p>
-                    <p class="tab_contact"><a href="tg://resolve?domain=vitalii">Phone: +(380) 680 32 08 08</p></a>
-                    <p class="tab_contact"><a href="tg://resolve?domain=SergeySushko25">Phone: +(380) 966 99 83 68</p></a>
+                    <p class="tab_contact"><a href="tg://resolve?domain=vitalii">Phone: +(380) 680 32 08 08</a></p>
+                    <p class="tab_contact"><a href="tg://resolve?domain=SergeySushko25">Phone: +(380) 966 99 83 68</a></p>
                 </div>
                 <div class="bottom_page_navigation_tabs">
                     <p class="tabs_titles">How to find us</p>

@@ -351,7 +351,7 @@ class CustomElementNew extends HTMLElement {
 customElements.define('new-element', CustomElementNew)
 
 
-onloadGetData = function (page) {
+onloadGetData = function (page = 0) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `/product/${page}`, false);
     xhr.send();
@@ -379,19 +379,15 @@ onloadGetData = function (page) {
     } else null
 
     let pagesBox = document.querySelector('.pages')
-    let qwe = 0;
 
+    let offset = 0;
     for(let i = 0; i < products.amount; i++){
-        console.log(products.products)
         let paginNumber = document.createElement('span')
         paginNumber.textContent = i+1
-        paginNumber.onclick = function(e) {
 
-            onloadGetData(qwe)
-        }
-        qwe += 3
-        console.log(qwe)
+        paginNumber.setAttribute('onclick', 'onloadGetData(' + offset + ')')
         pagesBox.appendChild(paginNumber)
+        offset += 3
     }
 }
 

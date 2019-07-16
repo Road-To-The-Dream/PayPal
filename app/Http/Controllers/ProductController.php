@@ -18,13 +18,8 @@ class ProductController extends Controller
     public function index($offset = 0)
     {
         return response()->json([
-<<<<<<< HEAD
             'products' => Product::skip($offset)->take(self::ITEMS)->get(),
             'amount' => ceil(count(Product::all('id')) / self::ITEMS)
-=======
-            'products' => $w,
-            'amount' => count(Product::all('id')) / 3
->>>>>>> 2ed2328f41ddf0ed3d2721766fe3537fa42399ed
         ], 200);
     }
 

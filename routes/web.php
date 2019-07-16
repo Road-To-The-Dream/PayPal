@@ -20,10 +20,8 @@ Route::post('delete-from-cart', 'ProductController@deleteFromCart');
 
 Route::get('get-products-cart', 'ProductController@getProductsFromCart');
 
-//Route::resource('product', 'ProductController');
-
 //resources controller
-Route::get('product', 'ProductController@index');
+Route::get('product/{offset}', 'ProductController@index');
 
 Route::get('product/create', 'ProductController@create');
 
