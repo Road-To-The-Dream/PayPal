@@ -343,6 +343,7 @@ class CustomElementNew extends HTMLElement {
                 +total.textContent.slice(12) - parseInt(this.itemPrise.textContent) :
             null}`
         this.deleteItemFromCart('delete-from-cart');
+        document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
         this.remove()
     }
 }
@@ -405,6 +406,7 @@ onloadPage = function () {
             document.querySelector('.cart-cart').appendChild(elem)
             total.textContent = `total price: ${result}`
             let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
+            document.querySelector('#total-price').value = `${result}`
             multiplyItemsCartButton.textContent = document.querySelector('.cart-cart').children.length
         })
     } else null
