@@ -226,6 +226,7 @@ class CustomElementNew extends HTMLElement {
             slides[i].style.position = 'absolute';
         }
 
+
         document.querySelector('.product-info-id')
             .textContent = this.idNum.textContent
         document.querySelector('.product-info-title')
@@ -353,6 +354,7 @@ onloadGetData = function () {
     } else {
         null
     }
+    console.log(JSON.parse(xhr.response))
     if (JSON.parse(xhr.response) !== 200) {
         return JSON.parse(xhr.response).forEach(item => {
             let elem = document.createElement('new-element')
