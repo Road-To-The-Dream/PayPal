@@ -445,3 +445,59 @@ $('.language-select li').click(function(){
     $('.language-select li').removeClass('active');
     $(this).toggleClass('active');
 })
+
+document.getElementById("submit-login").onclick = (function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        url: 'login',
+        type: 'POST',
+        data: {
+            email: $('#email').val(),
+            password: $('#password').val(),
+        },
+        success: function () {
+            location.reload();
+        },
+        error: function (response) {
+            $('#errors-login').empty();
+
+            $.each(response['responseJSON']['errors'], function (key, value) {
+                $('#errors-login').append(key + ": " + value + "</br>");
+            });
+        }
+    })
+});
+
+document.getElementById("submit-register").onclick = (function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        url: 'register',
+        type: 'POST',
+        data: {
+            name: $('#name').val(),
+            email: $('#email-register').val(),
+            password: $('#password-register').val(),
+            password_confirmation: $('#password_confirmation').val(),
+        },
+        success: function () {
+            location.reload();
+        },
+        error: function (response) {
+            $('#errors-register').empty();
+
+            $.each(response['responseJSON']['errors'], function (key, value) {
+                $('#errors-register').append(key + ": " + value + "</br>");
+            });
+        }
+    })
+});

@@ -180,9 +180,8 @@
             <div class="bottom_page_navigation">
                 <div class="bottom_page_navigation_tabs">
                     <p class="tabs_titles">Contacts</p>
-                    <p class="tab_contact"><a href="#">Phone: (000) 000 00 00</p></a>
-                    <p class="tab_contact"><a href="#">Phone: (000) 000 00 00</p></a>
-                    <p class="tab_contact"><a href="#">Phone: (000) 000 00 00</p></a>
+                    <p class="tab_contact"><a href="tg://resolve?domain=vitalii">Phone: +(380) 680 32 08 08</p></a>
+                    <p class="tab_contact"><a href="tg://resolve?domain=SergeySushko25">Phone: +(380) 966 99 83 68</p></a>
                 </div>
                 <div class="bottom_page_navigation_tabs">
                     <p class="tabs_titles">How to find us</p>
@@ -228,23 +227,24 @@
                 <div class="close_form_registration"><img src="../img/times.svg"></div>
             </div>
             <div class="inputs_registration">
+                <p id="errors-register"></p>
                 <label>
                     <span>Name</span>
-                    <input type="text" name="name">
+                    <input type="text" id="name" name="name">
                 </label>
                 <label for="email">
                     <span>Email</span>
-                    <input type="text" name="email">
+                    <input type="text" id="email-register" name="email">
                 </label>
                 <label>
                     <span>Password</span>
-                    <input type="password" name="password">
+                    <input type="password" id="password-register" name="password">
                 </label>
                 <label>
                     <span>Confirm password</span>
-                    <input type="password" name="password_confirmation">
+                    <input type="password" id="password_confirmation" name="password_confirmation">
                 </label>
-                <button type="submit" name="submit" class="form_button_registration">Go on</button>
+                <button type="button" id="submit-register" name="submit" class="form_button_registration">Go on</button>
             </div>
             <p class="or_enter_p">or</p>
             <p><a href="#" class="or_enter">sign in</a></p>
@@ -259,15 +259,16 @@
                 <div class="close_form_log_in"><img src="../img/times.svg"></div>
             </div>
             <div class="inputs_log_in">
+                <p id="errors-login"></p>
                 <label for="email">
                     <span>Email</span>
-                    <input type="text" name="email">
+                    <input id="email" type="text" name="email">
                 </label>
                 <label for="password">
                     <span>Password</span>
-                    <input type="password" name="password">
+                    <input id="password" type="password" name="password">
                 </label>
-                <button type="submit" name="submit" class="form_button_log_in">Go on</button>
+                <button id="submit-login" type="button" name="submit" class="form_button_log_in">Go on</button>
             </div>
             <p class="or_register_p">or</p>
             <p><a href="#" class="or_register">register</a></p>
