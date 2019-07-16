@@ -528,7 +528,7 @@ body{
     cursor: pointer;
     position: absolute;
     top: 7px;
-    z-index: 9999;
+    z-index: 99;
     right: 34%;
 }
 .language-select::after{
@@ -1202,19 +1202,22 @@ footer{
 }
 
 .product-info{
+    width: 79vw;
+    height: max-content;
     text-align: center;
     display: none;
-    width: 99vw;
-    min-height: 44vw;
-    border: solid 3px #aa2832;
-    border-radius: 20px;
-    position: absolute;
+    flex-direction: column;
+    border-radius: 10px;
+    border: solid 1px #e5e5e5;
+    padding: 40px 0 40px 0;
+    position: fixed;
+    top: 10%;
+    margin-left: auto;
+    margin-right: auto;
     left: 0;
     right: 0;
-    top: 165px;
-    padding: 20px;
-    margin: 20px auto;
-    background-color: white;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
 }
 .close-info{
     padding: 10px;
@@ -1228,8 +1231,103 @@ footer{
     cursor: pointer;
     border-radius: 50%;
 }
+.add-to-cart-info{
+    padding: 10px;
+    width: 340px;
+    border: solid 2px #aa2832;
+    background-color: #aa2832;
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.slider img{
+    max-height: 300px;
+}
+#slides {
+    position: relative;
+    height: 300px;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
 
+.slide {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
 
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+}
+
+.showing {
+    opacity: 1;
+    z-index: 2;
+}
+.slide {
+    font-size: 40px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: #333;
+    color: #fff;
+}
+
+.slide:nth-of-type(1) {
+    background: transparent;
+}
+.slide:nth-of-type(2) {
+    background: transparent;
+}
+.slide:nth-of-type(3) {
+    background: transparent;
+}
+.slide:nth-of-type(4) {
+    background: transparent;
+}
+.slide:nth-of-type(5) {
+    background: transparent;
+}
+.slide:nth-of-type(6) {
+    background: transparent;
+}
+
+.controls {
+    margin: 50px 0 0 0;
+    display: none;
+}
+#previous{
+   padding: 10px;
+    width: 60px;
+    border: solid 2px #aa2832;
+    background-color: #aa2832;
+    color: white;
+    cursor: pointer;
+    border-radius: 80% 20% 20% 80%;
+}
+#pause{
+    padding: 10px;
+    width: 40px;
+    border: solid 2px #aa2832;
+    background-color: #aa2832;
+    color: white;
+    cursor: pointer;
+    border-radius: 20%;
+}
+#next{
+    padding: 10px;
+    width: 60px;
+    border: solid 2px #aa2832;
+    background-color: #aa2832;
+    color: white;
+    cursor: pointer;
+    border-radius: 20% 80% 80% 20%;
+}
 
 
 
