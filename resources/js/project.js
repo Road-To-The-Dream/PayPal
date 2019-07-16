@@ -388,6 +388,7 @@ onloadPage = function () {
     }
     if (JSON.parse(xhr.response) !== 200) {
         let result = JSON.parse(xhr.response).reduce((a, b) => a + b.price, 0)
+        console.log(result)
         return JSON.parse(xhr.response).forEach(item => {
             let elem = document.createElement('new-element')
             elem.minusPlus.style.display = 'block'
@@ -402,7 +403,7 @@ onloadPage = function () {
             elem.itemDescription.style.display = 'none'
             elem.itemPrise.textContent = `${item.price} USD`
             document.querySelector('.cart-cart').appendChild(elem)
-            total.textContent = `total price: ${result -= +total.textContent.slice(12)}`
+            total.textContent = `total price: ${result}`
             let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
             multiplyItemsCartButton.textContent = document.querySelector('.cart-cart').children.length
         })
