@@ -22,4 +22,17 @@ Route::get('get-products-cart', 'ProductController@getProductsFromCart');
 
 //Route::resource('product', 'ProductController');
 
-Route::get('product/{page}', 'ProductController@index');
+//resources controller
+Route::get('product', 'ProductController@index');
+
+Route::get('product/create', 'ProductController@create');
+
+Route::post('product', 'ProductController@store');
+
+Route::get('product/{id}', 'ProductController@show');
+
+Route::get('product/{id}/edit', 'ProductController@edit');
+
+Route::put('product/{id}', 'ProductController@update');
+
+Route::delete('product/{id}', 'ProductController@destroy');

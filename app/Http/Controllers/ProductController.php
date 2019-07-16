@@ -8,18 +8,18 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    private const ITEMS = 3;
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($page = 0)
+    public function index($offset = 0)
     {
-        $w = Product::skip($page)->take(3)->get();
-
         return response()->json([
-            'products' => Product::all('id'),
-            'amount' => $w
+            'products' => Product::skip($offset)->take(self::ITEMS)->get(),
+            'amount' => ceil(count(Product::all('id')) / self::ITEMS)
         ], 200);
     }
 
