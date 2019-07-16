@@ -2,12 +2,6 @@ var total = document.querySelector('.total')
 total.innerHTML = `total price: ${0}`
 var counter = 0;
 let currentCounter = 1
-let datdadata = [
-    'https://img.mvideo.ru/Pdb/10010655b.jpg',
-    'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
-    'https://www.lg.com/us/images/tvs/md05950677/gallery/medium001.jpg',
-    'https://www.lg.com/ca_en/images/desktop-monitors/md05883096/gallery/28LJ4540_d1_270917.jpg',
-]
 
 class CustomElementNew extends HTMLElement {
     constructor() {
@@ -155,12 +149,22 @@ class CustomElementNew extends HTMLElement {
     }
 
     showInfo() {
-        datdadata.forEach(item => {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', `/product/1`, false);
+        xhr.send();
+        if (xhr.status != 200) {
+            alert(xhr.status + ': ' + xhr.statusText);
+        } else {
+            null
+        }
+        let data123 = JSON.parse(xhr.response)
+        console.log(data123.images)
+        data123.images.forEach(item => {
             let liElem = document.querySelector('#slides')
                 .appendChild(document.createElement('li'))
             liElem.className = 'slide showing'
             liElem.appendChild(
-                document.createElement('img')).src = item
+                document.createElement('img')).src = item.path
         })
 
         let slides = document.querySelectorAll('#slides .slide');
