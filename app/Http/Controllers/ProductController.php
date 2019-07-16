@@ -47,9 +47,12 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $roles = Product::find(1)->images()->get();
+        $product = Product::find($id);
 
-        return response()->json($roles, 200);
+        return response()->json([
+            'product' => $product,
+            'images' => $product->images()->get()
+        ], 200);
     }
 
     /**
