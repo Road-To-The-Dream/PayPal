@@ -13,13 +13,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($current)
+    public function index($page = 0)
     {
-        $w = Product::skip(6)->take(3)->get();
+        $w = Product::skip($page)->take(3)->get();
 
         return response()->json([
-            'amount' => Product::paginate(3)->items(),
-            'products' => Product::all('id')
+            'products' => Product::all('id'),
+            'amount' => $w
         ], 200);
     }
 

@@ -351,9 +351,9 @@ class CustomElementNew extends HTMLElement {
 customElements.define('new-element', CustomElementNew)
 
 
-onloadGetData = function () {
+onloadGetData = function (page = 1) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `/product`, false);
+    xhr.open('GET', `/product/${page}`, false);
     xhr.send();
     if (xhr.status != 200) {
         alert(xhr.status + ': ' + xhr.statusText);
@@ -376,7 +376,7 @@ onloadGetData = function () {
         })
     } else null
 }
-onloadGetData()
+
 
 onloadPage = function () {
     let xhr = new XMLHttpRequest();
