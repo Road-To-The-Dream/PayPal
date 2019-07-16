@@ -215,7 +215,6 @@
             <h3 class="product-info-description"></h3>
             <p class="product-info-characteristics"></p>
             <h3 class="product-info-price"></h3>
-            <button class="add-to-cart-info">add to cart</button>
         </div>
 
     <div class="registration_div">
