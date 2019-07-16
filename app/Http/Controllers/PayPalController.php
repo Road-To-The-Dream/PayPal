@@ -37,16 +37,6 @@ class PayPalController extends Controller implements \App\Services\Payment
         $this->apiContext->setConfig($paypalConf['settings']);
     }
 
-    public function index()
-    {
-        return view('welcome');
-    }
-
-    public function getProducts()
-    {
-        return response()->json(Product::all(), 200);
-    }
-
     public function pay(PaymentRequest $request)
     {
         $payer = new Payer();

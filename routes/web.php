@@ -2,9 +2,7 @@
 
 Auth::routes();
 
-Route::get('/', 'PayPalController@index');
-
-Route::get('/all-products', 'PayPalController@getProducts');
+Route::get('/', 'Controller@getView');
 
 // route for processing payment
 Route::post('paypal', 'PayPalController@pay');
@@ -23,3 +21,5 @@ Route::post('delete-from-cart', 'ProductController@deleteFromCart');
 Route::get('get-products-cart', 'ProductController@getProductsFromCart');
 
 Route::resource('product', 'ProductController');
+
+Route::get('product/{page}', 'ProductController@index');

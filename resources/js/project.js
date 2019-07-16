@@ -353,7 +353,7 @@ customElements.define('new-element', CustomElementNew)
 
 onloadGetData = function () {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `/all-products`, false);
+    xhr.open('GET', `/product`, false);
     xhr.send();
     if (xhr.status != 200) {
         alert(xhr.status + ': ' + xhr.statusText);

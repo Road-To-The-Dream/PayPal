@@ -163,6 +163,7 @@
                 <button class="w3-btn w3-blue">Pay with PayPal</button>
             </form>
         </div>
+        {{ $parentComments->links('layouts.pagination') }}
     </div>
     <footer>
         <div class="bottom_page">
