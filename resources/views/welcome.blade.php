@@ -149,9 +149,8 @@
         </ul>
     </header>
     <div class="order">
-
         <button class="but-cart">
-            <div class="miltiply-items-button"></div>
+            <div class="miltiply-items-button">0</div>
             <img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart
         </button>
         <div class="cart">
