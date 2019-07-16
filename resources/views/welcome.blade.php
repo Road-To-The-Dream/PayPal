@@ -212,11 +212,17 @@
         <div class="product-info">
             <div class="close-info">X</div>
             <p class="product-info-id"></p>
-            <div class="slider single-item"></div>
+            <div class="slider single-item">
+                <ul id="slides"></ul>
+                <button class="controls" id="previous"><<<</button>
+                <button class="controls" id="pause">||</button>
+                <button class="controls" id="next">>>></button>
+            </div>
             <h2 class="product-info-title"></h2>
             <h3 class="product-info-description"></h3>
             <p class="product-info-characteristics"></p>
             <h3 class="product-info-price"></h3>
+            <button class="add-to-cart-info">add to cart</button>
         </div>
 
     <div class="registration_div">

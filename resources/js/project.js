@@ -3,13 +3,18 @@ var total = document.querySelector('.total')
 total.innerHTML = `total price: ${0}`
 var counter = 0;
 let currentCounter = 1
+let datdadata = [
+    'https://img.mvideo.ru/Pdb/10010655b.jpg',
+    'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
+    'https://www.lg.com/us/images/tvs/md05950677/gallery/medium001.jpg',
+    'https://www.lg.com/ca_en/images/desktop-monitors/md05883096/gallery/28LJ4540_d1_270917.jpg',
+]
 
 class CustomElementNew extends HTMLElement {
     constructor() {
         super()
         let wrapper = document.createElement('div')
         wrapper.className = 'wrapper'
-        // wrapper.onclick = this.showInfo.bind(this)
         this.minusPlus = document.createElement('div')
         this.minusPlus.className = 'plus-minus'
         this.buttonMinus = document.createElement('button')
@@ -153,9 +158,74 @@ class CustomElementNew extends HTMLElement {
     }
 
     showInfo(){
-        document.querySelector('.slider')
-            .appendChild(document.createElement('img'))
-            .src = this.imgItem.src
+
+        datdadata.forEach(item => {
+            let liElem = document.querySelector('#slides')
+                .appendChild(document.createElement('li'))
+            liElem.className = 'slide showing'
+            liElem.appendChild(
+                document.createElement('img')).src = item
+        })
+
+        let slides = document.querySelectorAll('#slides .slide');
+        let currentSlide = 0;
+        let slideInterval = setInterval(nextSlide,2000);
+        function nextSlide() {
+            goToSlide(currentSlide+1);
+        }
+        function previousSlide() {
+            goToSlide(currentSlide-1);
+        }
+        function goToSlide(n) {
+            slides[currentSlide].className = 'slide';
+            currentSlide = (n+slides.length)%slides.length;
+            slides[currentSlide].className = 'slide showing';
+        }
+        let next = document.getElementById('next');
+        let previous = document.getElementById('previous');
+        next.onclick = function() {
+            pauseSlideshow();
+            nextSlide();
+        }
+        previous.onclick = function() {
+            pauseSlideshow();
+            previousSlide();
+        }
+        next.onclick = function() {
+            pauseSlideshow();
+            nextSlide();
+        }
+        previous.onclick = function() {
+            pauseSlideshow();
+            previousSlide();
+        }
+        let playing = true;
+        let pauseButton = document.getElementById('pause');
+        function pauseSlideshow() {
+            pauseButton.innerHTML = '▶';
+            playing = false;
+            clearInterval(slideInterval);
+        }
+        function playSlideshow() {
+            pauseButton.innerHTML = '||';
+            playing = true;
+            slideInterval = setInterval(nextSlide,2000);
+        }
+        pauseButton.onclick = function() {
+            if(playing) {
+                pauseSlideshow();
+            } else {
+                playSlideshow();
+            }
+        }
+        let controls = document.querySelectorAll('.controls');
+        for(let i=0; i<controls.length; i++){
+            controls[i].style.display = 'inline-block';
+        }
+        for(let i=0; i<slides.length; i++) {
+            slides[i].style.position = 'absolute';
+        }
+
         document.querySelector('.product-info-id')
             .textContent = this.idNum.textContent
         document.querySelector('.product-info-title')
@@ -260,9 +330,10 @@ class CustomElementNew extends HTMLElement {
         multiplyItemsCartButton.textContent = +multiplyItemsCartButton.textContent - 1
         console.log(+total.textContent.slice(12), parseInt(this.itemPrise.textContent))
         total.textContent = `total price: ${+total.textContent.slice(12) > 0 ?
+            this.counterItem.textContent > 1 ?
+                +total.textContent.slice(12) - (parseInt(this.itemPrise.textContent) * this.counterItem.textContent) :
             +total.textContent.slice(12) - parseInt(this.itemPrise.textContent) :
             null}`
-        // document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
         this.deleteItemFromCart('delete-from-cart');
         this.remove()
     }
@@ -282,17 +353,19 @@ onloadGetData = function () {
     } else {
         null
     }
-    return JSON.parse(xhr.response).forEach(item => {
-        let elem = document.createElement('new-element')
-        elem.id = item.id
-        elem.idNum.textContent = `product ID: ${item.id}`
-        elem.idNum.id = `${item.id}`
-        elem.imgItem.src = item.img
-        elem.itemTitle.innerHTML = item.title
-        elem.itemDescription.innerHTML = item.description
-        elem.itemPrise.innerHTML = `${item.price} USD`
-        document.querySelector('.order').appendChild(elem)
-    })
+    if (JSON.parse(xhr.response) !== 200) {
+        return JSON.parse(xhr.response).forEach(item => {
+            let elem = document.createElement('new-element')
+            elem.id = item.id
+            elem.idNum.textContent = `product ID: ${item.id}`
+            elem.idNum.id = `${item.id}`
+            elem.imgItem.src = item.img
+            elem.itemTitle.innerHTML = item.title
+            elem.itemDescription.innerHTML = item.description
+            elem.itemPrise.innerHTML = `${item.price} USD`
+            document.querySelector('.order').appendChild(elem)
+        })
+    }else null
 }
 onloadGetData()
 
@@ -305,31 +378,33 @@ onloadPage = function () {
     } else {
         null
     }
-    let result = JSON.parse(xhr.response).reduce((a,b) => a+b.price, 0)
-    return JSON.parse(xhr.response).forEach(item => {
-        let elem = document.createElement('new-element')
-        elem.minusPlus.style.display = 'block'
-        elem.buttonItem.style.display = 'none'
-        elem.itemDescription.style.display = 'none'
-        elem.xButton.style.display = 'block'
-        elem.id = `${item.id}copy`
-        elem.idNum.textContent = `product ID: ${item.id}`
-        elem.idNum.id = `${item.id}`
-        elem.imgItem.src = item.img
-        elem.itemTitle.textContent = item.title
-        elem.itemDescription.style.display = 'none'
-        elem.itemPrise.textContent = `${item.price} USD`
-        document.querySelector('.cart-cart').appendChild(elem)
-        total.textContent = `total price: ${result -= +total.textContent.slice(12)}`
-        let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
-        multiplyItemsCartButton.textContent = document.querySelector('.cart-cart').children.length
-    })
+    if (JSON.parse(xhr.response) !== 200) {
+        let result = JSON.parse(xhr.response).reduce((a, b) => a + b.price, 0)
+        return JSON.parse(xhr.response).forEach(item => {
+            let elem = document.createElement('new-element')
+            elem.minusPlus.style.display = 'block'
+            elem.buttonItem.style.display = 'none'
+            elem.itemDescription.style.display = 'none'
+            elem.xButton.style.display = 'block'
+            elem.id = `${item.id}copy`
+            elem.idNum.textContent = `product ID: ${item.id}`
+            elem.idNum.id = `${item.id}`
+            elem.imgItem.src = item.img
+            elem.itemTitle.textContent = item.title
+            elem.itemDescription.style.display = 'none'
+            elem.itemPrise.textContent = `${item.price} USD`
+            document.querySelector('.cart-cart').appendChild(elem)
+            total.textContent = `total price: ${result -= +total.textContent.slice(12)}`
+            let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
+            multiplyItemsCartButton.textContent = document.querySelector('.cart-cart').children.length
+        })
+    }else null
 }
 
 
 let button = document.querySelector('.but-cart')
 button.onclick =  e => {
-    document.querySelector('.cart').style = `display: block; z-index: 999;`
+    document.querySelector('.cart').style = `display: block; z-index: 9999;`
     document.documentElement.style.overflow = 'hidden'
 }
 let x = document.querySelector('.x')
@@ -339,7 +414,7 @@ x.onclick =  e => {
 }
 
 document.querySelector('.close-info').onclick = () => {
-    let elemq = document.querySelector('.slider')
+    let elemq = document.querySelector('#slides')
     while (elemq.firstChild) {
         elemq.removeChild(elemq.firstChild);
     }
@@ -445,3 +520,5 @@ $('.language-select li').click(function(){
     $('.language-select li').removeClass('active');
     $(this).toggleClass('active');
 })
+
+
