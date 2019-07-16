@@ -162,6 +162,7 @@
                 <button class="w3-btn w3-blue">Pay with PayPal</button>
             </form>
         </div>
+        <div class="products"></div>
         <div class="pages"></div>
     </div>
     <footer>

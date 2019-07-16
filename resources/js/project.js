@@ -158,7 +158,7 @@ class CustomElementNew extends HTMLElement {
             null
         }
         let data123 = JSON.parse(xhr.response)
-        console.log(data123.images)
+        console.log(data123)
         data123.images.forEach(item => {
             let liElem = document.querySelector('#slides')
                 .appendChild(document.createElement('li'))
@@ -353,7 +353,7 @@ customElements.define('new-element', CustomElementNew)
 
 onloadGetData = function (page) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `/product/${page}`, false);
+    xhr.open('GET', `/product/1/${page}`, false);
     xhr.send();
     if (xhr.status != 200) {
         alert(xhr.status + ': ' + xhr.statusText);
@@ -362,7 +362,7 @@ onloadGetData = function (page) {
     }
     let products = JSON.parse(xhr.response)
     console.log(products.products)
-
+    $(".products").empty()
     if (JSON.parse(xhr.response) !== 200) {
         products.products.forEach(item => {
             let elem = document.createElement('new-element')
@@ -374,28 +374,29 @@ onloadGetData = function (page) {
             elem.itemTitle.innerHTML = item.title
             elem.itemDescription.innerHTML = item.description
             elem.itemPrise.innerHTML = `${item.price} USD`
-            document.querySelector('.order').appendChild(elem)
+            document.querySelector('.products').appendChild(elem)
         })
     } else null
 
     let pagesBox = document.querySelector('.pages')
-    let qwe = 0;
+    let offset = 0;
+    $(".pages").empty()
 
     for(let i = 0; i < products.amount; i++){
-        console.log(products.products)
+        console.log(products.amount)
         let paginNumber = document.createElement('span')
-        paginNumber.textContent = i+1
-        paginNumber.onclick = function(e) {
-
-            onloadGetData(qwe)
-        }
-        qwe += 3
-        console.log(qwe)
+        paginNumber.textContent = `"${i+1}"`
+        paginNumber.style.padding = '20px'
+        paginNumber.style.cursor ='pointer'
+        paginNumber.setAttribute('onclick', `onloadGetData(${offset })`)
+        offset += 3
+        console.log(offset)
         pagesBox.appendChild(paginNumber)
     }
-}
 
+}
 onloadGetData()
+
 
 
 onloadPage = function () {
@@ -430,6 +431,7 @@ onloadPage = function () {
             multiplyItemsCartButton.textContent = document.querySelector('.cart-cart').children.length
         })
     } else null
+
 }
 
 
