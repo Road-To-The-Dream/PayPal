@@ -150,7 +150,7 @@ class CustomElementNew extends HTMLElement {
 
     showInfo() {
         let xhr = new XMLHttpRequest();
-        xhr.open('GET', `/product/1`, false);
+        xhr.open('GET', `/product/${this.id}`, false);
         xhr.send();
         if (xhr.status != 200) {
             alert(xhr.status + ': ' + xhr.statusText);
@@ -351,7 +351,7 @@ class CustomElementNew extends HTMLElement {
 customElements.define('new-element', CustomElementNew)
 
 
-onloadGetData = function (page = 1) {
+onloadGetData = function (page) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `/product/${page}`, false);
     xhr.send();
@@ -360,9 +360,11 @@ onloadGetData = function (page = 1) {
     } else {
         null
     }
-    console.log(JSON.parse(xhr.response))
+    let products = JSON.parse(xhr.response)
+    console.log(products.products)
+
     if (JSON.parse(xhr.response) !== 200) {
-        return JSON.parse(xhr.response).forEach(item => {
+        products.products.forEach(item => {
             let elem = document.createElement('new-element')
             elem.style.margin = '0 auto'
             elem.id = item.id
@@ -375,7 +377,25 @@ onloadGetData = function (page = 1) {
             document.querySelector('.order').appendChild(elem)
         })
     } else null
+
+    let pagesBox = document.querySelector('.pages')
+    let qwe = 0;
+
+    for(let i = 0; i < products.amount; i++){
+        console.log(products.products)
+        let paginNumber = document.createElement('span')
+        paginNumber.textContent = i+1
+        paginNumber.onclick = function(e) {
+
+            onloadGetData(qwe)
+        }
+        qwe += 3
+        console.log(qwe)
+        pagesBox.appendChild(paginNumber)
+    }
 }
+
+onloadGetData()
 
 
 onloadPage = function () {

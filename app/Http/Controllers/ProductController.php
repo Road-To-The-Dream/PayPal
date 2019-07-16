@@ -18,8 +18,8 @@ class ProductController extends Controller
         $w = Product::skip($page)->take(3)->get();
 
         return response()->json([
-            'products' => Product::all('id'),
-            'amount' => $w
+            'products' => $w,
+            'amount' => count(Product::all('id')) / 3
         ], 200);
     }
 

@@ -42,7 +42,7 @@
         }
     </style>
 </head>
-<body onload="onloadPage(), onloadGetData()">
+<body onload="onloadPage()">
 <div class="container">
 
 
@@ -162,7 +162,7 @@
                 <button class="w3-btn w3-blue">Pay with PayPal</button>
             </form>
         </div>
-        <a href="">1</a><a href="">2</a><a href="">3</a><a href="">4</a><a href="">5</a>
+        <div class="pages"></div>
     </div>
     <footer>
         <div class="bottom_page">
