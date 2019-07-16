@@ -511,7 +511,6 @@ body{
 .top_page_navigation span{
     padding: 0 70px 0 0;
     font-size: 24px;
-    font-family: RobotoRegular;
 }
 .nav-link, dropdown-item{
     padding: 0;
@@ -529,7 +528,7 @@ body{
     position: absolute;
     top: 7px;
     z-index: 99;
-    right: 34%;
+    /*right: 34%;*/
 }
 .language-select::after{
     border: medium solid transparent;
@@ -580,7 +579,12 @@ body{
     margin: 3px 0;
 }
 
-
+.logout{
+    position: relative;
+}
+.dropdown-item{
+    display: none;
+}
 
 
 
@@ -628,7 +632,6 @@ body{
     text-align: center;
     color: #ffffff;
     font-size: 24px;
-    font-family: RobotoRegular;
     font-weight: 600;
     border-left: solid 1px #ffffff;
 }
@@ -773,15 +776,12 @@ ul.top_page_main_menu > li:hover > ul.submenu_last {
 }
 
 .top_article_text_first{
-    font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-size: 48px;
     text-align: left;
     margin: 0 0 19px 0;
-    margin-bottom: 19px;
 }
 .top_article_text_second{
-    font-family: 'Open Sans', sans-serif;
     font-size: 24px;
     text-align: left;
     margin-bottom: 41px;
@@ -792,7 +792,6 @@ ul.top_page_main_menu > li:hover > ul.submenu_last {
     background-color: #aa2832;
     border-radius: 7px;
     border-style: none;
-    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     color: #ffffff;
     cursor: pointer;
@@ -1526,10 +1525,10 @@ footer{
     .top_page_navigation span{
         padding: 0 0px 0 8vw;
         font-size: 18px;
-        font-family: RobotoRegular;
     }
     .language-select{
         top: 3px;
+        right: 84px;
     }
     .top_page_logo img{
         width: 210px;
