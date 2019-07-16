@@ -363,6 +363,7 @@ onloadGetData = function () {
     if (JSON.parse(xhr.response) !== 200) {
         return JSON.parse(xhr.response).forEach(item => {
             let elem = document.createElement('new-element')
+            elem.style.margin = '0 auto'
             elem.id = item.id
             elem.idNum.textContent = `product ID: ${item.id}`
             elem.idNum.id = `${item.id}`

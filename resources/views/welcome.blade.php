@@ -89,6 +89,11 @@
                     <div class="menu_rect2"></div>
                     <div class="menu_rect3"></div>
                 </div>
+
+                <div class="ellipse_user">
+
+                    <img src="../img/user.png">
+                </div>
                 <div class="logout">
                     @guest
 
@@ -106,10 +111,6 @@
                             @csrf
                         </form>
                     @endguest
-                </div>
-                <div class="ellipse_user">
-
-                    <img src="../img/user.png">
                 </div>
             </div>
         </div>
@@ -137,14 +138,7 @@
 
             </li>
             <li class="main_tab"><a href="#">Repearing servise</a>
-                {{--                    <ul class="submenu_last">--}}
-                {{--                        <li><a href=#>Ремонт телефонов</a></li>--}}
-                {{--                        <li><a href=#>Ремонт планшетов</a></li>--}}
-                {{--                        <li><a href=#>Ремнонт ноутбуков</a></li>--}}
-                {{--                        <li><a href=#>Ремнонт компьютеров</a></li>--}}
-                {{--                        <li><a href=#>Ремнонт телевизоров и мониторов</a></li>--}}
-                {{--                        <li><a href=#>Ремнонт бытовой техники</a></li>--}}
-                {{--                    </ul>--}}
+
             </li>
             <li class="main_tab_lang"><a href="#">Choose your language</a>
                 <ul class="submenu">
