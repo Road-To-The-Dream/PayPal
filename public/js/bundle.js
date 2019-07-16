@@ -155,7 +155,6 @@ class CustomElementNew extends HTMLElement {
     }
 
     showInfo() {
-
         datdadata.forEach(item => {
             let liElem = document.querySelector('#slides')
                 .appendChild(document.createElement('li'))
