@@ -335,7 +335,6 @@ class CustomElementNew extends HTMLElement {
     removeItemFromCart() {
         let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
         multiplyItemsCartButton.textContent = +multiplyItemsCartButton.textContent - 1
-        // console.log(+total.textContent.slice(12), parseInt(this.itemPrise.textContent))
         total.textContent = `total price: ${+total.textContent.slice(12) > 0 ?
             this.counterItem.textContent > 1 ?
                 +total.textContent.slice(12) - (parseInt(this.itemPrise.textContent) * this.counterItem.textContent) :
@@ -360,7 +359,6 @@ onloadGetData = function (page) {
         null
     }
     let products = JSON.parse(xhr.response)
-    // console.log(products.products)
     $(".products").empty()
     if (JSON.parse(xhr.response) !== 200) {
         products.products.forEach(item => {
@@ -382,7 +380,6 @@ onloadGetData = function (page) {
     $(".pages").empty()
 
     for (let i = 0; i < products.amount; i++) {
-        console.log(products.amount)
         let paginNumber = document.createElement('span')
         paginNumber.textContent = `${i + 1}`
         paginNumber.className = 'btn'
@@ -391,14 +388,12 @@ onloadGetData = function (page) {
         paginNumber.style.border = "solid 3px white"
         paginNumber.setAttribute('onclick', `onloadGetData(${offset})`)
         offset += ITEMS
-        // console.log(offset)
         pagesBox.appendChild(paginNumber)
     }
     let btns = pagesBox.getElementsByClassName("btn")
     for (let i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function (e) {
             let currentNum = e.toElement.innerHTML - 1
-            // console.log(parseInt(currentNum))
             let current = document.getElementsByClassName("btn");
             current[currentNum].className = current[currentNum].className.replace("btn", "btn active");
             this.className += " active";
@@ -420,7 +415,6 @@ onloadPage = function () {
     }
     if (JSON.parse(xhr.response) !== 200) {
         let result = JSON.parse(xhr.response).reduce((a, b) => a + b.price, 0)
-        // console.log(result)
         return JSON.parse(xhr.response).forEach(item => {
             let elem = document.createElement('new-element')
             elem.minusPlus.style.display = 'block'

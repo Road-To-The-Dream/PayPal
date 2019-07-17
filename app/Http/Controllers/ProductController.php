@@ -3,19 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Model\Product;
-use http\Env\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
     private const ITEMS = 8;
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index($offset = 0)
+    public function getView(): View
+    {
+        return view('welcome');
+    }
+
+    /**
+     * @param int $offset
+     * @return JsonResponse
+     */
+    public function index($offset = 0): JsonResponse
     {
         return response()->json([
             'products' => Product::skip($offset)->take(self::ITEMS)->get(),
@@ -45,12 +53,10 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show($id): JsonResponse
     {
         $product = Product::find($id);
 
@@ -95,7 +101,10 @@ class ProductController extends Controller
         //
     }
 
-    public function addToCart(Request $request)
+    /**
+     * @param Request $request
+     */
+    public function addToCart(Request $request): void
     {
         $request->session()->push('productsId', [$request->get('productId')]);
     }
@@ -113,17 +122,27 @@ class ProductController extends Controller
         }
     }
 
-    public function decreaseAmount(Request $request)
+    /**
+     * @param Request $request
+     */
+    public function decreaseAmount(Request $request): void
     {
         $request->session()->push('productsId', [$request->get('productId')]);
     }
 
+    /**
+     * @param Request $request
+     */
     public function increaseAmount(Request $request)
     {
         $request->session()->push('productsId', [$request->get('productId')]);
     }
 
-    public function getProductsFromCart(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getProductsFromCart(Request $request): JsonResponse
     {
         if ($request->session()->has('productsId')) {
             $productsId = [];

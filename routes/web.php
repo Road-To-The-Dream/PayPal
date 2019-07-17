@@ -3,7 +3,7 @@
 
 Auth::routes();
 
-Route::get('/', 'Controller@getView');
+Route::get('/', 'ProductController@getView');
 
 Route::post('paypal', 'PayPalController@pay');
 
