@@ -383,21 +383,21 @@ onloadGetData = function (page) {
     let offset = 0;
     $(".pages").empty()
 
-    for(let i = 0; i < products.amount; i++){
+    for (let i = 0; i < products.amount; i++) {
         console.log(products.amount)
         let paginNumber = document.createElement('span')
-        paginNumber.textContent = `${i+1}`
+        paginNumber.textContent = `${i + 1}`
         paginNumber.className = 'btn'
         paginNumber.style.padding = '20px'
-        paginNumber.style.cursor ='pointer'
-        paginNumber.setAttribute('onclick', `onloadGetData(${offset })`)
+        paginNumber.style.cursor = 'pointer'
+        paginNumber.setAttribute('onclick', `onloadGetData(${offset})`)
         offset += ITEMS
         // console.log(offset)
         pagesBox.appendChild(paginNumber)
     }
     let btns = pagesBox.getElementsByClassName("btn")
     for (let i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function(e) {
+        btns[i].addEventListener("click", function (e) {
             let currentNum = e.toElement.innerHTML - 1
             // console.log(parseInt(currentNum))
             let current = document.getElementsByClassName("btn");
@@ -628,7 +628,7 @@ dropdownA.textContent = 'Personal data'
 dropdownA.style.cursor = 'pointer'
 dropdownA.style.margin = '10px'
 let dropdownItem = document.querySelector('.dropdown-item')
-dropdownItem.style =`margin: 10px; display: block; text-align: end;`
+dropdownItem.style = `margin: 10px; display: block; text-align: end;`
 let img = document.createElement('img')
 img.src = 'data:image/png;base64,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'
 img.style.width = '20px'
