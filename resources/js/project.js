@@ -2,6 +2,7 @@ var total = document.querySelector('.total')
 total.innerHTML = `total price: ${0}`
 var counter = 0;
 let currentCounter = 1
+const ITEMS = 8;
 
 class CustomElementNew extends HTMLElement {
     constructor() {
@@ -390,7 +391,7 @@ onloadGetData = function (page) {
         paginNumber.style.padding = '20px'
         paginNumber.style.cursor ='pointer'
         paginNumber.setAttribute('onclick', `onloadGetData(${offset })`)
-        offset += 3
+        offset += ITEMS
         // console.log(offset)
         pagesBox.appendChild(paginNumber)
     }
