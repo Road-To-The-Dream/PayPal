@@ -211,10 +211,10 @@
                     <button class="controls" id="pause">||</button>
                     <button class="controls" id="next">>>></button>
                 </div>
-                <div>
+                <div class="product-info-content-details">
                     <h2 class="product-info-title"></h2>
                     <h3 class="product-info-description"></h3>
-                    <p class="product-info-characteristics"></p>
+                    <div class="product-info-characteristics"></div>
                     <h3 class="product-info-price"></h3>
                 </div>
             </div>

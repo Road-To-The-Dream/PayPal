@@ -46,7 +46,6 @@ class CustomElementNew extends HTMLElement {
         this.iButton.textContent = 'i'
         this.iButton.onclick = this.showInfo.bind(this)
 
-
         this.shadow = this.attachShadow({mode: 'open'})
         let style = document.createElement('style')
         style.textContent = `
@@ -163,7 +162,9 @@ class CustomElementNew extends HTMLElement {
         } else {
             null
         }
+
         let data123 = JSON.parse(xhr.response)
+        console.log(data123)
         data123.images.forEach(item => {
             let liElem = document.querySelector('#slides')
                 .appendChild(document.createElement('li'))
@@ -247,6 +248,20 @@ class CustomElementNew extends HTMLElement {
             .textContent = this.itemDescription.textContent
         document.querySelector('.product-info-price')
             .textContent = this.itemPrise.textContent
+        let characteristics = document.querySelector('.product-info-characteristics')
+        data123.characteristics.forEach(item => {
+            let parag = document.createElement('p')
+            parag.style = `display: flex; justify-content: space-between;`
+            let name = document.createElement('span')
+            name.style = `font-weight: 600;`
+            let pivot = document.createElement('span')
+            pivot.style = `font-weight: 400;`
+            name.textContent = `${item.name} - `
+            pivot.textContent = `${item.pivot.value}`
+            parag.appendChild(name)
+            parag.appendChild(pivot)
+            characteristics.appendChild(parag)
+        })
         let infoBox = document.querySelector('.product-info')
         infoBox.style = `display: block; z-index: 9999999999;`
     }
