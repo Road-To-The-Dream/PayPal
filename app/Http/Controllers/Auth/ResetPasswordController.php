@@ -3,21 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ChangePasswordRequest;
+use App\Services\Utility;
+use App\User;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
 
 class ResetPasswordController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling password reset requests
-    | and uses a simple trait to include this behavior. You're free to
-    | explore this trait and override any methods you wish to tweak.
-    |
-    */
-
     use ResetsPasswords;
 
     /**
@@ -28,12 +22,23 @@ class ResetPasswordController extends Controller
     protected $redirectTo = '/home';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * @param ChangePasswordRequest $request
+     * @return JsonResponse
      */
-    public function __construct()
+    public function changePassword(ChangePasswordRequest $request): JsonResponse
     {
-        $this->middleware('guest');
+        if ($request->ajax()) {
+            $input = Utility::cleanField([
+                $request->get('email'),
+                $request->get('password')
+            ]);
+
+            $user = User::where('email', $input[0])->get();
+            $user->update(['password' => Hash::make($input[1])]);
+
+            return response()->json(200);
+        }
+
+        return response()->view('errors.403', [], 403);
     }
 }
