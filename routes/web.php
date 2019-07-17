@@ -35,5 +35,5 @@ Route::put('product/{id}', 'ProductController@update');
 Route::delete('product/{id}', 'ProductController@destroy');
 //resources controller
 
-Route::post('change-password', 'ResetController@changePassword')->middleware('auth');
+Route::post('change-password', 'Auth\ResetPasswordController@changePassword')->middleware('auth');
 

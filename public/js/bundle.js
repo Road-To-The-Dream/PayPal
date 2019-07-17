@@ -268,15 +268,12 @@ class CustomElementNew extends HTMLElement {
     }
 
     increaseDecreaseProductAmount(url) {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             url: url,
             type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
                 productId: this.idNum.id,
             },
@@ -287,15 +284,12 @@ class CustomElementNew extends HTMLElement {
     }
 
     deleteItemFromCart(url) {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             url: url,
             type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
                 productId: this.idNum.id,
             },
@@ -564,15 +558,12 @@ $('.language-select li').click(function () {
 })
 
 document.getElementById("submit-login").onclick = (function () {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     $.ajax({
         url: 'login',
         type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: {
             email: $('#email').val(),
             password: $('#password').val(),
@@ -591,15 +582,12 @@ document.getElementById("submit-login").onclick = (function () {
 });
 
 document.getElementById("submit-register").onclick = (function () {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     $.ajax({
         url: 'register',
         type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: {
             name: $('#name').val(),
             email: $('#email-register').val(),
@@ -650,24 +638,30 @@ passwordChangeBlock.style = `
                     z-index: 9;
                     
         `
+
 let email = document.createElement('input')
 email.className = 'pas-change-input'
 email.placeholder = 'E-mail'
 email.type = 'text'
+email.name = 'email'
 let oldPass = document.createElement('input')
 oldPass.type = 'password'
 oldPass.className = 'pas-change-input'
 oldPass.placeholder = 'Old pasword'
+oldPass.name = 'old_password'
 let newPass = document.createElement('input')
 newPass.type = 'password'
 newPass.className = 'pas-change-input'
 newPass.placeholder = 'New password'
+newPass.name = 'new_password'
 let comfim = document.createElement('input')
 comfim.type = 'password'
 comfim.className = 'pas-change-input'
 comfim.placeholder = 'Confirm new password'
+comfim.name = 'password_confirmation'
 let btn = document.createElement('button')
 btn.textContent = 'Submit'
+btn.id = 'submit-change-password';
 btn.style = `    
         border: solid 2px #aa2832;
         background-color: #aa2832;
@@ -695,7 +689,7 @@ passwordChangeBlock.appendChild(comfim)
 passwordChangeBlock.appendChild(btn)
 dropdown.appendChild(passwordChangeBlock)
 
-dropdownA.onclick = function(e){
+dropdownA.onclick = function (e) {
     passwordChangeBlock.style.display = "none" ?
         passwordChangeBlock.style.display = 'grid' :
         passwordChangeBlock.style.display = "none"
@@ -724,7 +718,7 @@ document.querySelector('.nav-link').onclick = function (e) {
                 display: grid; `
 }
 document.querySelector('.order').onclick = function (e) {
-    if(document.querySelector('.dropdown-xxx') || document.querySelector('.change-password')){
+    if (document.querySelector('.dropdown-xxx') || document.querySelector('.change-password')) {
         document.querySelector('.change-password').style = `
         display: none; 
         box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 120px inset;
@@ -735,4 +729,32 @@ document.querySelector('.order').onclick = function (e) {
 
     } else null
 }
+
+document.getElementById("submit-change-password").onclick = (function () {
+    $.ajax({
+        url: 'change-password',
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            email: $('input[name="email"]').val(),
+            old_password: $('input[name="old_password"]').val(),
+            new_password: $('input[name="new_password"]').val(),
+            password_confirmation: $('input[name="password_confirmation"]').val(),
+        },
+        success: function () {
+            location.reload();
+        },
+        error: function (response) {
+            // $('#errors-login').empty();
+            //
+            // $.each(response['responseJSON']['errors'], function (key, value) {
+            //     $('#errors-login').append(key + ": " + value + "</br>");
+            // });
+
+            console.log(response['responseJSON']['errors']);
+        }
+    })
+});
 
