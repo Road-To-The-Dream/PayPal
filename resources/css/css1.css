@@ -835,98 +835,6 @@ ul.top_page_main_menu > li:hover > ul.submenu_last {
 
 
 
-.middle_article{
-    /*max-width: 1694px;*/
-    width: 88%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 101px auto;
-    padding: 0;
-}
-.middle_article_part{
-    width: 390px;
-    display: flex;
-    flex-direction: row;
-    margin: 0 auto;
-
-}
-.middle_article_part_img img{
-    position: relative;
-}
-.logo{
-    left: 28px;
-    bottom: 68px;
-}
-.middle_article_part_content{
-    width: 385px;
-}
-.middle_article_part_title{
-    margin-bottom: 10px;
-    font-family: RobotoBold;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 1.5;
-    letter-spacing: 0.36px;
-    color: #aa2832;
-    text-transform: uppercase;
-}
-.middle_article_part_text{
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    line-height: 21px;
-}
-
-
-
-.last_article{
-    /*max-width: 1694px;*/
-    width: 88%;
-    margin: 70px auto;
-}
-.last_article_title{
-    text-align: center;
-    font-family: RobotoBold;
-    font-size: 36px;
-    width: 459px;
-    margin: 0 auto 11px;
-}
-.last_article_text{
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
-    line-height: 1.53;
-    width: 459px;
-    margin: 0 auto 33px;
-}
-.last_article_parts{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 73px auto 104px;
-}
-.last_article_part{
-    margin: 0 auto;
-    padding: 40px 0 0 40px;
-    width: 300px;
-    height: 290px;
-    box-shadow: 0 5px 10px 0 rgba(153, 153, 153, 0.25);
-}
-.last_article_part_title{
-    font-family: RobotoBold;
-    font-size: 18px;
-    line-height: 1.5;
-    text-align: left;
-    color: #aa2832;
-}
-.last_article_part_text{
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-    text-align: left;
-}
-
-
 
 footer{
     max-width: 100vw;
@@ -1033,7 +941,6 @@ footer{
     display: block;
     cursor: pointer;
     margin: 9px 0;
-    font-family: RobotoRegular;
     font-size: 16px;
 }
 .registration input{
@@ -1060,13 +967,11 @@ footer{
     border-bottom: solid 1px #e5e5e5;
 }
 .enter_registration{
-    font-family: RobotoRegular;
     font-size: 18px;
     color: #1c1e2a;
     margin-top: 17px;
 }
 .reg_registration{
-    font-family: RobotoRegular;
     font-size: 18px;
     color: #aa2832;
     margin-top: 17px;
@@ -1088,7 +993,6 @@ footer{
     background-color: #aa2832;
     border: solid 1px #aa2832;
     color: #ffffff;
-    font-family: RobotoBold;
     font-size: 16px;
     cursor: pointer;
     border: solid 1px #e5e5e5;
@@ -1097,14 +1001,12 @@ footer{
 }
 .or_enter{
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     text-decoration: underline;
 }
 .or_enter_p{
     text-decoration: none;
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
 }
 
@@ -1146,11 +1048,9 @@ footer{
     display: block;
     cursor: pointer;
     margin: 9px 0;
-    font-family: RobotoRegular;
     font-size: 16px;
 }
 .log_in input{
-    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     width: 100%;
     margin: 0 0 20px;
@@ -1173,13 +1073,11 @@ footer{
     border-bottom: solid 1px #e5e5e5;
 }
 .enter_log_in{
-    font-family: RobotoRegular;
     font-size: 18px;
     color: #1c1e2a;
     margin-top: 17px;
 }
 .reg_log_in{
-    font-family: RobotoRegular;
     font-size: 18px;
     color: #aa2832;
     margin-top: 17px;
@@ -1202,7 +1100,6 @@ footer{
     background-color: #aa2832;
     border: solid 1px #aa2832;
     color: #ffffff;
-    font-family: RobotoBold;
     font-size: 16px;
     cursor: pointer;
     border: solid 1px #e5e5e5;
@@ -1210,14 +1107,12 @@ footer{
 }
 .or_register{
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     text-decoration: underline;
 }
 .or_register_p{
     text-orientation: none;
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
 }
 

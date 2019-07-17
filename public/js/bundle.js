@@ -131,6 +131,11 @@ class CustomElementNew extends HTMLElement {
                 cursor: pointer;
                 border-radius: 10px;
             }
+            .i-button:hover{
+                background-color: #ffffff;
+                color: #aa2832;
+                border: solid 2px #aa2832;
+                }
         `
         this.imgHolder.appendChild(this.imgItem)
         this.minusPlus.appendChild(this.buttonPlus)
@@ -450,7 +455,7 @@ onloadPage = function () {
 let button = document.querySelector('.but-cart')
 button.onclick = e => {
     document.querySelector('.cart').style = `display: block; z-index: 9999;`
-    document.documentElement.style.overflow = 'hidden'
+    document.documentElement.style = `overflow: hidden !important;`
 }
 let x = document.querySelector('.x')
 x.onclick = e => {
@@ -671,6 +676,18 @@ btn.style = `
         border-radius: 10px;
         margin: 10px auto 0;
         width: 50%;`
+btn.onmouseover = function(e){
+    btn.style = `
+    border: solid 2px #aa2832;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 10px auto 0;
+    width: 50%;\`
+    background-color: #ffffff;
+    color: #aa2832;
+    border: solid 2px #aa2832;`
+}
+
 passwordChangeBlock.appendChild(email)
 passwordChangeBlock.appendChild(oldPass)
 passwordChangeBlock.appendChild(newPass)
