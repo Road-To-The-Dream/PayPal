@@ -30,11 +30,15 @@ class ResetPasswordController extends Controller
         if ($request->ajax()) {
             $input = Utility::cleanField([
                 $request->get('email'),
-                $request->get('password')
+                $request->get('old-password'),
+                $request->get('new-password')
             ]);
 
-            $user = User::where('email', $input[0])->get();
-            $user->update(['password' => Hash::make($input[1])]);
+            $user = User::where('email', $input[0])
+                ->where('password', Hash::make($input[1]))
+                ->get();
+
+            $user->update(['password' => Hash::make($input[2])]);
 
             return response()->json(200);
         }

@@ -21,7 +21,9 @@ class ChangePasswordRequest extends FormRequest
     {
         return [
             'email' => 'required',
-            'password' => 'required'
+            'old-password' => 'min:8|required',
+            'new-password' => 'min:8|required_with:password-confirmation|same:password-confirmation',
+            'password-confirmation' => 'min:8'
         ];
     }
 
@@ -32,7 +34,12 @@ class ChangePasswordRequest extends FormRequest
     {
         return [
             'email|required' => 'Field email is empty',
-            'password|required' => 'Field password is empty'
+            'old-password|required' => 'Field old password is empty',
+            'old-password|min:8' => 'Field old password must be 8 characters',
+            'new-password|min:8' => 'Field password must be 8 characters',
+            'new-password|required_with:password-confirmation' => 'Field password is empty',
+            'new-password|same:password-confirmation' => 'Password do not match',
+            'password-confirmation|min:8' => 'Field confirm password must be 7 characters'
         ];
     }
 }

@@ -262,15 +262,12 @@ class CustomElementNew extends HTMLElement {
     }
 
     increaseDecreaseProductAmount(url) {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             url: url,
             type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
                 productId: this.idNum.id,
             },
@@ -281,15 +278,12 @@ class CustomElementNew extends HTMLElement {
     }
 
     deleteItemFromCart(url) {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             url: url,
             type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
                 productId: this.idNum.id,
             },
@@ -557,15 +551,12 @@ $('.language-select li').click(function () {
 })
 
 document.getElementById("submit-login").onclick = (function () {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     $.ajax({
         url: 'login',
         type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: {
             email: $('#email').val(),
             password: $('#password').val(),
@@ -584,15 +575,12 @@ document.getElementById("submit-login").onclick = (function () {
 });
 
 document.getElementById("submit-register").onclick = (function () {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     $.ajax({
         url: 'register',
         type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: {
             name: $('#name').val(),
             email: $('#email-register').val(),
