@@ -17,7 +17,7 @@ class ProductsTableSeeder extends Seeder
                 'title' => 'LG LCD tv 43',
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 35,
-                'amount' => 10,
+                'amount' => 2,
             ],
             [
                 'img' => 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
