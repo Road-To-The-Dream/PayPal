@@ -625,9 +625,65 @@ dropdownHistory.textContent = 'Order history'
 dropdownHistory.style.cursor = 'pointer'
 dropdownHistory.style.margin = '10px'
 let dropdownA = dropdown.appendChild(document.createElement('a'))
-dropdownA.textContent = 'Personal data'
+dropdownA.textContent = 'Change password'
 dropdownA.style.cursor = 'pointer'
 dropdownA.style.margin = '10px'
+
+let passwordChangeBlock = document.createElement('div')
+passwordChangeBlock.className = 'change-password'
+passwordChangeBlock.style = `
+                    display: none;
+                    width: 230px;
+                    height: auto;
+                    border: none;
+                    box-shadow: 0 0 120px rgba(0, 0, 0, .1) inset; 
+                    border-radius: 20px;
+                    right: 0;
+                    top: 40px;
+                    padding: 15px 5px;
+                    #ffdede
+                    z-index: 9;
+                    
+        `
+let email = document.createElement('input')
+email.className = 'pas-change-input'
+email.placeholder = 'E-mail'
+email.type = 'text'
+let oldPass = document.createElement('input')
+oldPass.type = 'password'
+oldPass.className = 'pas-change-input'
+oldPass.placeholder = 'Old pasword'
+let newPass = document.createElement('input')
+newPass.type = 'password'
+newPass.className = 'pas-change-input'
+newPass.placeholder = 'New password'
+let comfim = document.createElement('input')
+comfim.type = 'password'
+comfim.className = 'pas-change-input'
+comfim.placeholder = 'Confirm new password'
+let btn = document.createElement('button')
+btn.textContent = 'Submit'
+btn.style = `    
+        border: solid 2px #aa2832;
+        background-color: #aa2832;
+        color: white;
+        cursor: pointer;
+        border-radius: 10px;
+        margin: 10px auto 0;
+        width: 50%;`
+passwordChangeBlock.appendChild(email)
+passwordChangeBlock.appendChild(oldPass)
+passwordChangeBlock.appendChild(newPass)
+passwordChangeBlock.appendChild(comfim)
+passwordChangeBlock.appendChild(btn)
+dropdown.appendChild(passwordChangeBlock)
+
+dropdownA.onclick = function(e){
+    passwordChangeBlock.style.display = "none" ?
+        passwordChangeBlock.style.display = 'grid' :
+        passwordChangeBlock.style.display = "none"
+}
+
 let dropdownItem = document.querySelector('.dropdown-item')
 dropdownItem.style = `margin: 10px; display: block; text-align: end;`
 let img = document.createElement('img')
@@ -638,18 +694,28 @@ dropdown.appendChild(dropdownItem)
 
 document.querySelector('.nav-link').onclick = function (e) {
     dropdown.style = `
-    width: 150px;
+                width: 250px;
                 height: auto;
                 border: solid 3px #aa2832;
                 border-radius: 20px;
                 position: absolute;
+                right: 0;
+                top: 40px;
                 padding: 15px 5px;
                 background-color: white;
                 z-index: 9;
                 display: grid; `
 }
 document.querySelector('.order').onclick = function (e) {
-    document.querySelector('.dropdown-xxx') ?
-        document.querySelector('.dropdown-xxx').style = `display: none; z-index: -1` : null
+    if(document.querySelector('.dropdown-xxx') || document.querySelector('.change-password')){
+        document.querySelector('.change-password').style = `
+        display: none; 
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 120px inset;
+        border-radius: 20px;
+        padding: 15px 5px;
+        `
+        document.querySelector('.dropdown-xxx').style = `display: none; z-index: -1`
+
+    } else null
 }
 

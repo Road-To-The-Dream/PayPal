@@ -599,7 +599,12 @@ body{
 .dropdown-item{
     display: none;
 }
-
+.pas-change-input{
+    padding: 3px 5px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+}
 
 
 
