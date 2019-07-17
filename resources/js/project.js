@@ -361,7 +361,6 @@ onloadGetData = function (page) {
         null
     }
     let products = JSON.parse(xhr.response)
-    console.log(products.products)
     $(".products").empty()
     if (JSON.parse(xhr.response) !== 200) {
         products.products.forEach(item => {
@@ -383,14 +382,12 @@ onloadGetData = function (page) {
     $(".pages").empty()
 
     for(let i = 0; i < products.amount; i++){
-        console.log(products.amount)
         let paginNumber = document.createElement('span')
         paginNumber.textContent = `"${i+1}"`
         paginNumber.style.padding = '20px'
         paginNumber.style.cursor ='pointer'
         paginNumber.setAttribute('onclick', `onloadGetData(${offset })`)
         offset += 3
-        console.log(offset)
         pagesBox.appendChild(paginNumber)
     }
 
