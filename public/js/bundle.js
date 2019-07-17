@@ -164,7 +164,7 @@ class CustomElementNew extends HTMLElement {
             null
         }
         let data123 = JSON.parse(xhr.response)
-        console.log(data123)
+        // console.log(data123)
         data123.images.forEach(item => {
             let liElem = document.querySelector('#slides')
                 .appendChild(document.createElement('li'))
@@ -447,10 +447,13 @@ onloadPage = function () {
 
 
 let button = document.querySelector('.but-cart')
-button.onclick = e => {
-    document.querySelector('.cart').style = `display: block; z-index: 9999;`
-    document.documentElement.style = `overflow: hidden !important;`
-}
+
+    button.onclick = e => {
+        document.querySelector('.cart').style = `display: block; z-index: 9999;`
+        document.documentElement.style = `overflow: hidden !important;`
+    }
+
+
 let x = document.querySelector('.x')
 x.onclick = e => {
     document.querySelector('.cart').style = `display: none; z-index: -1;`
@@ -485,11 +488,12 @@ let switchItems = function (par1, par2) {
 let closeItem = function (par) {
     par.style = `opacity: 0; z-index: -1;`
 }
+if(elemLogIn){
 elemLogIn.onclick = function (e) {
     elemFormReg.style = `opacity: 1; z-index: 999999;`
     document.documentElement.style.overflow = 'hidden'
     document.querySelector('.reg_registration_a').style.color = '#aa2832'
-}
+}}else null
 elemCloseFormReg.onclick = function (e) {
     closeItem(elemFormReg)
     document.documentElement.style.overflow = 'auto'
