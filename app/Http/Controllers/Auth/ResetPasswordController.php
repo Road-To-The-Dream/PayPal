@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Services\Utility;
-use App\User;
+use App\Model\User;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class ResetPasswordController extends Controller
 {
@@ -30,15 +31,17 @@ class ResetPasswordController extends Controller
         if ($request->ajax()) {
             $input = Utility::cleanField([
                 $request->get('email'),
-                $request->get('old-password'),
-                $request->get('new-password')
+                $request->get('old_password'),
+                $request->get('new_password')
             ]);
 
-            $user = User::where('email', $input[0])
-                ->where('password', Hash::make($input[1]))
-                ->get();
+            $user = User::where('email', $input[0])->first();
 
-            $user->update(['password' => Hash::make($input[2])]);
+            if (Hash::check($input[1], Auth::user()->getAuthPassword())) {
+                $user->password = Hash::make($input[2]);
+                $user->save();
+                Auth::logout();
+            }
 
             return response()->json(200);
         }
