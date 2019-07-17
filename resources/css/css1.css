@@ -433,6 +433,17 @@ body{
     bottom: 0;
     margin: 30px auto;
 }
+.btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+.active, .btn:hover {
+    background-color: #aa2832;
+    color: white;
+}
 .cart{
     overflow-y: auto;
     border: solid 3px #aa2832;
@@ -617,6 +628,7 @@ body{
     margin: 12px;
 }
 .top_page_logo img{
+    filter: brightness(0.8);
     width: 446px;
     height: 65px;
     margin: 16px 0 19px 0;
@@ -928,7 +940,8 @@ footer{
 
 }
 .bottom_page_logo img{
-    width: 120px;
+    filter: brightness(0.7);
+    width: 320px;
     height: auto;
 }
 .under_logo_bottom{
