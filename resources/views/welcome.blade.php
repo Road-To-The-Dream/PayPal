@@ -67,10 +67,10 @@
     <header>
         <div class="top_page">
             <div class="top_page_logo">
-                <a href="#"><img src="https://static1.squarespace.com/static/574db59f59827e2eebfb93b4/t/59a58987197aeac248079bf9/1504020877786/test_button-2.png?format=1000w" alt="top_log"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Coca-Cola_Light_logo.png" alt="top_log"></a>
             </div>
             <div class="top_page_logo_small">
-                <a href="#"><img src="https://https://static1.squarespace.com/static/574db59f59827e2eebfb93b4/t/59a58987197aeac248079bf9/1504020877786/test_button-2.png?format=1000w" alt="top_log"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Coca-Cola_Light_logo.png" alt="top_log"></a>
             </div>
             <div class="top_page_navigation">
                 <span><a href="#">Contacts</a></span>
@@ -167,7 +167,7 @@
     <footer>
         <div class="bottom_page">
             <div class="bottom_page_logo">
-                <a href="#"><img src="https://static1.squarespace.com/static/574db59f59827e2eebfb93b4/t/59a58987197aeac248079bf9/1504020877786/test_button-2.png?format=1000w" alt="top_log"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Coca-Cola_Light_logo.png" alt="top_log"></a>
                 <p class="under_logo_bottom">© Test-TEST 2019</p>
             </div>
             <div class="bottom_page_navigation">
@@ -211,10 +211,10 @@
                     <button class="controls" id="pause">||</button>
                     <button class="controls" id="next">>>></button>
                 </div>
-                <div>
+                <div class="product-info-content-details">
                     <h2 class="product-info-title"></h2>
                     <h3 class="product-info-description"></h3>
-                    <p class="product-info-characteristics"></p>
+                    <div class="product-info-characteristics"></div>
                     <h3 class="product-info-price"></h3>
                 </div>
             </div>

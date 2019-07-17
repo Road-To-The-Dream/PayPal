@@ -635,7 +635,7 @@ body{
 }
 .top_page_logo img{
     filter: brightness(0.8);
-    width: 446px;
+    width: 300px;
     height: 65px;
     margin: 16px 0 19px 0;
 }
@@ -1139,6 +1139,22 @@ footer{
     background-color: #ffffff;
     box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
 }
+.product-info-content{
+    display: flex;
+}
+.product-info-content-details{
+    padding: 0 50px;
+    margin: 50px auto 0;
+    width: 50%;
+}
+.product-info-characteristics{
+    margin: 35px 0;
+}
+.slider{
+    width: 50%;
+    margin: 0 auto 30px;
+}
+
 .close-info{
     padding: 10px;
     width: 40px;
@@ -1161,7 +1177,7 @@ footer{
     border-radius: 50%;
 }
 .slider img{
-    max-height: 300px;
+    max-height: 400px;
 }
 #slides {
     position: relative;
@@ -1218,7 +1234,7 @@ footer{
 }
 
 .controls {
-    margin: 50px 0 0 0;
+    margin: 160px 0 0 0;
     display: none;
 }
 #previous{
