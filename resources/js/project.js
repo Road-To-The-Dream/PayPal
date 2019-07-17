@@ -390,6 +390,7 @@ onloadGetData = function (page) {
         paginNumber.className = 'btn'
         paginNumber.style.padding = '20px'
         paginNumber.style.cursor = 'pointer'
+        paginNumber.style.border = "solid 3px white"
         paginNumber.setAttribute('onclick', `onloadGetData(${offset})`)
         offset += ITEMS
         // console.log(offset)
