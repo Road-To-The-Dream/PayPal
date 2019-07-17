@@ -1,3 +1,4 @@
+
 <?php
 
 Auth::routes();
@@ -21,7 +22,8 @@ Route::post('delete-from-cart', 'ProductController@deleteFromCart');
 Route::get('get-products-cart', 'ProductController@getProductsFromCart');
 
 //resources controller
-Route::get('product/{offset}', 'ProductController@index');
+
+Route::get('product/1/{offset}', 'ProductController@index');
 
 Route::get('product/create', 'ProductController@create');
 
@@ -34,3 +36,4 @@ Route::get('product/{id}/edit', 'ProductController@edit');
 Route::put('product/{id}', 'ProductController@update');
 
 Route::delete('product/{id}', 'ProductController@destroy');
+
