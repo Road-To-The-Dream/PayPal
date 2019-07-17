@@ -6,10 +6,17 @@ use App\Model\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
+use App\Services\Products;
 
 class ProductController extends Controller
 {
+    private $productService;
     private const ITEMS = 8;
+
+    public function __construct(Products $obj)
+    {
+        $this->productService = $obj;
+    }
 
     /**
      * @return View
@@ -145,11 +152,7 @@ class ProductController extends Controller
     public function getProductsFromCart(Request $request): JsonResponse
     {
         if ($request->session()->has('productsId')) {
-            $productsId = [];
-
-            foreach ($request->session()->get('productsId') as $product) {
-                array_push($productsId, $product[0]);
-            }
+            $productsId = $this->productService->getProductsId($request);
 
             return response()->json(Product::whereIn('id', $productsId)->get(), 200);
         }

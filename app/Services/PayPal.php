@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
 use App\Http\Requests\PaymentRequest;
-use App\Http\Resources\ProductResource;
-use App\Model\Product;
+use Redirect;
+use Session;
+use URL;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use PayPal\Api\Amount;
@@ -18,17 +19,14 @@ use PayPal\Api\Transaction;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Exception\PayPalConnectionException;
 use PayPal\Rest\ApiContext;
-use Redirect;
-use Session;
-use URL;
+use Illuminate\Http\RedirectResponse;
 
-class PayPalController extends Controller implements \App\Services\Payment
+class PayPal
 {
     private $apiContext;
 
     public function __construct()
     {
-        /** PayPal api context **/
         $paypalConf = Config::get('paypal');
         $this->apiContext = new ApiContext(new OAuthTokenCredential(
                 $paypalConf['client_id'],
@@ -37,7 +35,11 @@ class PayPalController extends Controller implements \App\Services\Payment
         $this->apiContext->setConfig($paypalConf['settings']);
     }
 
-    public function pay(PaymentRequest $request)
+    /**
+     * @param PaymentRequest $request
+     * @return RedirectResponse
+     */
+    public function pay(PaymentRequest $request): RedirectResponse
     {
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
@@ -93,8 +95,8 @@ class PayPalController extends Controller implements \App\Services\Payment
         Session::put('paypal_payment_id', $payment->getId());
 
         if (isset($redirect_url)) {
-            return Redirect::away($redirect_url);
             /** redirect to paypal **/
+            return Redirect::away($redirect_url);
         }
 
         Session::put('error', 'Unknown error occurred');
@@ -104,10 +106,8 @@ class PayPalController extends Controller implements \App\Services\Payment
 
     public function getPaymentStatus()
     {
-        /** Get the payment ID before session clear **/
         $payment_id = Session::get('paypal_payment_id');
 
-        /** clear the session payment ID **/
         Session::forget('paypal_payment_id');
 
         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
@@ -120,7 +120,6 @@ class PayPalController extends Controller implements \App\Services\Payment
         $execution = new PaymentExecution();
         $execution->setPayerId(Input::get('PayerID'));
 
-        /**Execute the payment **/
         $result = $payment->execute($execution, $this->apiContext);
 
         if ($result->getState() == 'approved') {

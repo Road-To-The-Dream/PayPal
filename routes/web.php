@@ -5,9 +5,9 @@ Auth::routes();
 
 Route::get('/', 'ProductController@getView');
 
-Route::post('paypal', 'PayPalController@pay');
+Route::post('paypal', 'OrderController@store');
 
-Route::get('status', 'PayPalController@getPaymentStatus');
+Route::get('status', 'OrderController@getPaymentStatus');
 
 Route::post('add-to-cart', 'ProductController@addToCart');
 
