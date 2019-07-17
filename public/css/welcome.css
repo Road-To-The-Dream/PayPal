@@ -427,10 +427,6 @@ body{
     padding: 80px 150px;
 }
 .pages{
-    left: 50%;
-    position: absolute;
-    right: 50%;
-    bottom: 0;
     margin: 30px auto;
 }
 .btn {

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    private const ITEMS = 3;
+    private const ITEMS = 8;
 
     /**
      * Display a listing of the resource.
