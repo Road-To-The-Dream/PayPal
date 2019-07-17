@@ -672,7 +672,7 @@ btn.style = `
         border-radius: 10px;
         margin: 10px auto 0;
         width: 50%;`
-btn.onmouseover = function(e){
+btn.onmouseover = function (e) {
     btn.style = `
     border: solid 2px #aa2832;
     cursor: pointer;
@@ -757,8 +757,6 @@ document.getElementById("submit-change-password").onclick = (function () {
             $.each(response['responseJSON']['errors'], function (key, value) {
                 $('#errors-block-change-password').append(key + ": " + value + "</br></br>");
             });
-
-
         }
     })
 });

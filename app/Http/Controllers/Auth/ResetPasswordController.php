@@ -38,8 +38,7 @@ class ResetPasswordController extends Controller
             $user = User::where('email', $input[0])->first();
 
             if (Hash::check($input[1], Auth::user()->getAuthPassword())) {
-                $user->password = Hash::make($input[2]);
-                $user->save();
+                $user->update(['password' => Hash::make($input[2])]);
                 Auth::logout();
             }
 
