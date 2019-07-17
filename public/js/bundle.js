@@ -336,7 +336,7 @@ class CustomElementNew extends HTMLElement {
     removeItemFromCart() {
         let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
         multiplyItemsCartButton.textContent = +multiplyItemsCartButton.textContent - 1
-        console.log(+total.textContent.slice(12), parseInt(this.itemPrise.textContent))
+        // console.log(+total.textContent.slice(12), parseInt(this.itemPrise.textContent))
         total.textContent = `total price: ${+total.textContent.slice(12) > 0 ?
             this.counterItem.textContent > 1 ?
                 +total.textContent.slice(12) - (parseInt(this.itemPrise.textContent) * this.counterItem.textContent) :
@@ -353,7 +353,7 @@ customElements.define('new-element', CustomElementNew)
 
 onloadGetData = function (page) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `/product/page/${page}`, false);
+    xhr.open('GET', `/product/1/${page}`, false);
     xhr.send();
     if (xhr.status != 200) {
         alert(xhr.status + ': ' + xhr.statusText);
@@ -361,6 +361,7 @@ onloadGetData = function (page) {
         null
     }
     let products = JSON.parse(xhr.response)
+    // console.log(products.products)
     $(".products").empty()
     if (JSON.parse(xhr.response) !== 200) {
         products.products.forEach(item => {
@@ -382,18 +383,30 @@ onloadGetData = function (page) {
     $(".pages").empty()
 
     for(let i = 0; i < products.amount; i++){
+        console.log(products.amount)
         let paginNumber = document.createElement('span')
-        paginNumber.textContent = `"${i+1}"`
+        paginNumber.textContent = `${i+1}`
+        paginNumber.className = 'btn'
         paginNumber.style.padding = '20px'
         paginNumber.style.cursor ='pointer'
         paginNumber.setAttribute('onclick', `onloadGetData(${offset })`)
         offset += 3
+        // console.log(offset)
         pagesBox.appendChild(paginNumber)
+    }
+    let btns = pagesBox.getElementsByClassName("btn")
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function(e) {
+            let currentNum = e.toElement.innerHTML - 1
+            // console.log(parseInt(currentNum))
+            let current = document.getElementsByClassName("btn");
+            current[currentNum].className = current[currentNum].className.replace("btn", "btn active");
+            this.className += " active";
+        });
     }
 
 }
 onloadGetData()
-
 
 
 onloadPage = function () {
@@ -407,7 +420,7 @@ onloadPage = function () {
     }
     if (JSON.parse(xhr.response) !== 200) {
         let result = JSON.parse(xhr.response).reduce((a, b) => a + b.price, 0)
-        console.log(result)
+        // console.log(result)
         return JSON.parse(xhr.response).forEach(item => {
             let elem = document.createElement('new-element')
             elem.minusPlus.style.display = 'block'
