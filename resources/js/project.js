@@ -164,7 +164,6 @@ class CustomElementNew extends HTMLElement {
             null
         }
         let data123 = JSON.parse(xhr.response)
-        // console.log(data123)
         data123.images.forEach(item => {
             let liElem = document.querySelector('#slides')
                 .appendChild(document.createElement('li'))

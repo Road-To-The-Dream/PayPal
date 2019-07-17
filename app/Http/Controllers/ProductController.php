@@ -55,8 +55,8 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         return response()->json([
-            'product' => $product,
-            'images' => $product->images()->get()
+
+            'characteristics' => $product->characteristics()->get()
         ], 200);
     }
 

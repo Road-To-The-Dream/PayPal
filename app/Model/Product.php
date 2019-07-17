@@ -14,4 +14,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Image::class, 'products_images');
     }
+
+    public function characteristics()
+    {
+        return $this->belongsToMany(Characteristic::class, 'products_characteristics')->withPivot('value');
+    }
 }
