@@ -123,11 +123,10 @@ class ProductController extends Controller
     {
         $productKeys = array_keys($request->session()->get('productsId'));
 
-        for ($i = 0; $i < count($request->session()->get('productsId')); $i++) {
+        $itemAmount = count($request->session()->get('productsId'));
+        for ($i = 0; $i < $itemAmount; $i++) {
             if ($request->session()->get("productsId.{$productKeys[$i]}.0") === $request->get('productId')) {
                 $request->session()->forget("productsId.{$productKeys[$i]}");
-
-                break;
             }
         }
     }
@@ -145,7 +144,14 @@ class ProductController extends Controller
      */
     public function increaseAmount(Request $request)
     {
-        $request->session()->push('productsId', [$request->get('productId')]);
+        $productKeys = array_keys($request->session()->get('productsId'));
+
+        for ($i = 0; $i < count($request->session()->get('productsId')); $i++) {
+            if ($request->session()->get("productsId.{$productKeys[$i]}.0") === $request->get('productId')) {
+                $request->session()->forget("productsId.{$productKeys[$i]}");
+                break;
+            }
+        }
     }
 
     /**
