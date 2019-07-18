@@ -121,10 +121,10 @@
             <li class="tab_navi"><a href="#">Contacts</a>
 
             </li>
-            <li class="main_tab"><a href="#">Categories</a>
+            <li class="main_tab">Categories
                 <ul class="submenu">
                     @foreach($categories as $category)
-                        <li><a onclick="onloadGetData(0, {{ $category->id }})">{{ $category->name }}</a></li>
+                        <li onclick="onloadGetData(0, {{ $category->id }})">{{ $category->name }}</li>
                     @endforeach
                 </ul>
             </li>

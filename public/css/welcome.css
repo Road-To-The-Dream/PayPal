@@ -477,6 +477,7 @@ body{
     color: white;
     cursor: pointer;
     border-radius: 10px;
+    z-index: 999;
 }
 .but-cart:hover > img{
     filter: brightness(1);
@@ -680,6 +681,7 @@ ul:after {
 ul.top_page_main_menu > li {
     position: relative;
     width: 2500px;
+    cursor: pointer;
 }
 ul.top_page_main_menu > li > a {
     display: block;

@@ -115,11 +115,16 @@ class CustomElementNew extends HTMLElement {
                 left: -10px;
                 top: -10px;
                 border: solid 2px #6a9ba0;
-                background-color: #6a9ba02;
+                background-color: #6a9ba0;
                 color: white;
                 cursor: pointer;
                 border-radius: 10px;
             }
+            .x-button:hover{
+                background-color: #ffffff;
+                color: #6a9ba0;
+                border: solid 2px #6a9ba0;
+                }
               .i-button{
                 position: absolute; 
                 top: 10px;
@@ -380,47 +385,58 @@ onloadGetData = function (page = 0, categoryId = 2) {
         null
     }
     let products = JSON.parse(xhr.response)
-    $(".products").empty()
-    if (JSON.parse(xhr.response) !== 200) {
-        products.products.forEach(item => {
-            let elem = document.createElement('new-element')
-            elem.style.margin = '0 auto'
-            elem.id = item.id
-            elem.idNum.textContent = `product ID: ${item.id}`
-            elem.idNum.id = `${item.id}`
-            elem.imgItem.src = item.img
-            elem.itemTitle.innerHTML = item.title
-            elem.itemDescription.innerHTML = item.description
-            elem.itemPrise.innerHTML = `${item.price} USD`
-            document.querySelector('.products').appendChild(elem)
-        })
-    } else null
 
-    let pagesBox = document.querySelector('.pages')
-    let offset = 0;
-    $(".pages").empty()
+    if (products.products.length !== 0){
+        $(".products").empty()
+        if (JSON.parse(xhr.response) !== 200) {
+            products.products.forEach(item => {
+                let elem = document.createElement('new-element')
+                elem.style.margin = '0 auto'
+                elem.id = item.id
+                elem.idNum.textContent = `product ID: ${item.id}`
+                elem.idNum.id = `${item.id}`
+                elem.imgItem.src = item.img
+                elem.itemTitle.innerHTML = item.title
+                elem.itemDescription.innerHTML = item.description
+                elem.itemPrise.innerHTML = `${item.price} USD`
+                document.querySelector('.products').appendChild(elem)
+            })
+        } else null
 
-    for (let i = 0; i < products.amount; i++) {
-        let paginNumber = document.createElement('span')
-        paginNumber.textContent = `${i + 1}`
-        paginNumber.className = 'btn'
-        paginNumber.style.padding = '20px'
-        paginNumber.style.cursor = 'pointer'
-        paginNumber.style.border = "solid 3px white"
-        paginNumber.setAttribute('onclick', `onloadGetData(${offset})`)
-        offset += ITEMS
-        pagesBox.appendChild(paginNumber)
-    }
-    let btns = pagesBox.getElementsByClassName("btn")
-    btns[0].className = "btn active"
-    for (let i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function (e) {
-            btns[0].className = "btn"
-            let currentNum = e.toElement.innerHTML - 1
-            let current = document.getElementsByClassName("btn");
-            current[currentNum].className = current[currentNum].className.replace("btn", "btn active");
-            this.className += " active";
-        });
+        let pagesBox = document.querySelector('.pages')
+        let offset = 0;
+        $(".pages").empty()
+
+
+        for (let i = 0; i < products.amount; i++) {
+            let paginNumber = document.createElement('span')
+            paginNumber.textContent = `${i + 1}`
+            paginNumber.className = 'btn'
+            paginNumber.style.padding = '20px'
+            paginNumber.style.cursor = 'pointer'
+            paginNumber.style.border = "solid 3px white"
+            if (paginNumber.className !== 'btn active'){
+                paginNumber.setAttribute('onclick', `onloadGetData(${offset}, ${categoryId})`)
+            }else null
+            offset += ITEMS
+            pagesBox.appendChild(paginNumber)
+        }
+
+        let btns = pagesBox.getElementsByClassName("btn")
+        btns[0].className = "btn active"
+
+
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function (e) {
+                btns[0].className = "btn"
+                let currentNum = e.toElement.innerHTML - 1
+                let current = document.getElementsByClassName("btn");
+                current[currentNum].className = current[currentNum].className.replace("btn", "btn active");
+                this.className += " active";
+            });
+        }
+    }else {
+        alert('No products in that category yet')
     }
 
 }
@@ -462,12 +478,14 @@ onloadPage = function () {
 }
 
 
-let button = document.querySelector('.but-cart')
 
-    button.onclick = e => {
+document.querySelector('.but-cart').onclick = e => {
+    let identifier = document.querySelector('.miltiply-items-button')
+    if(+identifier.textContent !== 0){
         document.querySelector('.cart').style = `display: block; z-index: 9999;`
         document.documentElement.style = `overflow: hidden !important;`
-    }
+    }else {alert('Cart is empty')}
+}
 
 
 let x = document.querySelector('.x')
@@ -546,7 +564,7 @@ elemTopRegReg.onclick = function (e) {
 
 
 function diplay_hide(blockId) {
-    if ($(blockId).css('display') == 'none') {
+    if ($(blockId).css('display') === 'none') {
         $(blockId).animate({height: 'show'}, 500);
         $('html').css('overflow', 'hidden');
         $(document.querySelector('.menu_rect1')).css('transform', 'rotate(315deg)')
@@ -745,7 +763,7 @@ if (document.querySelector('.nav-link')) {
                     top: 40px;
                     padding: 15px 5px;
                     background-color: white;
-                    z-index: 9;
+                    z-index: 99999;
                     display: grid; `
     }
 }else null
