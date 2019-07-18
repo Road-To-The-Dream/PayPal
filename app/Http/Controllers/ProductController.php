@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Categories;
 use App\Model\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -23,7 +24,9 @@ class ProductController extends Controller
      */
     public function getView(): View
     {
-        return view('welcome');
+        return view('welcome', [
+            'categories' => Categories::all()
+        ]);
     }
 
     /**
