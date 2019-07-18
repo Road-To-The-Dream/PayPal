@@ -155,6 +155,10 @@
                 <button class="x">x</button>
                 <p class="total"></p>
                 <div class='cart-cart'></div>
+                <div class="pay-pal-inputs">
+                    <input id="pay-pal_email" type="text" name="pay-pal-email" placeholder="Enter EMAIL">
+                    <input id="pay-pal_phone" type="text" name="pay-pal-phone" placeholder="Enter Phone">
+                </div>
                 <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
                 <button id="btn-pay" class="w3-btn w3-blue">Pay with PayPal</button>
             </div>
