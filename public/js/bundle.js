@@ -438,7 +438,40 @@ onloadGetData = function (page = 0, categoryId = 2) {
             });
         }
     }else {
-        alert('No products in that category yet')
+        let allert = document.createElement("div")
+        allert.style = `
+        max-width: 550px;
+        height: max-content;
+        display: flex;
+        flex-direction: column;
+        border: solid 2px black;
+        position: relative;
+        border-radius: 10px;
+        border: solid 1px #e5e5e5;
+        padding: 0 0 40px 0;
+        position: fixed;
+        top: 15%;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
+        align-items: center;
+        `
+        let message = document.createElement('p')
+        message.style = `
+            margin: 50px 0;
+            font-size: 50px;
+            text-align: center;
+            padding: 50px;
+        `
+        message.textContent = 'No products in that category yet'
+        allert.appendChild(message)
+        document.body.appendChild(allert)
+        setTimeout(function () {
+            allert.remove()
+        },2000)
     }
 
 }
@@ -491,7 +524,42 @@ document.querySelector('.but-cart').onclick = e => {
     if(+identifier.textContent !== 0){
         document.querySelector('.cart').style = `display: block; z-index: 9999;`
         document.documentElement.style = `overflow: hidden !important;`
-    }else {alert('Cart is empty')}
+    }else {
+        let allert = document.createElement("div")
+        allert.style = `
+        max-width: 550px;
+        height: max-content;
+        display: flex;
+        flex-direction: column;
+        border: solid 2px black;
+        position: relative;
+        border-radius: 10px;
+        border: solid 1px #e5e5e5;
+        padding: 0 0 40px 0;
+        position: fixed;
+        top: 15%;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
+        align-items: center;
+        `
+        let message = document.createElement('p')
+        message.style = `
+            margin: 50px 0;
+            font-size: 50px;
+            text-align: center;
+            padding: 50px;
+        `
+        message.textContent = 'The cart is empty'
+        allert.appendChild(message)
+        document.body.appendChild(allert)
+        setTimeout(function () {
+            allert.remove()
+        },2000)
+    }
 }
 
 
