@@ -50,8 +50,8 @@ class Products
         $productInfo = [];
         foreach (array_unique($productsId) as $item) {
             array_push($productInfo, [
-                'productId' => $item,
-                'productAmount' => $counts[$item],
+                'id' => $item,
+                'amount' => $counts[$item],
             ]);
         }
 

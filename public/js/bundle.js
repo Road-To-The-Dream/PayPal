@@ -282,6 +282,7 @@ class CustomElementNew extends HTMLElement {
         this.increaseDecreaseProductAmount('decrease-product-amount');
         this.counterItem.textContent = parseInt(this.counterItem.textContent) + 1;
         total.textContent = `total price: ${parseInt(total.textContent.slice(12)) + parseInt(this.itemPrise.textContent)}`;
+        document.querySelector('#total-price').value = `${parseInt(total.textContent.slice(12))}`;
     }
 
     minusItem() {
@@ -289,6 +290,7 @@ class CustomElementNew extends HTMLElement {
             this.increaseDecreaseProductAmount('increase-product-amount');
             this.counterItem.textContent = parseInt(this.counterItem.textContent) - 1
             total.textContent = `total price: ${parseInt(total.textContent.slice(12)) - parseInt(this.itemPrise.textContent)}`
+            document.querySelector('#total-price').value = `${parseInt(total.textContent.slice(12))}`;
         }
     }
 
@@ -415,7 +417,9 @@ onloadGetData = function (page = 0, categoryId = 2) {
             paginNumber.style.padding = '20px'
             paginNumber.style.cursor = 'pointer'
             paginNumber.style.border = "solid 3px white"
-            paginNumber.setAttribute('onclick', `onloadGetData(${offset}, ${categoryId})`)
+            if (paginNumber.className !== 'btn active'){
+                paginNumber.setAttribute('onclick', `onloadGetData(${offset}, ${categoryId})`)
+            }else null
             offset += ITEMS
             pagesBox.appendChild(paginNumber)
         }
@@ -431,7 +435,6 @@ onloadGetData = function (page = 0, categoryId = 2) {
                 let current = document.getElementsByClassName("btn");
                 current[currentNum].className = current[currentNum].className.replace("btn", "btn active");
                 this.className += " active";
-                this.setAttribute('onclick', null);
             });
         }
     }else {
@@ -451,9 +454,11 @@ onloadPage = function () {
     } else {
         null
     }
-    if (JSON.parse(xhr.response) !== 200) {
-        let result = JSON.parse(xhr.response).reduce((a, b) => a + b.price, 0)
-        return JSON.parse(xhr.response).forEach(item => {
+    let info = JSON.parse(xhr.response);
+    let totalPrice = 0;
+    let iteration = 0;
+    if (info !== 200) {
+        info.productsInfo.forEach(item => {
             let elem = document.createElement('new-element')
             elem.minusPlus.style.display = 'block'
             elem.buttonItem.style.display = 'none'
@@ -466,14 +471,17 @@ onloadPage = function () {
             elem.itemTitle.textContent = item.title
             elem.itemDescription.style.display = 'none'
             elem.itemPrise.textContent = `${item.price} USD`
+            elem.counterItem.textContent = info.productsAmount[iteration].amount
             document.querySelector('.cart-cart').appendChild(elem)
-            total.textContent = `total price: ${result}`
             let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
-            document.querySelector('#total-price').value = `${result}`
+            totalPrice += info.productsAmount[iteration].amount * item.price
             multiplyItemsCartButton.textContent = document.querySelector('.cart-cart').children.length
+            iteration++;
         })
-    } else null
-
+        total.textContent = `total price: ${totalPrice}`
+        document.querySelector('#total-price').value = `${totalPrice}`
+        return;
+    }
 }
 
 
@@ -526,11 +534,11 @@ let closeItem = function (par) {
     par.style = `opacity: 0; z-index: -1;`
 }
 if(elemLogIn){
-elemLogIn.onclick = function (e) {
-    elemFormReg.style = `opacity: 1; z-index: 999999;`
-    document.documentElement.style.overflow = 'hidden'
-    document.querySelector('.reg_registration_a').style.color = '#6a9ba0'
-}}else null
+    elemLogIn.onclick = function (e) {
+        elemFormReg.style = `opacity: 1; z-index: 999999;`
+        document.documentElement.style.overflow = 'hidden'
+        document.querySelector('.reg_registration_a').style.color = '#6a9ba0'
+    }}else null
 elemCloseFormReg.onclick = function (e) {
     closeItem(elemFormReg)
     document.documentElement.style.overflow = 'auto'
