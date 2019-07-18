@@ -21,6 +21,8 @@ class OrderController extends Controller
 
     public function store(PaymentRequest $request)
     {
+        $request->session()->forget('productsId');
+
         return response()->json([
             'message' => "Всё супер"
         ], 200);

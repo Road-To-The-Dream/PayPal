@@ -819,9 +819,82 @@ document.getElementById("btn-pay").onclick = (function () {
     xhr.open('GET', `/check-amount-products`, false);
     xhr.send();
     if (xhr.status != 200) {
-        alert("300");
+        let allert = document.createElement("div")
+        allert.style = `
+        max-width: 550px;
+        height: max-content;
+        display: flex;
+        flex-direction: column;
+        border: solid 2px black;
+        position: relative;
+        border-radius: 10px;
+        border: solid 1px #e5e5e5;
+        padding: 0 0 40px 0;
+        position: fixed;
+        top: 15%;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
+        align-items: center;
+        z-index: 999999999999;
+        `
+        let message = document.createElement('p')
+        message.style = `
+            margin: 50px 0;
+            font-size: 50px;
+            text-align: center;
+            padding: 50px;
+        `
+
+        message.textContent = `${JSON.parse(xhr.response).message}`
+        allert.appendChild(message)
+        document.body.appendChild(allert)
+        setTimeout(function () {
+            allert.remove()
+        },3000)
+        console.log(JSON.parse(xhr.response))
     } else {
-        alert("200")
+        let allert = document.createElement("div")
+        allert.style = `
+        max-width: 550px;
+        height: max-content;
+        display: flex;
+        flex-direction: column;
+        border: solid 2px black;
+        position: relative;
+        border-radius: 10px;
+        border: solid 1px #e5e5e5;
+        padding: 0 0 40px 0;
+        position: fixed;
+        top: 15%;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
+        align-items: center;
+        z-index: 999999999999;
+        `
+        let message = document.createElement('p')
+        message.style = `
+            margin: 50px 0;
+            font-size: 50px;
+            text-align: center;
+            padding: 50px;
+        `
+
+        message.textContent = `Order had been successfully sent`
+        allert.appendChild(message)
+        document.body.appendChild(allert)
+        setTimeout(function () {
+            allert.remove()
+            location.reload()
+        },2000)
+        console.log(JSON.parse(xhr.response))
     }
 });
 

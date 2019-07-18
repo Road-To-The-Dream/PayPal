@@ -31,7 +31,7 @@ class Products
         foreach ($productsId as $item) {
             if ($products[$iteration]->amount < $counts[$item]) {
                 return response()->json([
-                    'message' => "Недостаточное количество продукта под номером {$products[$iteration]->id}"
+                    'message' => "Недостаточное количество продукта под номером {$item}"
                 ], 300);
             }
 
