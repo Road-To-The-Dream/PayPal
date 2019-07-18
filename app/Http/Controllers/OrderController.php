@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PaymentRequest;
+use App\Model\Order;
 use App\Services\PayPal;
 use App\Services\Products;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Exception;
 
 class OrderController extends Controller
 {
@@ -21,10 +23,8 @@ class OrderController extends Controller
 
     public function store(PaymentRequest $request)
     {
-        $request->session()->forget('productsId');
-
         return response()->json([
-            'message' => "Всё супер"
+            'message' => "Заказ успешно оформлен !"
         ], 200);
     }
 
