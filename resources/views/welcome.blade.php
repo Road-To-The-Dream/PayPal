@@ -146,21 +146,23 @@
         </ul>
     </header>
     <div class="order">
-        <button class="but-cart">
-            <div class="miltiply-items-button">0</div>
-            <img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart
-        </button>
-        <div class="cart">
-            <button class="x">x</button>
-            <p class="total"></p>
-            <div class='cart-cart'></div>
-            <form class="wrapper-form" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
-                @csrf
-                <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
-                <button class="w3-btn w3-blue">Pay with PayPal</button>
-            </form>
+        <div>
+            <button class="but-cart">
+                <div class="miltiply-items-button">0</div>
+                <img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart
+            </button>
+            <div class="cart">
+                <button class="x">x</button>
+                <p class="total"></p>
+                <div class='cart-cart'></div>
+                <form class="wrapper-form" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
+                    @csrf
+                    <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
+                    <button class="w3-btn w3-blue">Pay with PayPal</button>
+                </form>
+            </div>
+            <div class="products"></div>
         </div>
-        <div class="products"></div>
         <div class="pages"></div>
     </div>
     <footer>

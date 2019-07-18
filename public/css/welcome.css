@@ -418,13 +418,19 @@ body{
     max-width: 100vw;
     margin: 0 auto;
 }
-.order, .products{
+.order{
+    min-height: 700px;
+    position: relative;
+    text-align: center;
+    padding: 30px 100px;
+}
+.products{
     min-height: 700px;
     position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: 30px 150px;
+    padding: 30px 100px;
 }
 .pages{
     margin: 30px auto;
@@ -653,7 +659,6 @@ body{
 }
 .top_page_main_menu li{
     display: inline;
-    width: 480px;
     height: 70px;
     padding: 20px 0;
     background-color: #6a9ba0;
@@ -682,11 +687,12 @@ ul.top_page_main_menu > li > a {
     text-decoration: none;
 }
 ul.submenu {
-    padding: 15px;
+    width: 100%;
+    padding: 15px 0 0;
     display: none;
     position: absolute;
     top: 70px;
-    left: 95px;
+    left: 0;
     background-color: transparent;
     z-index: 999;
 }
@@ -700,7 +706,7 @@ ul.submenu::after{
     border: medium solid transparent;
     content: "";
     top: 0;
-    left: 32%;
+    left: 45%;
     position: absolute;
     height: 0;
     width: 0;
@@ -708,6 +714,7 @@ ul.submenu::after{
     border-width: 15px;
 }
 ul.submenu > li {
+    cursor: pointer;
     border: solid 3px #6a9ba0;
     display: block;
     padding: 18px 0;
@@ -728,51 +735,7 @@ ul.top_page_main_menu > li:hover > ul.submenu {
 
 
 
-ul.submenu_last {
-    padding: 15px;
-    display: none;
-    position: absolute;
-    top: 70px;
-    right: 98px;
-    background-color: transparent;
-    z-index: 999;
-}
-ul.submenu_last::after{
-    border: medium solid transparent;
-    content: "";
-    top: 0;
-    left: 55%;
-    position: absolute;
-    height: 0;
-    width: 0;
-    border-color:  #6a9ba0 rgba(255, 212, 52, 0) rgba(255, 212, 52, 0);
-    border-width: 15px;
-}
-.submenu_last li:hover{
-    background-color: #e9e9e9;
-}
-.submenu_last li:hover > a{
-    color: #6a9ba0;
-}
 
-ul.submenu_last > li {
-    border: solid 3px #6a9ba0;
-    display: block;
-    padding: 18px 0;
-}
-ul.submenu_last > li > a {
-    display: block;
-    color:  #ffffff;
-    text-decoration: none;
-    text-align: left;
-    margin: 0 0 30px 40px;
-}
-ul.submenu_last > li > a:hover {
-    text-decoration: none;
-}
-ul.top_page_main_menu > li:hover > ul.submenu_last {
-    display: block;
-}
 
 
 
@@ -1332,7 +1295,7 @@ footer{
         left: 0;
     }
     ul.submenu::after{
-        left: 26%;
+        left: 45%;
     }
     ul.submenu_last{
         top: 66px;
@@ -1527,7 +1490,6 @@ footer{
         left: 0;
     }
     ul.submenu > li {
-        width: 350px;
         padding: 10px 0;
     }
     ul.submenu_last > li {
@@ -1535,7 +1497,7 @@ footer{
         padding: 10px 0;
     }
     ul.submenu::after{
-        left: 28%;
+        left: 45%;
     }
     ul.submenu_last {
         top: 40px;
@@ -1716,6 +1678,7 @@ footer{
         display: none;
     }
     .top_page_logo_small img{
+        filter: brightness(0);
         width: 36px;
         height: 26px;
     }
