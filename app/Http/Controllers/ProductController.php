@@ -159,4 +159,9 @@ class ProductController extends Controller
 
         return response()->json(200);
     }
+
+    public function checkAmountProducts(Request $request)
+    {
+        return $this->productService->isAmount($request);
+    }
 }

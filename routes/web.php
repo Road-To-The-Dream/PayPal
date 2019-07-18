@@ -37,3 +37,7 @@ Route::delete('product/{id}', 'ProductController@destroy');
 
 Route::post('change-password', 'Auth\ResetPasswordController@changePassword')->middleware('auth');
 
+Route::post('check-amount-products', 'ProductController@checkAmountProducts');
+
+Route::post('create-order', 'OrderController@store');
+

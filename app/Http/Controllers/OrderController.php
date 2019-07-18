@@ -22,7 +22,7 @@ class OrderController extends Controller
     public function store(PaymentRequest $request)
     {
         if (Auth::check()) {
-            return $this->product->isAmount($request);
+
         }
 
         //return $this->payService->pay($request);
