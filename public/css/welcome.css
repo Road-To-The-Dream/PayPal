@@ -424,7 +424,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: 80px 150px;
+    padding: 30px 150px;
 }
 .pages{
     margin: 30px auto;
@@ -453,7 +453,7 @@ body{
     padding: 20px;
     margin: 0 auto;
     min-height: 100px;
-    max-height: 500px;
+    max-height: 700px;
     background-color: #ffffff;
     z-index: -1;
     text-align: center;

@@ -412,8 +412,10 @@ onloadGetData = function (page) {
         pagesBox.appendChild(paginNumber)
     }
     let btns = pagesBox.getElementsByClassName("btn")
+    btns[0].className = "btn active"
     for (let i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function (e) {
+            btns[0].className = "btn"
             let currentNum = e.toElement.innerHTML - 1
             let current = document.getElementsByClassName("btn");
             current[currentNum].className = current[currentNum].className.replace("btn", "btn active");
