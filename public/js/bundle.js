@@ -415,9 +415,7 @@ onloadGetData = function (page = 0, categoryId = 2) {
             paginNumber.style.padding = '20px'
             paginNumber.style.cursor = 'pointer'
             paginNumber.style.border = "solid 3px white"
-            if (paginNumber.className !== 'btn active'){
-                paginNumber.setAttribute('onclick', `onloadGetData(${offset}, ${categoryId})`)
-            }else null
+            paginNumber.setAttribute('onclick', `onloadGetData(${offset}, ${categoryId})`)
             offset += ITEMS
             pagesBox.appendChild(paginNumber)
         }
@@ -433,6 +431,7 @@ onloadGetData = function (page = 0, categoryId = 2) {
                 let current = document.getElementsByClassName("btn");
                 current[currentNum].className = current[currentNum].className.replace("btn", "btn active");
                 this.className += " active";
+                this.setAttribute('onclick', null);
             });
         }
     }else {

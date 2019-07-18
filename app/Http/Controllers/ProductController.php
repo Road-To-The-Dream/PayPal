@@ -157,7 +157,10 @@ class ProductController extends Controller
         if ($request->session()->has('productsId')) {
             $productsId = $this->productService->getProductsId($request);
 
-            return response()->json(Product::whereIn('id', $productsId)->get(), 200);
+            return response()->json([
+                'productsInfo' => Product::whereIn('id', $productsId)->get(),
+                'productsAmount' => $this->productService->getProductAmountInSession($request)
+            ], 200);
         }
 
         return response()->json(200);

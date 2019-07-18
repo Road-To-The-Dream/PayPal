@@ -40,4 +40,21 @@ class Products
 
         return response()->json(200);
     }
+
+    public function getProductAmountInSession(Request $request)
+    {
+        $productsId = $this->getProductsId($request);
+
+        $counts = array_count_values($productsId);
+
+        $productInfo = [];
+        foreach (array_unique($productsId) as $item) {
+            array_push($productInfo, [
+                'productId' => $item,
+                'productAmount' => $counts[$item],
+            ]);
+        }
+
+        return $productInfo;
+    }
 }
