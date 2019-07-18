@@ -18,6 +18,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 35,
                 'amount' => 2,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
@@ -25,6 +26,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 40,
                 'amount' => 3,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://rim.org.ru/wp-content/uploads/2019/02/13614.970-4.png',
@@ -32,6 +34,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 55,
                 'amount' => 6,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://img.mvideo.ru/Pdb/10010655b.jpg',
@@ -39,6 +42,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 70,
                 'amount' => 20,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/ca_en/images/desktop-monitors/md05883096/gallery/28LJ4540_d1_270917.jpg',
@@ -46,6 +50,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 32,
                 'amount' => 2,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/us/images/tvs/md05950677/gallery/medium001.jpg',
@@ -53,6 +58,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 54,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/us/images/tvs/md05950677/gallery/medium001.jpg',
@@ -60,6 +66,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 32,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/ca_en/images/desktop-monitors/md05883096/gallery/28LJ4540_d1_270917.jpg',
@@ -67,6 +74,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 76,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/us/images/tvs/md05950677/gallery/medium001.jpg',
@@ -74,6 +82,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 98,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://rim.org.ru/wp-content/uploads/2019/02/13614.970-4.png',
@@ -81,6 +90,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 100,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
@@ -88,6 +98,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 21,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/ca_en/images/desktop-monitors/md05883096/gallery/28LJ4540_d1_270917.jpg',
@@ -95,6 +106,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 34,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/us/images/tvs/md05950677/gallery/medium001.jpg',
@@ -102,6 +114,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 44,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://rim.org.ru/wp-content/uploads/2019/02/13614.970-4.png',
@@ -109,6 +122,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 65,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
@@ -116,6 +130,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 84,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/au/images/tvs/42ln5400/gallery/medium01.jpg',
@@ -123,6 +138,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 35,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
@@ -130,6 +146,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 40,
                 'amount' => 3,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://rim.org.ru/wp-content/uploads/2019/02/13614.970-4.png',
@@ -137,6 +154,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 55,
                 'amount' => 6,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://img.mvideo.ru/Pdb/10010655b.jpg',
@@ -144,6 +162,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 70,
                 'amount' => 20,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/ca_en/images/desktop-monitors/md05883096/gallery/28LJ4540_d1_270917.jpg',
@@ -151,6 +170,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 32,
                 'amount' => 2,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/us/images/tvs/md05950677/gallery/medium001.jpg',
@@ -158,6 +178,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 54,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/us/images/tvs/md05950677/gallery/medium001.jpg',
@@ -165,6 +186,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 32,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/ca_en/images/desktop-monitors/md05883096/gallery/28LJ4540_d1_270917.jpg',
@@ -172,6 +194,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 76,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/us/images/tvs/md05950677/gallery/medium001.jpg',
@@ -179,6 +202,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 98,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://rim.org.ru/wp-content/uploads/2019/02/13614.970-4.png',
@@ -186,6 +210,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 100,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
@@ -193,6 +218,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 21,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/ca_en/images/desktop-monitors/md05883096/gallery/28LJ4540_d1_270917.jpg',
@@ -200,6 +226,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 34,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://www.lg.com/us/images/tvs/md05950677/gallery/medium001.jpg',
@@ -207,6 +234,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 44,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://rim.org.ru/wp-content/uploads/2019/02/13614.970-4.png',
@@ -214,6 +242,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 65,
                 'amount' => 10,
+                'category_id' => 2
             ],
             [
                 'img' => 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
@@ -221,6 +250,17 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 84,
                 'amount' => 10,
+                'category_id' => 2
+            ]
+
+            ,
+            [
+                'img' => 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
+                'title' => 'Phone',
+                'description' => 'Phone',
+                'price' => 84,
+                'amount' => 10,
+                'category_id' => 1
             ]
         ];
 

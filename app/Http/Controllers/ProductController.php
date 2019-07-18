@@ -33,11 +33,11 @@ class ProductController extends Controller
      * @param int $offset
      * @return JsonResponse
      */
-    public function index($offset = 0): JsonResponse
+    public function index($offset = 0, $categoryId = 1): JsonResponse
     {
         return response()->json([
-            'products' => Product::skip($offset)->take(self::ITEMS)->get(),
-            'amount' => ceil(count(Product::all('id')) / self::ITEMS)
+            'products' => Product::where('category_id', $categoryId)->skip($offset)->take(self::ITEMS)->get(),
+            'amount' => ceil(count(Product::where('category_id', $categoryId)->get()) / self::ITEMS)
         ], 200);
     }
 

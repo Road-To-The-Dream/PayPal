@@ -124,7 +124,7 @@
             <li class="main_tab"><a href="#">Categories</a>
                 <ul class="submenu">
                     @foreach($categories as $category)
-                        <li><a href=#>{{ $category->name }}</a></li>
+                        <li><a onclick="onloadGetData(0, {{ $category->id }})">{{ $category->name }}</a></li>
                     @endforeach
                 </ul>
             </li>
