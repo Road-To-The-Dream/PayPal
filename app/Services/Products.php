@@ -30,14 +30,14 @@ class Products
         $iteration = 0;
         foreach ($productsId as $item) {
             if ($products[$iteration]->amount < $counts[$item]) {
-                break;
+                return response()->json([
+                    'message' => "Недостаточное количество продукта под номером {$products[$iteration]->id}"
+                ], 400);
             }
 
             $iteration++;
         }
 
-        return response()->json([
-            'message' => "Недостаточное количество продукта под номером {$products[$iteration]->id}"
-        ], 200);
+        return response()->json(200);
     }
 }

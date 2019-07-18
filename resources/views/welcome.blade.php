@@ -67,10 +67,12 @@
     <header>
         <div class="top_page">
             <div class="top_page_logo">
-                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Coca-Cola_Light_logo.png" alt="top_log"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Coca-Cola_Light_logo.png"
+                                 alt="top_log"></a>
             </div>
             <div class="top_page_logo_small">
-                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Coca-Cola_Light_logo.png" alt="top_log"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Coca-Cola_Light_logo.png"
+                                 alt="top_log"></a>
             </div>
             <div class="top_page_navigation">
                 <span><a href="#">Contacts</a></span>
@@ -119,14 +121,11 @@
             <li class="tab_navi"><a href="#">Contacts</a>
 
             </li>
-            <li class="main_tab"><a href="#">Repearing servise</a>
+            <li class="main_tab"><a href="#">Categories</a>
                 <ul class="submenu">
-                    <li><a href=#>Repearing servise</a></li>
-                    <li><a href=#>Repearing servise</a></li>
-                    <li><a href=#>Repearing servise</a></li>
-                    <li><a href=#>Repearing servise</a></li>
-                    <li><a href=#>Repearing servise</a></li>
-                    <li><a href=#>Repearing servise</a></li>
+                    @foreach($categories as $category)
+                        <li><a href=#>{{ $category->name }}</a></li>
+                    @endforeach
                 </ul>
             </li>
             <li class="main_tab"><a href="#">Repearing servise</a>
@@ -167,14 +166,16 @@
     <footer>
         <div class="bottom_page">
             <div class="bottom_page_logo">
-                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Coca-Cola_Light_logo.png" alt="top_log"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Coca-Cola_Light_logo.png"
+                                 alt="top_log"></a>
                 <p class="under_logo_bottom">© Test-TEST 2019</p>
             </div>
             <div class="bottom_page_navigation">
                 <div class="bottom_page_navigation_tabs">
                     <p class="tabs_titles">Contacts</p>
                     <p class="tab_contact"><a href="tg://resolve?domain=vitalii">Phone: +(380) 680 32 08 08</a></p>
-                    <p class="tab_contact"><a href="tg://resolve?domain=SergeySushko25">Phone: +(380) 966 99 83 68</a></p>
+                    <p class="tab_contact"><a href="tg://resolve?domain=SergeySushko25">Phone: +(380) 966 99 83 68</a>
+                    </p>
                 </div>
                 <div class="bottom_page_navigation_tabs">
                     <p class="tabs_titles">How to find us</p>
@@ -201,24 +202,24 @@
         </div>
     </footer>
 
-        <div class="product-info">
-            <div class="close-info">X</div>
-            <p class="product-info-id"></p>
-            <div class="product-info-content">
-                <div class="slider single-item">
-                    <ul id="slides"></ul>
-                    <button class="controls" id="previous"><<<</button>
-                    <button class="controls" id="pause">||</button>
-                    <button class="controls" id="next">>>></button>
-                </div>
-                <div class="product-info-content-details">
-                    <h2 class="product-info-title"></h2>
-                    <h3 class="product-info-description"></h3>
-                    <div class="product-info-characteristics"></div>
-                    <h3 class="product-info-price"></h3>
-                </div>
+    <div class="product-info">
+        <div class="close-info">X</div>
+        <p class="product-info-id"></p>
+        <div class="product-info-content">
+            <div class="slider single-item">
+                <ul id="slides"></ul>
+                <button class="controls" id="previous"><<<</button>
+                <button class="controls" id="pause">||</button>
+                <button class="controls" id="next">>>></button>
+            </div>
+            <div class="product-info-content-details">
+                <h2 class="product-info-title"></h2>
+                <h3 class="product-info-description"></h3>
+                <div class="product-info-characteristics"></div>
+                <h3 class="product-info-price"></h3>
             </div>
         </div>
+    </div>
 
     <div class="registration_div">
         <form class="registration" method="POST" action="{{ route('register') }}">
