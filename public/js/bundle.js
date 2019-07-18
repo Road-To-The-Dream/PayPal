@@ -53,7 +53,7 @@ class CustomElementNew extends HTMLElement {
                 cursor: pointer;
                 width: 200px;
                 height: auto;
-                border: solid 3px #aa2832;
+                border: solid 3px #6a9ba0;
                 border-radius: 20px;
                 position: relative;
                 padding: 20px;
@@ -67,8 +67,8 @@ class CustomElementNew extends HTMLElement {
             }
             .plus-minus button{
                 text-align: center;
-                border: solid 2px #aa2832;
-                background-color: #aa2832;
+                border: solid 2px #6a9ba0;
+                background-color: #6a9ba0;
                 color: white;
                 cursor: pointer;
                 margin: 0;
@@ -78,7 +78,7 @@ class CustomElementNew extends HTMLElement {
             }
             .plus-minus p{
                 text-align: center;
-                border: solid 2px #aa2832;
+                border: solid 2px #6a9ba0;
                 margin: 0;
                 padding: 0;
                 height: 25px;
@@ -91,16 +91,16 @@ class CustomElementNew extends HTMLElement {
                 border-radius: 15px 15px 0px 0px;
             }
             .button-item{
-                border: solid 2px #aa2832;
-                background-color: #aa2832;
+                border: solid 2px #6a9ba0;
+                background-color: #6a9ba0;
                 color: white;
                 cursor: pointer;
                 border-radius: 10px;
             }
             .button-item:hover{
                 background-color: #ffffff;
-                color: #aa2832;
-                border: solid 2px #aa2832;
+                color: #6a9ba0;
+                border: solid 2px #6a9ba0;
             }
             .img-holder{
                 max-width: fit-content;
@@ -114,8 +114,8 @@ class CustomElementNew extends HTMLElement {
                 position: absolute; 
                 left: -10px;
                 top: -10px;
-                border: solid 2px #aa2832;
-                background-color: #aa2832;
+                border: solid 2px #6a9ba0;
+                background-color: #6a9ba02;
                 color: white;
                 cursor: pointer;
                 border-radius: 10px;
@@ -124,16 +124,16 @@ class CustomElementNew extends HTMLElement {
                 position: absolute; 
                 top: 10px;
                 right: 10px;
-                border: solid 2px #aa2832;
-                background-color: #aa2832;
+                border: solid 2px #6a9ba0;
+                background-color: #6a9ba0;
                 color: white;
                 cursor: pointer;
                 border-radius: 10px;
             }
             .i-button:hover{
                 background-color: #ffffff;
-                color: #aa2832;
-                border: solid 2px #aa2832;
+                color: #6a9ba0;
+                border: solid 2px #6a9ba0;
                 }
         `
         this.imgHolder.appendChild(this.imgItem)
@@ -512,7 +512,7 @@ if(elemLogIn){
 elemLogIn.onclick = function (e) {
     elemFormReg.style = `opacity: 1; z-index: 999999;`
     document.documentElement.style.overflow = 'hidden'
-    document.querySelector('.reg_registration_a').style.color = '#aa2832'
+    document.querySelector('.reg_registration_a').style.color = '#6a9ba0'
 }}else null
 elemCloseFormReg.onclick = function (e) {
     closeItem(elemFormReg)
@@ -524,7 +524,7 @@ elemCloseFormLog.onclick = function (e) {
 }
 elemOrEnter.onclick = function (e) {
     switchItems(elemFormReg, elemFormLog)
-    document.querySelector('.enter_log_in_a').style.color = '#aa2832'
+    document.querySelector('.enter_log_in_a').style.color = '#6a9ba0'
 }
 elemOrRegister.onclick = function (e) {
     switchItems(elemFormLog, elemFormReg)
@@ -538,7 +538,7 @@ elemTopRegLog.onclick = function (e) {
 }
 elemTopLogReg.onclick = function (e) {
     switchItems(elemFormReg, elemFormLog)
-    document.querySelector('.enter_log_in_a').style.color = '#aa2832'
+    document.querySelector('.enter_log_in_a').style.color = '#6a9ba0'
 }
 elemTopRegReg.onclick = function (e) {
     switchItems(elemFormLog, elemFormReg)
@@ -664,7 +664,7 @@ passwordChangeBlock.style = `
         `
 let errorsBlockChangePassword = document.createElement('div')
 errorsBlockChangePassword.id = 'errors-block-change-password'
-errorsBlockChangePassword.style.color = '#aa2832'
+errorsBlockChangePassword.style.color = '#6a9ba0'
 let email = document.createElement('input')
 email.className = 'pas-change-input'
 email.placeholder = 'E-mail'
@@ -689,8 +689,8 @@ let btn = document.createElement('button')
 btn.textContent = 'Submit'
 btn.id = 'submit-change-password';
 btn.style = `    
-        border: solid 2px #aa2832;
-        background-color: #aa2832;
+        border: solid 2px #6a9ba0;
+        background-color: #6a9ba0;
         color: white;
         cursor: pointer;
         border-radius: 10px;
@@ -698,14 +698,14 @@ btn.style = `
         width: 50%;`
 btn.onmouseover = function (e) {
     btn.style = `
-    border: solid 2px #aa2832;
+    border: solid 2px #6a9ba0;
     cursor: pointer;
     border-radius: 10px;
     margin: 10px auto 0;
     width: 50%;\`
     background-color: #ffffff;
-    color: #aa2832;
-    border: solid 2px #aa2832;`
+    color: #6a9ba0;
+    border: solid 2px #6a9ba0;`
 }
 passwordChangeBlock.appendChild(errorsBlockChangePassword)
 passwordChangeBlock.appendChild(email)
@@ -738,7 +738,7 @@ if (document.querySelector('.nav-link')) {
         dropdown.style = `
                     width: 250px;
                     height: auto;
-                    border: solid 3px #aa2832;
+                    border: solid 3px #6a9ba0;
                     border-radius: 20px;
                     position: absolute;
                     right: 0;
