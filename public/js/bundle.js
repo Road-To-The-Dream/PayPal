@@ -165,72 +165,78 @@ class CustomElementNew extends HTMLElement {
 
         let data123 = JSON.parse(xhr.response)
         // console.log(data123)
-        data123.images.forEach(item => {
-            let liElem = document.querySelector('#slides')
-                .appendChild(document.createElement('li'))
-            liElem.className = 'slide showing'
-            liElem.appendChild(
-                document.createElement('img')).src = item.path
-        })
 
-        let slides = document.querySelectorAll('#slides .slide');
-        let currentSlide = 0;
-        let slideInterval = setInterval(nextSlide, 2000);
+        if (data123.images.length) {
 
-        function nextSlide() {
-            goToSlide(currentSlide + 1);
-        }
-
-        function previousSlide() {
-            goToSlide(currentSlide - 1);
-        }
-
-        function goToSlide(n) {
-            slides[currentSlide].className = 'slide';
-            currentSlide = (n + slides.length) % slides.length;
-            slides[currentSlide].className = 'slide showing';
-        }
-
-        let next = document.getElementById('next');
-        let previous = document.getElementById('previous');
-        next.onclick = function () {
-            pauseSlideshow();
-            nextSlide();
-        }
-        previous.onclick = function () {
-            pauseSlideshow();
-            previousSlide();
-        }
-        next.onclick = function () {
-            pauseSlideshow();
-            nextSlide();
-        }
-        previous.onclick = function () {
-            pauseSlideshow();
-            previousSlide();
-        }
-        let playing = true;
-        let pauseButton = document.getElementById('pause');
-
-        function pauseSlideshow() {
-            pauseButton.innerHTML = '▶';
-            playing = false;
-            clearInterval(slideInterval);
-        }
-
-        function playSlideshow() {
-            pauseButton.innerHTML = '||';
-            playing = true;
-            slideInterval = setInterval(nextSlide, 2000);
-        }
-
-        pauseButton.onclick = function () {
-            if (playing) {
-                pauseSlideshow();
-            } else {
-                playSlideshow();
+            data123.images.forEach(item => {
+                let liElem = document.querySelector('#slides')
+                    .appendChild(document.createElement('li'))
+                liElem.className = 'slide showing'
+                liElem.appendChild(
+                    document.createElement('img')).src = item.path
+            })
+            let goToSlide = function (n) {
+                slides[currentSlide].className = 'slide';
+                currentSlide = (n + slides.length) % slides.length;
+                slides[currentSlide].className = 'slide showing';
             }
-        }
+            let nextSlide = function () {
+                goToSlide(currentSlide + 1);
+            }
+
+            let previousSlide = function () {
+                goToSlide(currentSlide - 1);
+            }
+
+            let slides = document.querySelectorAll('#slides .slide');
+            let currentSlide = 0;
+            let slideInterval = setInterval(nextSlide, 2000);
+
+
+
+
+            let next = document.getElementById('next');
+            let previous = document.getElementById('previous');
+            next.onclick = function () {
+                pauseSlideshow();
+                nextSlide();
+            }
+            previous.onclick = function () {
+                pauseSlideshow();
+                previousSlide();
+            }
+            next.onclick = function () {
+                pauseSlideshow();
+                nextSlide();
+            }
+            previous.onclick = function () {
+                pauseSlideshow();
+                previousSlide();
+            }
+            let playing = true;
+            let pauseButton = document.getElementById('pause');
+
+            let pauseSlideshow = function () {
+                pauseButton.innerHTML = '▶';
+                playing = false;
+                clearInterval(slideInterval);
+            }
+
+            let playSlideshow = function () {
+                pauseButton.innerHTML = '||';
+                playing = true;
+                slideInterval = setInterval(nextSlide, 2000);
+            }
+
+            pauseButton.onclick = function () {
+                if (playing) {
+                    pauseSlideshow();
+                } else {
+                    playSlideshow();
+                }
+            }
+        }else null
+
         let controls = document.querySelectorAll('.controls');
         for (let i = 0; i < controls.length; i++) {
             controls[i].style.display = 'inline-block';
@@ -472,6 +478,10 @@ document.querySelector('.close-info').onclick = () => {
     let elemq = document.querySelector('#slides')
     while (elemq.firstChild) {
         elemq.removeChild(elemq.firstChild);
+    }
+    let toRemoveContent = document.querySelector('.product-info-characteristics')
+    while (toRemoveContent.firstChild){
+        toRemoveContent.removeChild(toRemoveContent.firstChild)
     }
     document.querySelector('.product-info')
         .style = `display: none; z-index: -1;`
