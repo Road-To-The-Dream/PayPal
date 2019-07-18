@@ -32,7 +32,7 @@ class Products
             if ($products[$iteration]->amount < $counts[$item]) {
                 return response()->json([
                     'message' => "Недостаточное количество продукта под номером {$products[$iteration]->id}"
-                ], 400);
+                ], 300);
             }
 
             $iteration++;

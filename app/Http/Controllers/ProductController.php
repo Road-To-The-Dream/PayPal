@@ -146,7 +146,8 @@ class ProductController extends Controller
     {
         $productKeys = array_keys($request->session()->get('productsId'));
 
-        for ($i = 0; $i < count($request->session()->get('productsId')); $i++) {
+        $itemAmount = count($request->session()->get('productsId'));
+        for ($i = 0; $i < $itemAmount; $i++) {
             if ($request->session()->get("productsId.{$productKeys[$i]}.0") === $request->get('productId')) {
                 $request->session()->forget("productsId.{$productKeys[$i]}");
                 break;

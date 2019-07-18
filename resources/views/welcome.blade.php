@@ -155,11 +155,8 @@
                 <button class="x">x</button>
                 <p class="total"></p>
                 <div class='cart-cart'></div>
-                <form class="wrapper-form" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
-                    @csrf
-                    <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
-                    <button class="w3-btn w3-blue">Pay with PayPal</button>
-                </form>
+                <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
+                <button id="btn-pay" class="w3-btn w3-blue">Pay with PayPal</button>
             </div>
             <div class="products"></div>
         </div>

@@ -21,11 +21,9 @@ class OrderController extends Controller
 
     public function store(PaymentRequest $request)
     {
-        if (Auth::check()) {
-
-        }
-
-        //return $this->payService->pay($request);
+        return response()->json([
+            'message' => "Всё супер"
+        ], 200);
     }
 
     /**
