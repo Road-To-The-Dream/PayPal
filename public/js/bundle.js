@@ -804,6 +804,7 @@ document.getElementById("submit-change-password").onclick = (function () {
             location.reload();
         },
         error: function (response) {
+            console.log("dqwdqwd")
             $('#errors-block-change-password').empty();
 
             $.each(response['responseJSON']['errors'], function (key, value) {
@@ -811,5 +812,16 @@ document.getElementById("submit-change-password").onclick = (function () {
             });
         }
     })
+});
+
+document.getElementById("btn-pay").onclick = (function () {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', `/check-amount-products`, false);
+    xhr.send();
+    if (xhr.status != 200) {
+        alert("300");
+    } else {
+        alert("200")
+    }
 });
 
