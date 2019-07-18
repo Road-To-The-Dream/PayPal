@@ -14,14 +14,7 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('product_id');
-            $table->integer('product_price');
-            $table->integer('product_amount');
-            $table->foreign('product_id')
-                ->references('id')->on('products')
-                ->onDelete('cascade');
-            $table->string('email');
+            $table->integer('id')->autoIncrement();
             $table->timestamps();
         });
     }

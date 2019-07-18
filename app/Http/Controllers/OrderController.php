@@ -23,6 +23,17 @@ class OrderController extends Controller
 
     public function store(PaymentRequest $request)
     {
+        try{
+            $newOrder = Order::create();
+            $newOrder->products()->sync(['amount' => $request->get('amount')]);
+
+            $request->session()->forget('productsId');
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => "Ошибка, повторите попытку позже!"
+            ], 500);
+        }
+
         return response()->json([
             'message' => "Заказ успешно оформлен !"
         ], 200);

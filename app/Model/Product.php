@@ -19,4 +19,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Characteristic::class, 'products_characteristics')->withPivot('value');
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'orders_products');
+    }
 }
