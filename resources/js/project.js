@@ -729,6 +729,10 @@ dropdownHistory.textContent = 'Order history'
 dropdownHistory.style.cursor = 'pointer'
 dropdownHistory.style.margin = '10px'
 dropdownHistory.onclick = (e)=> {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', `/order-history`, false);
+    xhr.send();
+    console.log(xhr.response)
     let orderHistoryContent = document.querySelector('.order-history-content')
 
     let orderHistory = document.querySelector('.order-history')
