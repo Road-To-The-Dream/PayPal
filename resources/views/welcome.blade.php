@@ -113,7 +113,7 @@
                 </div>
                 <div class="order-history">
                     <div class="close-history">X</div>
-                    <h1>{{ Auth::user()->name }} this is your Order History</h1>
+                    <h1>@guest @else {{ Auth::user()->name }} @endguest this is your Order History</h1>
                     <p class="order-history-head">
                         <span>Order ID</span>
                         <span>Product details</span>

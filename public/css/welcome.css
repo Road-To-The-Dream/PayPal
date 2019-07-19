@@ -494,7 +494,7 @@ body{
 
 .order-history{
     width: 79vw;
-    max-height: 650px;
+    max-height: 680px;
     text-align: center;
     display: none;
     flex-direction: column;
@@ -529,15 +529,26 @@ body{
     border: solid 2px #6a9ba0;
 }
 .order-history-head{
+    position: relative;
     display: flex;
     justify-content: space-between;
     width: 60%;
-    margin: 80px 0 46px 100px;
+    margin: 40px 0 25px 100px;
 }
 .order-history-head span{
     font-size: 30px !important;
     font-weight: 600;
 }
+.orders{
+    padding: 20px 0;
+}
+.orders:nth-child(even){
+    background-color: #3cc5f21f;
+}
+
+
+
+
 .but-cart{
     font-size: 24px;
     width: 150px;
