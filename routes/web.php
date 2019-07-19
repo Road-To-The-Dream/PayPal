@@ -41,5 +41,9 @@ Route::get('check-amount-products', 'ProductController@checkAmountProducts');
 
 Route::post('create-order', 'OrderController@store');
 
-Route::get('order-history', 'OrderController@index')->middleware('auth');;
+Route::get('order-history', 'OrderController@index')->middleware('auth');
+
+Route::post('pay', 'PaymentController@pay');
+
+Route::get('status', 'PaymentController@getPaymentStatus');
 

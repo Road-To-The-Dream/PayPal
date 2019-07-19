@@ -20,6 +20,12 @@ class ImagesTableSeeder extends Seeder
             ],
             [
                 'path' => 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg'
+            ],
+            [
+                'path' => 'https://ss7.vzw.com/is/image/VerizonWireless/iPhoneX-Svr?$device-lg$'
+            ],
+            [
+                'path' => 'https://d1o0zx25fn5p70.cloudfront.net/deD6AK3ga8VaXliM5Xw9eF53X6o=/fit-in/350x350/noupscale/assets.rebuy.de/products/010/727/037/covers/main.jpeg?t=0'
             ]
         ];
 

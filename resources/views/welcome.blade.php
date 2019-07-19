@@ -170,7 +170,9 @@
                 <div class='cart-cart'></div>
                 <div class="pay-pal-inputs">
                     <p id="errors-pay"></p>
+                    <span>Email</span>
                     <input id="pay_email" type="text" name="pay_email" placeholder="Enter EMAIL" value="@guest @else {{ Auth::user()->email }} @endguest">
+                    <span>Phone</span>
                     <input id="pay_phone" type="text" name="pay_phone" placeholder="Enter Phone" value="@guest @else {{ Auth::user()->phone }} @endguest">
                 </div>
                 <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
