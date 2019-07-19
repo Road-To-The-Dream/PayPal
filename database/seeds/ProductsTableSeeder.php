@@ -17,7 +17,7 @@ class ProductsTableSeeder extends Seeder
                 'title' => 'LG LCD tv 43',
                 'description' => 'SmartTV, Android 7.1, FullHD 1080px',
                 'price' => 35,
-                'amount' => 2,
+                'amount' => 10,
                 'category_id' => 2
             ],
             [
@@ -255,7 +255,7 @@ class ProductsTableSeeder extends Seeder
 
             ,
             [
-                'img' => 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792903ld.jpg',
+                'img' => 'https://ss7.vzw.com/is/image/VerizonWireless/iPhoneX-Svr?$device-lg$',
                 'title' => 'Phone',
                 'description' => 'Phone',
                 'price' => 84,

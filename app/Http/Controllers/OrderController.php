@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PaymentRequest;
 use App\Model\Order;
-use App\Model\Product;
 use App\Services\Orders;
 use App\Services\PayPal;
 use App\Services\Products;
@@ -13,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -27,7 +27,7 @@ class OrderController extends Controller
         $this->orderService = $objOrder;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $w = DB::table('orders')
             ->join('orders_products', 'orders_products.order_id', '=', 'orders.id')
