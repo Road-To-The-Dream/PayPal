@@ -111,6 +111,14 @@
                         </form>
                     @endguest
                 </div>
+                <div class="order-history">
+                    <div class="close-history">X</div>
+                    <h1>Vitalii this is your Order History</h1>
+                    <div class="order-history-content">
+
+                    </div>
+
+                </div>
             </div>
         </div>
         <ul class="top_page_main_menu">

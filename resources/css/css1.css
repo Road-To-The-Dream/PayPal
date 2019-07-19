@@ -454,7 +454,7 @@ body{
     right: 0;
     left: 0;
     display: none;
-    width: 400px;
+    width: 700px;
     padding: 20px;
     margin: 0 auto;
     min-height: 100px;
@@ -489,6 +489,44 @@ body{
 
 #errors-pay, #errors-register, #errors-login {
     color: #aa0000;
+}
+
+
+.order-history{
+    width: 79vw;
+    height: max-content;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    border-radius: 10px;
+    border: solid 1px #e5e5e5;
+    padding: 40px 0 40px 0;
+    position: fixed;
+    top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
+    z-index: 99;
+}
+.close-history{
+    padding: 10px;
+    width: 40px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: solid 2px #6a9ba0;
+    background-color: #6a9ba0;
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.close-history:hover{
+    background-color: #ffffff;
+    color: #6a9ba0;
+    border: solid 2px #6a9ba0;
 }
 
 .but-cart{
