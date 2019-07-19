@@ -710,6 +710,7 @@ document.getElementById("submit-register").onclick = (function () {
         data: {
             name: $('#name').val(),
             email: $('#email-register').val(),
+            phone: $('#phone-register').val(),
             password: $('#password-register').val(),
             password_confirmation: $('#password_confirmation').val(),
         },

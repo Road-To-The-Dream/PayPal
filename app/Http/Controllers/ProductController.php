@@ -36,7 +36,7 @@ class ProductController extends Controller
     public function index($offset = 0, $categoryId = 1): JsonResponse
     {
         return response()->json([
-            'products' => Product::where('category_id', $categoryId)->skip($offset)->take(self::ITEMS)->get(),
+            'products' => Product::where('category_id', $categoryId)->where('amount', '>', 0)->skip($offset)->take(self::ITEMS)->get(),
             'amount' => ceil(count(Product::where('category_id', $categoryId)->get()) / self::ITEMS)
         ], 200);
     }
@@ -173,7 +173,11 @@ class ProductController extends Controller
         return response()->json(200);
     }
 
-    public function checkAmountProducts(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function checkAmountProducts(Request $request): JsonResponse
     {
         return $this->productService->isAmount($request);
     }
