@@ -21,8 +21,6 @@ class PaymentRequest extends FormRequest
     {
         return [
             'total_price' => 'required',
-            'pay_email' => 'required',
-            'pay_phone' => 'required'
         ];
     }
 
@@ -33,8 +31,6 @@ class PaymentRequest extends FormRequest
     {
         return [
             'total_price|required' => 'Field total price is empty',
-            'pay_email|required' => 'Field email is empty',
-            'pay_phone|required' => 'Field phone is empty'
         ];
     }
 }
