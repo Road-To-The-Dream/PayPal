@@ -41,3 +41,5 @@ Route::get('check-amount-products', 'ProductController@checkAmountProducts');
 
 Route::post('create-order', 'OrderController@store');
 
+Route::get('order-history', 'OrderController@index')->middleware('auth');;
+
