@@ -169,7 +169,6 @@
                 <form id="pay-form" action="{!! URL::to('pay') !!}" method="POST">
                     @csrf
                     <input class="w3-input w3-border" id="total-price" type="hidden" name="total_price" value="">
-                    <button type="submit" id="dynamic-pay"></button>
                 </form>
                 <button id="btn-pay" class="w3-btn w3-blue">Pay with PayPal</button>
             </div>
