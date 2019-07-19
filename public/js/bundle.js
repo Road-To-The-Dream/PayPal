@@ -434,7 +434,7 @@ document.getElementById("btn-pay").onclick = (function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             data: {
-                total_price: $('input[name="total-price"]').val(),
+                total_price: $('input[name="total_price"]').val(),
                 pay_email: $('input[name="pay_email"]').val(),
                 pay_phone: $('input[name="pay_phone"]').val(),
             },

@@ -57,7 +57,7 @@ class OrderController extends Controller
      * @param PaymentRequest $request
      * @return JsonResponse
      */
-    public function store(Request $request): JsonResponse
+    public function store(PaymentRequest $request): JsonResponse
     {
         try {
             $newOrder = Order::create();
