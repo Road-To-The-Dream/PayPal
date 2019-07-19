@@ -78,15 +78,6 @@
             <div class="top_page_navigation">
                 <span><a href="#">Contacts</a></span>
                 <span><a href="#">Shop</a></span>
-
-                {{--                <span>--}}
-                {{--						<ul class="language-select">--}}
-                {{--		  					<li class="active" data-lang="ru">RU</li>--}}
-                {{--		 					<li data-lang="ua">UA</li>--}}
-                {{--		 					<li data-lang="en">eng</li>--}}
-                {{--						</ul>--}}
-                {{--                </span>--}}
-
                 <div class="menu_rects" onclick="diplay_hide('.top_page_main_menu')">
                     <div class="menu_rect1"></div>
                     <div class="menu_rect2"></div>
