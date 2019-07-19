@@ -15,6 +15,7 @@
     <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
 
     <!-- Styles -->
     <style>
@@ -299,5 +300,9 @@
     </div>
 </div>
 <script src="{{ asset('js/bundle.js') }}"></script>
+<script>
+    $("#phone-register").mask("+380-99-999-9999");
+    $("#pay_phone").mask("+380-99-999-9999");
+</script>
 </body>
 </html>
