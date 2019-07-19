@@ -76,10 +76,11 @@ onloadPage = function () {
         info.productsInfo.forEach(item => {
             let elem = document.createElement('new-element')
             elem.wrapper.style = `
-                justify-content: space-between;
-                width: 80%;
-                display: flex;
-                align-items: center;`
+                    justify-content: space-between;
+    width: 75%;
+    display: flex;
+    align-items: center;
+    margin: 10px;`
             elem.minusPlus.style.display = 'block'
             elem.buttonItem.style.display = 'none'
             elem.itemDescription.style.display = 'none'

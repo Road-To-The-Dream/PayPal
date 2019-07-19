@@ -83,7 +83,6 @@
                     <div class="menu_rect2"></div>
                     <div class="menu_rect3"></div>
                 </div>
-
                 <div class="logout">
                     @guest
                         <div class="ellipse_user">
