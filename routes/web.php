@@ -39,5 +39,5 @@ Route::post('change-password', 'Auth\ResetPasswordController@changePassword')->m
 
 Route::get('check-amount-products', 'ProductController@checkAmountProducts');
 
-Route::get('create-order', 'OrderController@store');
+Route::post('create-order', 'OrderController@store');
 

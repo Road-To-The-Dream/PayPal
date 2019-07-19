@@ -78,20 +78,19 @@
                 <span><a href="#">Contacts</a></span>
                 <span><a href="#">Shop</a></span>
 
-{{--                <span>--}}
-{{--						<ul class="language-select">--}}
-{{--		  					<li class="active" data-lang="ru">RU</li>--}}
-{{--		 					<li data-lang="ua">UA</li>--}}
-{{--		 					<li data-lang="en">eng</li>--}}
-{{--						</ul>--}}
-{{--                </span>--}}
+                {{--                <span>--}}
+                {{--						<ul class="language-select">--}}
+                {{--		  					<li class="active" data-lang="ru">RU</li>--}}
+                {{--		 					<li data-lang="ua">UA</li>--}}
+                {{--		 					<li data-lang="en">eng</li>--}}
+                {{--						</ul>--}}
+                {{--                </span>--}}
 
                 <div class="menu_rects" onclick="diplay_hide('.top_page_main_menu')">
                     <div class="menu_rect1"></div>
                     <div class="menu_rect2"></div>
                     <div class="menu_rect3"></div>
                 </div>
-
 
                 <div class="logout">
                     @guest
@@ -155,6 +154,11 @@
                 <button class="x">x</button>
                 <p class="total"></p>
                 <div class='cart-cart'></div>
+                <div class="pay-pal-inputs">
+                    <p id="errors-pay"></p>
+                    <input id="pay_email" type="text" name="pay_email" placeholder="Enter EMAIL" value="@guest @else {{ Auth::user()->email }} @endguest">
+                    <input id="pay_phone" type="text" name="pay_phone" placeholder="Enter Phone" value="@guest @else {{ Auth::user()->email }} @endguest">
+                </div>
                 <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
                 <button id="btn-pay" class="w3-btn w3-blue">Pay with PayPal</button>
             </div>

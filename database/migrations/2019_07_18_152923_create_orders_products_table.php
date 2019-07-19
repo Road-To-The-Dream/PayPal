@@ -19,8 +19,8 @@ class CreateOrdersProductsTable extends Migration
             $table->integer('product_id');
             $table->integer('product_price');
             $table->integer('product_amount');
-            $table->string('email');
-            $table->string('phone');
+            $table->string('user_email');
+            $table->string('user_phone');
             $table->foreign('product_id')
                 ->references('id')->on('products')
                 ->onDelete('cascade');

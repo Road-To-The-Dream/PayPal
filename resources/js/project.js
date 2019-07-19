@@ -198,8 +198,6 @@ class CustomElementNew extends HTMLElement {
             let slideInterval = setInterval(nextSlide, 2000);
 
 
-
-
             let next = document.getElementById('next');
             let previous = document.getElementById('previous');
             next.onclick = function () {
@@ -240,7 +238,7 @@ class CustomElementNew extends HTMLElement {
                     playSlideshow();
                 }
             }
-        }else null
+        } else null
 
         let controls = document.querySelectorAll('.controls');
         for (let i = 0; i < controls.length; i++) {
@@ -371,6 +369,10 @@ class CustomElementNew extends HTMLElement {
         this.deleteItemFromCart('delete-from-cart');
         document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
         this.remove()
+        if (!document.querySelector('.cart-cart').children.length) {
+            document.querySelector('.cart').style = `display: none; z-index: -1;`
+            document.documentElement.style.overflow = 'auto'
+        }
     }
 }
 
@@ -388,7 +390,7 @@ onloadGetData = function (page = 0, categoryId = 2) {
     }
     let products = JSON.parse(xhr.response)
 
-    if (products.products.length !== 0){
+    if (products.products.length !== 0) {
         $(".products").empty()
         if (JSON.parse(xhr.response) !== 200) {
             products.products.forEach(item => {
@@ -417,9 +419,9 @@ onloadGetData = function (page = 0, categoryId = 2) {
             paginNumber.style.padding = '20px'
             paginNumber.style.cursor = 'pointer'
             paginNumber.style.border = "solid 3px white"
-            if (paginNumber.className !== 'btn active'){
+            if (paginNumber.className !== 'btn active') {
                 paginNumber.setAttribute('onclick', `onloadGetData(${offset}, ${categoryId})`)
-            }else null
+            } else null
             offset += ITEMS
             pagesBox.appendChild(paginNumber)
         }
@@ -437,8 +439,41 @@ onloadGetData = function (page = 0, categoryId = 2) {
                 this.className += " active";
             });
         }
-    }else {
-        alert('No products in that category yet')
+    } else {
+        let allert = document.createElement("div")
+        allert.style = `
+        max-width: 550px;
+        height: max-content;
+        display: flex;
+        flex-direction: column;
+        border: solid 2px black;
+        position: relative;
+        border-radius: 10px;
+        border: solid 1px #e5e5e5;
+        padding: 0 0 40px 0;
+        position: fixed;
+        top: 15%;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
+        align-items: center;
+        `
+        let message = document.createElement('p')
+        message.style = `
+            margin: 50px 0;
+            font-size: 50px;
+            text-align: center;
+            padding: 50px;
+        `
+        message.textContent = 'No products in that category yet'
+        allert.appendChild(message)
+        document.body.appendChild(allert)
+        setTimeout(function () {
+            allert.remove()
+        }, 2000)
     }
 
 }
@@ -485,13 +520,47 @@ onloadPage = function () {
 }
 
 
-
 document.querySelector('.but-cart').onclick = e => {
     let identifier = document.querySelector('.miltiply-items-button')
-    if(+identifier.textContent !== 0){
+    if (+identifier.textContent !== 0) {
         document.querySelector('.cart').style = `display: block; z-index: 9999;`
         document.documentElement.style = `overflow: hidden !important;`
-    }else {alert('Cart is empty')}
+    } else {
+        let allert = document.createElement("div")
+        allert.style = `
+        max-width: 550px;
+        height: max-content;
+        display: flex;
+        flex-direction: column;
+        border: solid 2px black;
+        position: relative;
+        border-radius: 10px;
+        border: solid 1px #e5e5e5;
+        padding: 0 0 40px 0;
+        position: fixed;
+        top: 15%;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
+        align-items: center;
+        `
+        let message = document.createElement('p')
+        message.style = `
+            margin: 50px 0;
+            font-size: 50px;
+            text-align: center;
+            padding: 50px;
+        `
+        message.textContent = 'The cart is empty'
+        allert.appendChild(message)
+        document.body.appendChild(allert)
+        setTimeout(function () {
+            allert.remove()
+        }, 2000)
+    }
 }
 
 
@@ -507,7 +576,7 @@ document.querySelector('.close-info').onclick = () => {
         elemq.removeChild(elemq.firstChild);
     }
     let toRemoveContent = document.querySelector('.product-info-characteristics')
-    while (toRemoveContent.firstChild){
+    while (toRemoveContent.firstChild) {
         toRemoveContent.removeChild(toRemoveContent.firstChild)
     }
     document.querySelector('.product-info')
@@ -533,12 +602,13 @@ let switchItems = function (par1, par2) {
 let closeItem = function (par) {
     par.style = `opacity: 0; z-index: -1;`
 }
-if(elemLogIn){
-elemLogIn.onclick = function (e) {
-    elemFormReg.style = `opacity: 1; z-index: 999999;`
-    document.documentElement.style.overflow = 'hidden'
-    document.querySelector('.reg_registration_a').style.color = '#6a9ba0'
-}}else null
+if (elemLogIn) {
+    elemLogIn.onclick = function (e) {
+        elemFormReg.style = `opacity: 1; z-index: 999999;`
+        document.documentElement.style.overflow = 'hidden'
+        document.querySelector('.reg_registration_a').style.color = '#6a9ba0'
+    }
+} else null
 elemCloseFormReg.onclick = function (e) {
     closeItem(elemFormReg)
     document.documentElement.style.overflow = 'auto'
@@ -683,7 +753,6 @@ passwordChangeBlock.style = `
                     right: 0;
                     top: 40px;
                     padding: 15px 5px;
-                    #ffdede
                     z-index: 9;
                     
         `
@@ -747,7 +816,7 @@ dropdownA.onclick = function (e) {
 }
 
 let dropdownItem = document.querySelector('.dropdown-item')
-if(dropdownItem){
+if (dropdownItem) {
     dropdownItem.style = `
     margin: 10px; 
     display: block; 
@@ -757,7 +826,7 @@ if(dropdownItem){
     img.style.width = '20px'
     dropdownItem.appendChild(img)
     dropdown.appendChild(dropdownItem)
-}else  null
+} else null
 if (document.querySelector('.nav-link')) {
     document.querySelector('.nav-link').onclick = function (e) {
         dropdown.style = `
@@ -773,7 +842,7 @@ if (document.querySelector('.nav-link')) {
                     z-index: 99999;
                     display: grid; `
     }
-}else null
+} else null
 document.querySelector('.order').onclick = function (e) {
     if (document.querySelector('.dropdown-xxx') || document.querySelector('.change-password')) {
         document.querySelector('.change-password').style = `
@@ -819,82 +888,76 @@ document.getElementById("btn-pay").onclick = (function () {
     xhr.open('GET', `/check-amount-products`, false);
     xhr.send();
     if (xhr.status != 200) {
-        let allert = document.createElement("div")
-        allert.style = `
-        max-width: 550px;
-        height: max-content;
-        display: flex;
-        flex-direction: column;
-        border: solid 2px black;
-        position: relative;
-        border-radius: 10px;
-        border: solid 1px #e5e5e5;
-        padding: 0 0 40px 0;
-        position: fixed;
-        top: 15%;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        background-color: #ffffff;
-        box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
-        align-items: center;
-        z-index: 999999999999;
-        `
-        let message = document.createElement('p')
-        message.style = `
-            margin: 50px 0;
-            font-size: 50px;
-            text-align: center;
-            padding: 50px;
-        `
-
-        message.textContent = `${JSON.parse(xhr.response).message}`
-        allert.appendChild(message)
-        document.body.appendChild(allert)
+        allertFunc(`${JSON.parse(xhr.response).message}`, 'allert')
         setTimeout(function () {
-            allert.remove()
-        },3000)
-        console.log(JSON.parse(xhr.response))
+            document.querySelector('.allert').remove()
+        }, 3000)
+
+            `${JSON.parse(xhr.response).message}`
+
     } else {
-        let allert = document.createElement("div")
-        allert.style = `
-        max-width: 550px;
-        height: max-content;
-        display: flex;
-        flex-direction: column;
-        border: solid 2px black;
-        position: relative;
-        border-radius: 10px;
-        border: solid 1px #e5e5e5;
-        padding: 0 0 40px 0;
-        position: fixed;
-        top: 15%;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        background-color: #ffffff;
-        box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
-        align-items: center;
-        z-index: 999999999999;
-        `
-        let message = document.createElement('p')
-        message.style = `
-            margin: 50px 0;
-            font-size: 50px;
-            text-align: center;
-            padding: 50px;
-        `
+        $.ajax({
+            url: 'create-order',
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                total_price: $('input[name="total-price"]').val(),
+                pay_email: $('input[name="pay_email"]').val(),
+                pay_phone: $('input[name="pay_phone"]').val(),
+            },
+            success: function (response) {
+                allertFunc('Order had been successfully sent', 'allert')
+                setTimeout(function () {
+                    document.querySelector('.allert').remove()
+                    location.reload()
+                }, 2000)
+            },
+            error: function (response) {
+                $('#errors-pay').empty();
 
-        message.textContent = `Order had been successfully sent`
-        allert.appendChild(message)
-        document.body.appendChild(allert)
-        setTimeout(function () {
-            allert.remove()
-            location.reload()
-        },2000)
-        console.log(JSON.parse(xhr.response))
+                $.each(response['responseJSON']['errors'], function (key, value) {
+                    $('#errors-pay').append(key + ": " + value + "</br>");
+                });
+            }
+        })
     }
 });
 
+let allertFunc = function (mess, clas) {
+    let allert = document.createElement("div")
+    allert.className = `${clas}`
+    allert.style = `
+                    max-width: 550px;
+                    height: max-content;
+                    display: flex;
+                    flex-direction: column;
+                    border: solid 2px black;
+                    position: relative;
+                    border-radius: 10px;
+                    border: solid 1px #e5e5e5;
+                    padding: 0 0 40px 0;
+                    position: fixed;
+                    top: 15%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    left: 0;
+                    right: 0;
+                    background-color: #ffffff;
+                    box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
+                    align-items: center;
+                    z-index: 999999999999;
+                    `
+    let message = document.createElement('p')
+    message.style = `
+                        margin: 50px 0;
+                        font-size: 50px;
+                        text-align: center;
+                        padding: 50px;
+                    `
+
+    message.textContent = `${mess}`
+    allert.appendChild(message)
+    document.body.appendChild(allert)
+}

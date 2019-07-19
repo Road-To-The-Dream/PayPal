@@ -4,28 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PaymentRequest;
 use App\Model\Order;
+use App\Services\Orders;
 use App\Services\PayPal;
 use App\Services\Products;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 use Mockery\Exception;
 
 class OrderController extends Controller
 {
     private $payService;
-    private $product;
+    private $productService;
+    private $orderService;
 
-    public function __construct(PayPal $objPayPal, Products $objProduct)
+    public function __construct(PayPal $objPayPal, Products $objProduct, Orders $objOrder)
     {
         $this->payService = $objPayPal;
-        $this->product = $objProduct;
+        $this->productService = $objProduct;
+        $this->orderService = $objOrder;
     }
 
     public function store(PaymentRequest $request)
     {
-        try{
+        $w = 2;
+        try {
             $newOrder = Order::create();
-            $newOrder->products()->sync(['amount' => $request->get('amount')]);
+            $newOrder->products()->sync($this->orderService->getArrayProductsInfo($request));
 
             $request->session()->forget('productsId');
         } catch (Exception $ex) {
