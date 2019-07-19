@@ -9,6 +9,7 @@ use App\Services\Orders;
 use App\Services\PayPal;
 use App\Services\Products;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -28,10 +29,27 @@ class OrderController extends Controller
 
     public function index()
     {
-        $w = Order::find(1)->products()->get();
+        $w = DB::table('orders')
+            ->join('orders_products', 'orders_products.order_id', '=', 'orders.id')
+            ->join('products', 'orders_products.product_id', '=', 'products.id')
+            ->select(
+                'products.img',
+                'products.title',
+                'products.description',
+                'orders_products.order_id',
+                'orders_products.product_id',
+                'orders_products.product_amount',
+                'orders_products.product_price',
+                'orders_products.user_email')
+            ->where('orders_products.user_email', Auth::user()->email)
+            ->get();
+
+//        $orders = Order::whereHas('products', function ($query) {
+//            $query->select('orders_products.user_email')->where('orders_products.user_email', '=', Auth::user()->email);
+//        })->get();
 
         return response()->json([
-            'orders' => Order::find(1)->products()->get(),
+            'orders' => $w
         ], 200);
     }
 
