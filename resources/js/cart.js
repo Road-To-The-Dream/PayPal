@@ -47,7 +47,9 @@ document.getElementById("btn-pay").onclick = (function () {
                 //     document.querySelector('.allert').remove()
                 //     location.reload()
                 // }, 2000)
-                sendPay();
+
+                document.getElementById('pay-form').submit();
+                //document.querySelector('#dynamic-pay').click();
             },
             error: function (response) {
                 $('#errors-pay').empty();
@@ -59,25 +61,3 @@ document.getElementById("btn-pay").onclick = (function () {
         })
     }
 });
-
-function sendPay() {
-    $.ajax({
-        url: 'pay',
-        type: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: {
-            total_price: $('input[name="total-price"]').val(),
-        },
-        success: function (response) {
-        },
-        error: function (response) {
-            $('#errors-pay').empty();
-
-            $.each(response['responseJSON']['errors'], function (key, value) {
-                $('#errors-pay').append(key + ": " + value + "</br>");
-            });
-        }
-    })
-}

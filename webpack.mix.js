@@ -21,7 +21,7 @@ mix.scripts([
     'resources/js/info.js',
     'resources/js/menu.js',
     'resources/js/modal-user.js',
-    'resources/js/modal-reg-log.js',
+    'resources/js/modals-reg-log.js',
     'resources/js/onload-page.js'
 ], 'public/js/bundle.js');
 

@@ -39,7 +39,7 @@ class PaymentController extends Controller
      * @param PaymentRequest $request
      * @return RedirectResponse
      */
-    public function pay(PaymentRequest $request): RedirectResponse
+    public function pay(): RedirectResponse
     {
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
@@ -49,14 +49,14 @@ class PaymentController extends Controller
         $item_1->setName('Телевизор')
             ->setCurrency('USD')
             ->setQuantity(1)
-            ->setPrice($request->get('total-price'));
+            ->setPrice(33);
 
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
 
         $amount = new Amount();
         $amount->setCurrency('USD')
-            ->setTotal($request->get('total-price'));
+            ->setTotal(33);
 
         $transaction = new Transaction();
         $transaction->setAmount($amount)

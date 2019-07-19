@@ -166,7 +166,11 @@
                     <span>Phone</span>
                     <input id="pay_phone" type="text" name="pay_phone" placeholder="Enter Phone" value="@guest @else {{ Auth::user()->phone }} @endguest">
                 </div>
-                <input class="w3-input w3-border" id="total-price" type="hidden" name="total-price" value="">
+                <form id="pay-form" action="{!! URL::to('pay') !!}" method="POST">
+                    @csrf
+                    <input class="w3-input w3-border" id="total-price" type="hidden" name="total_price" value="">
+                    <button type="submit" id="dynamic-pay"></button>
+                </form>
                 <button id="btn-pay" class="w3-btn w3-blue">Pay with PayPal</button>
             </div>
             <div class="products"></div>
