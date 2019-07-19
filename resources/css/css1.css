@@ -494,7 +494,7 @@ body{
 
 .order-history{
     width: 79vw;
-    height: max-content;
+    max-height: 650px;
     text-align: center;
     display: none;
     flex-direction: column;
@@ -528,7 +528,16 @@ body{
     color: #6a9ba0;
     border: solid 2px #6a9ba0;
 }
-
+.order-history-head{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin: 80px 0 46px 100px;
+}
+.order-history-head span{
+    font-size: 30px !important;
+    font-weight: 600;
+}
 .but-cart{
     font-size: 24px;
     width: 150px;

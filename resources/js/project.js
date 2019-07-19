@@ -157,7 +157,6 @@ class CustomElementNew extends HTMLElement {
         this.shadow.appendChild(style)
         this.shadow.appendChild(this.wrapper)
     }
-
     showInfo() {
         let xhr = new XMLHttpRequest();
         xhr.open('GET', `/product/${this.id}`, false);
@@ -167,12 +166,8 @@ class CustomElementNew extends HTMLElement {
         } else {
             null
         }
-
         let data123 = JSON.parse(xhr.response)
-        // console.log(data123)
-
         if (data123.images.length) {
-
             data123.images.forEach(item => {
                 let liElem = document.querySelector('#slides')
                     .appendChild(document.createElement('li'))
@@ -188,16 +183,12 @@ class CustomElementNew extends HTMLElement {
             let nextSlide = function () {
                 goToSlide(currentSlide + 1);
             }
-
             let previousSlide = function () {
                 goToSlide(currentSlide - 1);
             }
-
             let slides = document.querySelectorAll('#slides .slide');
             let currentSlide = 0;
             let slideInterval = setInterval(nextSlide, 2000);
-
-
             let next = document.getElementById('next');
             let previous = document.getElementById('previous');
             next.onclick = function () {
@@ -218,19 +209,16 @@ class CustomElementNew extends HTMLElement {
             }
             let playing = true;
             let pauseButton = document.getElementById('pause');
-
             let pauseSlideshow = function () {
                 pauseButton.innerHTML = '▶';
                 playing = false;
                 clearInterval(slideInterval);
             }
-
             let playSlideshow = function () {
                 pauseButton.innerHTML = '||';
                 playing = true;
                 slideInterval = setInterval(nextSlide, 2000);
             }
-
             pauseButton.onclick = function () {
                 if (playing) {
                     pauseSlideshow();
@@ -239,7 +227,6 @@ class CustomElementNew extends HTMLElement {
                 }
             }
         } else null
-
         let controls = document.querySelectorAll('.controls');
         for (let i = 0; i < controls.length; i++) {
             controls[i].style.display = 'inline-block';
@@ -247,8 +234,6 @@ class CustomElementNew extends HTMLElement {
         for (let i = 0; i < slides.length; i++) {
             slides[i].style.position = 'absolute';
         }
-
-
         document.querySelector('.product-info-id')
             .textContent = this.idNum.textContent
         document.querySelector('.product-info-title')
@@ -274,7 +259,6 @@ class CustomElementNew extends HTMLElement {
         let infoBox = document.querySelector('.product-info')
         infoBox.style = `display: block; z-index: 9999999999;`
     }
-
 
     plusItem() {
         this.increaseDecreaseProductAmount('decrease-product-amount');
@@ -732,9 +716,37 @@ dropdownHistory.onclick = (e)=> {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `/order-history`, false);
     xhr.send();
-    console.log(xhr.response)
-    let orderHistoryContent = document.querySelector('.order-history-content')
+    console.log(JSON.parse(xhr.response).orders)
 
+    let orderHistoryContent = document.querySelector('.order-history-content')
+    orderHistoryContent.style = `    width: 90%;
+    padding: 30px 0;
+    border-top: solid 2px #6a9ba0;
+    margin: 0 auto;
+    max-height: 400px
+    overflow-y: auto;`
+    JSON.parse(xhr.response).orders.forEach(item => {
+        let parag = document.createElement('p')
+        parag.style =`display: flex; justify-content: space-around; align-items: center;`
+        let spanID = document.createElement('span')
+        spanID.textContent = item.pivot.order_id
+        let spanImg = document.createElement('span')
+        let imgProduct = document.createElement('img')
+        imgProduct.style.width = '65px'
+        imgProduct.src = item.img
+        let spanTitle = document.createElement('span')
+        spanTitle.textContent = item.title
+        let spanPrice = document.createElement('span')
+        spanPrice.textContent = `${item.price} USD`
+
+        parag.appendChild(spanID)
+        spanImg.appendChild(imgProduct)
+        parag.appendChild(spanImg)
+        parag.appendChild(spanTitle)
+        parag.appendChild(spanPrice)
+        orderHistoryContent.appendChild(parag)
+    })
+    document.querySelector('.dropdown-xxx').style = `display: none; z-index: -1;`
     let orderHistory = document.querySelector('.order-history')
     orderHistory.style = `display: block; z-index: 9999999999;`
 }

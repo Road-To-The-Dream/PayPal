@@ -114,6 +114,11 @@
                 <div class="order-history">
                     <div class="close-history">X</div>
                     <h1>{{ Auth::user()->name }} this is your Order History</h1>
+                    <p class="order-history-head">
+                        <span>Order ID</span>
+                        <span>Product details</span>
+                    </p>
+
                     <div class="order-history-content">
 
                     </div>
