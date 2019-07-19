@@ -15,7 +15,14 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
 
 mix.scripts([
-    'resources/js/project.js'
+    'resources/js/project.js',
+    'resources/js/additional-funcs.js',
+    'resources/js/cart.js',
+    'resources/js/info.js',
+    'resources/js/menu.js',
+    'resources/js/modal-user.js',
+    'resources/js/modal-reg-log.js',
+    'resources/js/onload-page.js'
 ], 'public/js/bundle.js');
 
 mix.styles([

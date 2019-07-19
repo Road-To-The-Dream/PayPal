@@ -259,14 +259,12 @@ class CustomElementNew extends HTMLElement {
         let infoBox = document.querySelector('.product-info')
         infoBox.style = `display: block; z-index: 9999999999;`
     }
-
     plusItem() {
         this.increaseDecreaseProductAmount('decrease-product-amount');
         this.counterItem.textContent = parseInt(this.counterItem.textContent) + 1;
         total.textContent = `total price: ${parseInt(total.textContent.slice(12)) + parseInt(this.itemPrise.textContent)}`;
         document.querySelector('#total-price').value = `${parseInt(total.textContent.slice(12))}`;
     }
-
     minusItem() {
         if (this.counterItem.textContent > 1) {
             this.increaseDecreaseProductAmount('increase-product-amount');
@@ -275,7 +273,6 @@ class CustomElementNew extends HTMLElement {
             document.querySelector('#total-price').value = `${parseInt(total.textContent.slice(12))}`;
         }
     }
-
     increaseDecreaseProductAmount(url) {
         $.ajax({
             url: url,
@@ -291,7 +288,6 @@ class CustomElementNew extends HTMLElement {
             }
         })
     }
-
     deleteItemFromCart(url) {
         $.ajax({
             url: url,
@@ -307,9 +303,7 @@ class CustomElementNew extends HTMLElement {
             }
         })
     }
-
     addToCart() {
-
         if (!Array.from(document.querySelector('.cart-cart').children)
             .find(item => item.idNum.textContent.slice(12) === this.idNum.textContent.slice(12))) {
             this.multiplyItemsCart()
@@ -342,14 +336,12 @@ class CustomElementNew extends HTMLElement {
             }, 2000)
         }
     }
-
     multiplyItemsCart() {
         let multiplyItemsCartCounter = 0
         let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
         multiplyItemsCartButton.style.display = 'block'
         multiplyItemsCartButton.textContent = (multiplyItemsCartCounter += 1) && (+multiplyItemsCartButton.textContent + 1)
     }
-
     removeItemFromCart() {
         let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
         multiplyItemsCartButton.textContent = +multiplyItemsCartButton.textContent - 1
@@ -367,175 +359,102 @@ class CustomElementNew extends HTMLElement {
         }
     }
 }
-
 customElements.define('new-element', CustomElementNew)
+let allertFunc = function (mess, clas) {
+    let allert = document.createElement("div")
+    allert.className = `${clas}`
+    allert.style = `
+                    max-width: 550px;
+                    height: max-content;
+                    display: flex;
+                    flex-direction: column;
+                    border: solid 2px black;
+                    position: relative;
+                    border-radius: 10px;
+                    border: solid 1px #e5e5e5;
+                    padding: 0 0 40px 0;
+                    position: fixed;
+                    top: 15%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    left: 0;
+                    right: 0;
+                    background-color: #ffffff;
+                    box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
+                    align-items: center;
+                    z-index: 999999999999;
+                    `
+    let message = document.createElement('p')
+    message.style = `
+                        margin: 50px 0;
+                        font-size: 50px;
+                        text-align: center;
+                        padding: 50px;
+                    `
 
-
-onloadGetData = function (page = 0, categoryId = 2) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', `/product/page/${page}/${categoryId}`, false);
-    xhr.send();
-    if (xhr.status != 200) {
-        alert(xhr.status + ': ' + xhr.statusText);
-    } else {
-        null
-    }
-    let products = JSON.parse(xhr.response)
-
-    if (products.products.length !== 0) {
-        $(".products").empty()
-        if (JSON.parse(xhr.response) !== 200) {
-            products.products.forEach(item => {
-                let elem = document.createElement('new-element')
-                elem.style.margin = '0 auto'
-                elem.id = item.id
-                elem.idNum.textContent = `product ID: ${item.id}`
-                elem.idNum.id = `${item.id}`
-                elem.imgItem.src = item.img
-                elem.itemTitle.innerHTML = item.title
-                elem.itemDescription.innerHTML = item.description
-                elem.itemPrise.innerHTML = `${item.price} USD`
-                document.querySelector('.products').appendChild(elem)
-            })
-        } else null
-
-        let pagesBox = document.querySelector('.pages')
-        let offset = 0;
-        $(".pages").empty()
-
-
-        for (let i = 0; i < products.amount; i++) {
-            let paginNumber = document.createElement('span')
-            paginNumber.textContent = `${i + 1}`
-            paginNumber.className = 'btn'
-            paginNumber.style.padding = '20px'
-            paginNumber.style.cursor = 'pointer'
-            paginNumber.style.border = "solid 3px white"
-            if (paginNumber.className !== 'btn active') {
-                paginNumber.setAttribute('onclick', `onloadGetData(${offset}, ${categoryId})`)
-            } else null
-            offset += ITEMS
-            pagesBox.appendChild(paginNumber)
-        }
-
-        let btns = pagesBox.getElementsByClassName("btn")
-        btns[0].className = "btn active"
-
-
-        for (let i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function (e) {
-                btns[0].className = "btn"
-                let currentNum = e.toElement.innerHTML - 1
-                let current = document.getElementsByClassName("btn");
-                current[currentNum].className = current[currentNum].className.replace("btn", "btn active");
-                this.className += " active";
-            });
-        }
-    } else {
-        allertFunc("No products in that category yet",'allert')
-        setTimeout(function () {
-            document.querySelector('.allert').remove()
-        }, 2000)
-    }
-
+    message.textContent = `${mess}`
+    allert.appendChild(message)
+    document.body.appendChild(allert)
 }
-onloadGetData()
-
-
-onloadPage = function () {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', `/get-products-cart`, false);
-    xhr.send();
-    if (xhr.status != 200) {
-        alert(xhr.status + ': ' + xhr.statusText);
-    } else {
-        null
-    }
-    let info = JSON.parse(xhr.response);
-    let totalPrice = 0;
-    let iteration = 0;
-    if (info !== 200) {
-        info.productsInfo.forEach(item => {
-            let elem = document.createElement('new-element')
-            elem.wrapper.style = `
-                justify-content: space-between;
-                width: 80%;
-                display: flex;
-                align-items: center;`
-            elem.minusPlus.style.display = 'block'
-            elem.buttonItem.style.display = 'none'
-            elem.itemDescription.style.display = 'none'
-            elem.xButton.style.display = 'block'
-            elem.id = `${item.id}copy`
-            elem.idNum.textContent = `product ID: ${item.id}`
-            elem.idNum.id = `${item.id}`
-            elem.imgItem.src = item.img
-            elem.itemTitle.textContent = item.title
-            elem.itemDescription.style.display = 'none'
-            elem.itemPrise.textContent = `${item.price} USD`
-            elem.counterItem.textContent = info.productsAmount[iteration].amount
-            document.querySelector('.cart-cart').appendChild(elem)
-            let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
-            totalPrice += info.productsAmount[iteration].amount * item.price
-            multiplyItemsCartButton.textContent = document.querySelector('.cart-cart').children.length
-            iteration++;
-        })
-        total.textContent = `total price: ${totalPrice}`
-        document.querySelector('#total-price').value = `${totalPrice}`
-        return;
-    }
-}
-
-
 document.querySelector('.but-cart').onclick = e => {
     let identifier = document.querySelector('.miltiply-items-button')
     if (+identifier.textContent !== 0) {
         document.querySelector('.cart').style = `display: block; z-index: 9999;`
         document.documentElement.style = `overflow: hidden !important;`
     } else {
-        let allert = document.createElement("div")
-        allert.style = `
-        max-width: 550px;
-        height: max-content;
-        display: flex;
-        flex-direction: column;
-        border: solid 2px black;
-        position: relative;
-        border-radius: 10px;
-        border: solid 1px #e5e5e5;
-        padding: 0 0 40px 0;
-        position: fixed;
-        top: 15%;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        background-color: #ffffff;
-        box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
-        align-items: center;
-        `
-        let message = document.createElement('p')
-        message.style = `
-            margin: 50px 0;
-            font-size: 50px;
-            text-align: center;
-            padding: 50px;
-        `
-        message.textContent = 'The cart is empty'
-        allert.appendChild(message)
-        document.body.appendChild(allert)
+        allertFunc("The cart is empty", 'allert')
         setTimeout(function () {
-            allert.remove()
+            document.querySelector('.allert').remove()
         }, 2000)
     }
 }
-
-
 let x = document.querySelector('.x')
 x.onclick = e => {
     document.querySelector('.cart').style = `display: none; z-index: -1;`
     document.documentElement.style.overflow = 'auto'
 }
+
+document.getElementById("btn-pay").onclick = (function () {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', `/check-amount-products`, false);
+    xhr.send();
+    if (xhr.status != 200) {
+        allertFunc(`${JSON.parse(xhr.response).message}`, 'allert')
+        setTimeout(function () {
+            document.querySelector('.allert').remove()
+        }, 3000)
+
+            `${JSON.parse(xhr.response).message}`
+
+    } else {
+        $.ajax({
+            url: 'create-order',
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                total_price: $('input[name="total-price"]').val(),
+                pay_email: $('input[name="pay_email"]').val(),
+                pay_phone: $('input[name="pay_phone"]').val(),
+            },
+            success: function (response) {
+                allertFunc('Order had been successfully sent', 'allert')
+                setTimeout(function () {
+                    document.querySelector('.allert').remove()
+                    location.reload()
+                }, 2000)
+            },
+            error: function (response) {
+                $('#errors-pay').empty();
+
+                $.each(response['responseJSON']['errors'], function (key, value) {
+                    $('#errors-pay').append(key + ": " + value + "</br>");
+                });
+            }
+        })
+    }
+});
 
 document.querySelector('.close-info').onclick = () => {
     let elemq = document.querySelector('#slides')
@@ -549,72 +468,6 @@ document.querySelector('.close-info').onclick = () => {
     document.querySelector('.product-info')
         .style = `display: none; z-index: -1;`
 }
-document.querySelector('.close-history').onclick = () => {
-    let toRemoveContent = document.querySelector('.order-history-content')
-    while (toRemoveContent.firstChild) {
-        toRemoveContent.removeChild(toRemoveContent.firstChild)
-    }
-    document.querySelector('.order-history')
-        .style = `display: none; z-index: -1;`
-}
-
-
-let elemLogIn = document.querySelector('.ellipse_user')
-let elemFormReg = document.querySelector('.registration_div')
-let elemFormLog = document.querySelector('.log_in_div')
-let elemCloseFormReg = document.querySelector('.close_form_registration')
-let elemCloseFormLog = document.querySelector('.close_form_log_in')
-let elemOrEnter = document.querySelector('.or_enter')
-let elemOrRegister = document.querySelector('.or_register')
-let elemTopLogReg = document.querySelector('.enter_registration')
-let elemTopRegReg = document.querySelector('.reg_registration')
-let elemTopLogLog = document.querySelector('.enter_log_in')
-let elemTopRegLog = document.querySelector('.reg_log_in')
-let switchItems = function (par1, par2) {
-    par1.style = `opacity: 0; z-index: -1;`
-    par2.style = `opacity: 1; z-index: 999999;`
-}
-let closeItem = function (par) {
-    par.style = `opacity: 0; z-index: -1;`
-}
-if (elemLogIn) {
-    elemLogIn.onclick = function (e) {
-        elemFormReg.style = `opacity: 1; z-index: 999999;`
-        document.documentElement.style.overflow = 'hidden'
-        document.querySelector('.reg_registration_a').style.color = '#6a9ba0'
-    }
-} else null
-elemCloseFormReg.onclick = function (e) {
-    closeItem(elemFormReg)
-    document.documentElement.style.overflow = 'auto'
-}
-elemCloseFormLog.onclick = function (e) {
-    closeItem(elemFormLog)
-    document.documentElement.style.overflow = 'auto'
-}
-elemOrEnter.onclick = function (e) {
-    switchItems(elemFormReg, elemFormLog)
-    document.querySelector('.enter_log_in_a').style.color = '#6a9ba0'
-}
-elemOrRegister.onclick = function (e) {
-    switchItems(elemFormLog, elemFormReg)
-}
-elemTopLogLog.onclick = function (e) {
-    switchItems(elemFormReg, elemFormLog)
-
-}
-elemTopRegLog.onclick = function (e) {
-    switchItems(elemFormLog, elemFormReg)
-}
-elemTopLogReg.onclick = function (e) {
-    switchItems(elemFormReg, elemFormLog)
-    document.querySelector('.enter_log_in_a').style.color = '#6a9ba0'
-}
-elemTopRegReg.onclick = function (e) {
-    switchItems(elemFormLog, elemFormReg)
-}
-
-
 function diplay_hide(blockId) {
     if ($(blockId).css('display') === 'none') {
         $(blockId).animate({height: 'show'}, 500);
@@ -637,77 +490,10 @@ function diplay_hide(blockId) {
         $(document.querySelector('.menu_rect3')).css('margin', '0')
     }
 }
-
-
-$('.language-select').click(function () {
-    $(this).toggleClass('open');
-})
-
-$('.language-select li').click(function () {
-    var setLang = $('.language-select').data('location'),
-        dataLangSelect = $(this).data('lang')
-    $('.language-select').data('location', dataLangSelect);
-    $('.language-select li').removeClass('active');
-    $(this).toggleClass('active');
-})
-
-document.getElementById("submit-login").onclick = (function () {
-    $.ajax({
-        url: 'login',
-        type: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: {
-            email: $('#email').val(),
-            password: $('#password').val(),
-        },
-        success: function () {
-            location.reload();
-        },
-        error: function (response) {
-            $('#errors-login').empty();
-
-            $.each(response['responseJSON']['errors'], function (key, value) {
-                $('#errors-login').append(key + ": " + value + "</br>");
-            });
-        }
-    })
-});
-
-document.getElementById("submit-register").onclick = (function () {
-    $.ajax({
-        url: 'register',
-        type: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: {
-            name: $('#name').val(),
-            email: $('#email-register').val(),
-            phone: $('#phone-register').val(),
-            password: $('#password-register').val(),
-            password_confirmation: $('#password_confirmation').val(),
-        },
-        success: function () {
-            location.reload();
-        },
-        error: function (response) {
-            $('#errors-register').empty();
-
-            $.each(response['responseJSON']['errors'], function (key, value) {
-                $('#errors-register').append(key + ": " + value + "</br>");
-            });
-        }
-    })
-});
-
 let dropdown = document.querySelector('.logout')
     .appendChild(document.createElement('div'))
 dropdown.className = 'dropdown-xxx'
-dropdown.style = `
-                  display: none;   
-    `
+dropdown.style = `display: none;`
 let dropdownHistory = dropdown.appendChild(document.createElement('a'))
 dropdownHistory.textContent = 'Order history'
 dropdownHistory.style.cursor = 'pointer'
@@ -716,18 +502,15 @@ dropdownHistory.onclick = (e)=> {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `/order-history`, false);
     xhr.send();
-    console.log(JSON.parse(xhr.response).orders)
-
     let orderHistoryContent = document.querySelector('.order-history-content')
-    orderHistoryContent.style = `    width: 90%;
-    padding: 30px 0;
-    border-top: solid 2px #6a9ba0;
-    margin: 0 auto;
-    max-height: 45vh;
-    overflow-y: auto;`
+    orderHistoryContent.style = `width: 90%;
+                                padding: 30px 0;
+                                border-top: solid 2px #6a9ba0;
+                                margin: 0 auto;
+                                max-height: 45vh;
+                                overflow-y: auto;
+                                `
     let currentId = 0
-
-
     JSON.parse(xhr.response).orders.forEach(item => {
         if (currentId === item.order_id) {
             console.log('do not create')
@@ -781,16 +564,21 @@ dropdownHistory.onclick = (e)=> {
             elenm.appendChild(parag)
             orderHistoryContent.appendChild(elenm)
         }
-
         currentId = item.order_id
-
     })
     document.querySelector('.dropdown-xxx').style = `display: none; z-index: -1;`
     let orderHistory = document.querySelector('.order-history')
     orderHistory.style = `display: block; z-index: 9999999999;`
 }
 
-
+document.querySelector('.close-history').onclick = () => {
+    let toRemoveContent = document.querySelector('.order-history-content')
+    while (toRemoveContent.firstChild) {
+        toRemoveContent.removeChild(toRemoveContent.firstChild)
+    }
+    document.querySelector('.order-history')
+        .style = `display: none; z-index: -1;`
+}
 
 let dropdownA = dropdown.appendChild(document.createElement('a'))
 dropdownA.textContent = 'Change password'
@@ -838,24 +626,26 @@ comfim.name = 'password_confirmation'
 let btn = document.createElement('button')
 btn.textContent = 'Submit'
 btn.id = 'submit-change-password';
-btn.style = `    
-        border: solid 2px #6a9ba0;
-        background-color: #6a9ba0;
-        color: white;
-        cursor: pointer;
-        border-radius: 10px;
-        margin: 10px auto 0;
-        width: 50%;`
+btn.style = `
+                border: solid 2px #6a9ba0;
+                background-color: #6a9ba0;
+                color: white;
+                cursor: pointer;
+                border-radius: 10px;
+                margin: 10px auto 0;
+                width: 50%;
+                `
 btn.onmouseover = function (e) {
     btn.style = `
-    border: solid 2px #6a9ba0;
-    cursor: pointer;
-    border-radius: 10px;
-    margin: 10px auto 0;
-    width: 50%;\`
-    background-color: #ffffff;
-    color: #6a9ba0;
-    border: solid 2px #6a9ba0;`
+                border: solid 2px #6a9ba0;
+                cursor: pointer;
+                border-radius: 10px;
+                margin: 10px auto 0;
+                width: 50%;\`
+                background-color: #ffffff;
+                color: #6a9ba0;
+                border: solid 2px #6a9ba0;
+                `
 }
 passwordChangeBlock.appendChild(errorsBlockChangePassword)
 passwordChangeBlock.appendChild(email)
@@ -870,13 +660,13 @@ dropdownA.onclick = function (e) {
         passwordChangeBlock.style.display = 'grid' :
         passwordChangeBlock.style.display = "none"
 }
-
 let dropdownItem = document.querySelector('.dropdown-item')
 if (dropdownItem) {
     dropdownItem.style = `
-    margin: 10px; 
-    display: block; 
-    text-align: end;`
+                    margin: 10px; 
+                    display: block; 
+                    text-align: end;
+                    `
     let img = document.createElement('img')
     img.src = 'data:image/png;base64,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'
     img.style.width = '20px'
@@ -896,16 +686,18 @@ if (document.querySelector('.nav-link')) {
                     padding: 15px 5px;
                     background-color: white;
                     z-index: 99999;
-                    display: grid; `
+                    display: grid; 
+                    `
     }
 } else null
+
 document.querySelector('.order').onclick = function (e) {
     if (document.querySelector('.dropdown-xxx') || document.querySelector('.change-password')) {
         document.querySelector('.change-password').style = `
-        display: none; 
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 120px inset;
-        border-radius: 20px;
-        padding: 15px 5px;
+                            display: none; 
+                            box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 120px inset;
+                            border-radius: 20px;
+                            padding: 15px 5px;
         `
         document.querySelector('.dropdown-xxx').style = `display: none; z-index: -1`
 
@@ -939,81 +731,108 @@ document.getElementById("submit-change-password").onclick = (function () {
     })
 });
 
-document.getElementById("btn-pay").onclick = (function () {
+onloadGetData = function (page = 0, categoryId = 2) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `/check-amount-products`, false);
+    xhr.open('GET', `/product/page/${page}/${categoryId}`, false);
     xhr.send();
     if (xhr.status != 200) {
-        allertFunc(`${JSON.parse(xhr.response).message}`, 'allert')
+        alert(xhr.status + ': ' + xhr.statusText);
+    } else {
+        null
+    }
+    let products = JSON.parse(xhr.response)
+    if (products.products.length !== 0) {
+        $(".products").empty()
+        if (JSON.parse(xhr.response) !== 200) {
+            products.products.forEach(item => {
+                let elem = document.createElement('new-element')
+                elem.style.margin = '0 auto'
+                elem.id = item.id
+                elem.idNum.textContent = `product ID: ${item.id}`
+                elem.idNum.id = `${item.id}`
+                elem.imgItem.src = item.img
+                elem.itemTitle.innerHTML = item.title
+                elem.itemDescription.innerHTML = item.description
+                elem.itemPrise.innerHTML = `${item.price} USD`
+                document.querySelector('.products').appendChild(elem)
+            })
+        } else null
+        let pagesBox = document.querySelector('.pages')
+        let offset = 0;
+        $(".pages").empty()
+        for (let i = 0; i < products.amount; i++) {
+            let paginNumber = document.createElement('span')
+            paginNumber.textContent = `${i + 1}`
+            paginNumber.className = 'btn'
+            paginNumber.style.padding = '20px'
+            paginNumber.style.cursor = 'pointer'
+            paginNumber.style.border = "solid 3px white"
+            if (paginNumber.className !== 'btn active') {
+                paginNumber.setAttribute('onclick', `onloadGetData(${offset}, ${categoryId})`)
+            } else null
+            offset += ITEMS
+            pagesBox.appendChild(paginNumber)
+        }
+        let btns = pagesBox.getElementsByClassName("btn")
+        btns[0].className = "btn active"
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function (e) {
+                btns[0].className = "btn"
+                let currentNum = e.toElement.innerHTML - 1
+                let current = document.getElementsByClassName("btn");
+                current[currentNum].className = current[currentNum].className.replace("btn", "btn active");
+                this.className += " active";
+            });
+        }
+    } else {
+        allertFunc("No products in that category yet",'allert')
         setTimeout(function () {
             document.querySelector('.allert').remove()
-        }, 3000)
-
-            `${JSON.parse(xhr.response).message}`
-
-    } else {
-        $.ajax({
-            url: 'create-order',
-            type: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            data: {
-                total_price: $('input[name="total-price"]').val(),
-                pay_email: $('input[name="pay_email"]').val(),
-                pay_phone: $('input[name="pay_phone"]').val(),
-            },
-            success: function (response) {
-                allertFunc('Order had been successfully sent', 'allert')
-                setTimeout(function () {
-                    document.querySelector('.allert').remove()
-                    location.reload()
-                }, 2000)
-            },
-            error: function (response) {
-                $('#errors-pay').empty();
-
-                $.each(response['responseJSON']['errors'], function (key, value) {
-                    $('#errors-pay').append(key + ": " + value + "</br>");
-                });
-            }
-        })
+        }, 2000)
     }
-});
+}
+onloadGetData()
 
-let allertFunc = function (mess, clas) {
-    let allert = document.createElement("div")
-    allert.className = `${clas}`
-    allert.style = `
-                    max-width: 550px;
-                    height: max-content;
-                    display: flex;
-                    flex-direction: column;
-                    border: solid 2px black;
-                    position: relative;
-                    border-radius: 10px;
-                    border: solid 1px #e5e5e5;
-                    padding: 0 0 40px 0;
-                    position: fixed;
-                    top: 15%;
-                    margin-left: auto;
-                    margin-right: auto;
-                    left: 0;
-                    right: 0;
-                    background-color: #ffffff;
-                    box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
-                    align-items: center;
-                    z-index: 999999999999;
-                    `
-    let message = document.createElement('p')
-    message.style = `
-                        margin: 50px 0;
-                        font-size: 50px;
-                        text-align: center;
-                        padding: 50px;
-                    `
-
-    message.textContent = `${mess}`
-    allert.appendChild(message)
-    document.body.appendChild(allert)
+onloadPage = function () {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', `/get-products-cart`, false);
+    xhr.send();
+    if (xhr.status != 200) {
+        alert(xhr.status + ': ' + xhr.statusText);
+    } else {
+        null
+    }
+    let info = JSON.parse(xhr.response);
+    let totalPrice = 0;
+    let iteration = 0;
+    if (info !== 200) {
+        info.productsInfo.forEach(item => {
+            let elem = document.createElement('new-element')
+            elem.wrapper.style = `
+                justify-content: space-between;
+                width: 80%;
+                display: flex;
+                align-items: center;`
+            elem.minusPlus.style.display = 'block'
+            elem.buttonItem.style.display = 'none'
+            elem.itemDescription.style.display = 'none'
+            elem.xButton.style.display = 'block'
+            elem.id = `${item.id}copy`
+            elem.idNum.textContent = `product ID: ${item.id}`
+            elem.idNum.id = `${item.id}`
+            elem.imgItem.src = item.img
+            elem.itemTitle.textContent = item.title
+            elem.itemDescription.style.display = 'none'
+            elem.itemPrise.textContent = `${item.price} USD`
+            elem.counterItem.textContent = info.productsAmount[iteration].amount
+            document.querySelector('.cart-cart').appendChild(elem)
+            let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
+            totalPrice += info.productsAmount[iteration].amount * item.price
+            multiplyItemsCartButton.textContent = document.querySelector('.cart-cart').children.length
+            iteration++;
+        })
+        total.textContent = `total price: ${totalPrice}`
+        document.querySelector('#total-price').value = `${totalPrice}`
+        return;
+    }
 }
