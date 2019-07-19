@@ -7,8 +7,8 @@ const ITEMS = 8;
 class CustomElementNew extends HTMLElement {
     constructor() {
         super()
-        let wrapper = document.createElement('div')
-        wrapper.className = 'wrapper'
+        this.wrapper = document.createElement('div')
+        this.wrapper.className = 'wrapper'
         this.minusPlus = document.createElement('div')
         this.minusPlus.className = 'plus-minus'
         this.buttonMinus = document.createElement('button')
@@ -145,17 +145,17 @@ class CustomElementNew extends HTMLElement {
         this.minusPlus.appendChild(this.buttonPlus)
         this.minusPlus.appendChild(this.counterItem)
         this.minusPlus.appendChild(this.buttonMinus)
-        wrapper.appendChild(this.xButton)
-        wrapper.appendChild(this.iButton)
-        wrapper.appendChild(this.minusPlus)
-        wrapper.appendChild(this.idNum)
-        wrapper.appendChild(this.imgHolder)
-        wrapper.appendChild(this.itemTitle)
-        wrapper.appendChild(this.itemDescription)
-        wrapper.appendChild(this.itemPrise)
-        wrapper.appendChild(this.buttonItem)
+        this.wrapper.appendChild(this.xButton)
+        this.wrapper.appendChild(this.iButton)
+        this.wrapper.appendChild(this.minusPlus)
+        this.wrapper.appendChild(this.idNum)
+        this.wrapper.appendChild(this.imgHolder)
+        this.wrapper.appendChild(this.itemTitle)
+        this.wrapper.appendChild(this.itemDescription)
+        this.wrapper.appendChild(this.itemPrise)
+        this.wrapper.appendChild(this.buttonItem)
         this.shadow.appendChild(style)
-        this.shadow.appendChild(wrapper)
+        this.shadow.appendChild(this.wrapper)
     }
 
     showInfo() {
@@ -331,6 +331,11 @@ class CustomElementNew extends HTMLElement {
             this.multiplyItemsCart()
             let elem = document.querySelector('.cart-cart')
             let elemCart = document.createElement('new-element')
+            elemCart.wrapper.style = `
+                justify-content: space-between;
+                width: 80%;
+                display: flex;
+                align-items: center;`
             elemCart.minusPlus.style.display = 'block'
             elemCart.buttonItem.style.display = 'none'
             elemCart.itemDescription.style.display = 'none'
@@ -347,7 +352,10 @@ class CustomElementNew extends HTMLElement {
             document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
             this.increaseDecreaseProductAmount('add-to-cart')
         } else {
-            alert('matches wit item in cart')
+            allertFunc("Matches with item in the cart",'allert')
+            setTimeout(function () {
+                document.querySelector('.allert').remove()
+            }, 2000)
         }
     }
 
@@ -440,39 +448,9 @@ onloadGetData = function (page = 0, categoryId = 2) {
             });
         }
     } else {
-        let allert = document.createElement("div")
-        allert.style = `
-        max-width: 550px;
-        height: max-content;
-        display: flex;
-        flex-direction: column;
-        border: solid 2px black;
-        position: relative;
-        border-radius: 10px;
-        border: solid 1px #e5e5e5;
-        padding: 0 0 40px 0;
-        position: fixed;
-        top: 15%;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        background-color: #ffffff;
-        box-shadow: 0 0 10px 5000px rgba(60, 60, 60, 0.45);
-        align-items: center;
-        `
-        let message = document.createElement('p')
-        message.style = `
-            margin: 50px 0;
-            font-size: 50px;
-            text-align: center;
-            padding: 50px;
-        `
-        message.textContent = 'No products in that category yet'
-        allert.appendChild(message)
-        document.body.appendChild(allert)
+        allertFunc("No products in that category yet",'allert')
         setTimeout(function () {
-            allert.remove()
+            document.querySelector('.allert').remove()
         }, 2000)
     }
 
@@ -495,6 +473,11 @@ onloadPage = function () {
     if (info !== 200) {
         info.productsInfo.forEach(item => {
             let elem = document.createElement('new-element')
+            elem.wrapper.style = `
+                justify-content: space-between;
+                width: 80%;
+                display: flex;
+                align-items: center;`
             elem.minusPlus.style.display = 'block'
             elem.buttonItem.style.display = 'none'
             elem.itemDescription.style.display = 'none'
@@ -580,6 +563,14 @@ document.querySelector('.close-info').onclick = () => {
         toRemoveContent.removeChild(toRemoveContent.firstChild)
     }
     document.querySelector('.product-info')
+        .style = `display: none; z-index: -1;`
+}
+document.querySelector('.close-history').onclick = () => {
+    let toRemoveContent = document.querySelector('.order-history-content')
+    while (toRemoveContent.firstChild) {
+        toRemoveContent.removeChild(toRemoveContent.firstChild)
+    }
+    document.querySelector('.order-history')
         .style = `display: none; z-index: -1;`
 }
 
@@ -736,6 +727,15 @@ let dropdownHistory = dropdown.appendChild(document.createElement('a'))
 dropdownHistory.textContent = 'Order history'
 dropdownHistory.style.cursor = 'pointer'
 dropdownHistory.style.margin = '10px'
+dropdownHistory.onclick = (e)=> {
+    let orderHistoryContent = document.querySelector('.order-history-content')
+
+    let orderHistory = document.querySelector('.order-history')
+    orderHistory.style = `display: block; z-index: 9999999999;`
+}
+
+
+
 let dropdownA = dropdown.appendChild(document.createElement('a'))
 dropdownA.textContent = 'Change password'
 dropdownA.style.cursor = 'pointer'
