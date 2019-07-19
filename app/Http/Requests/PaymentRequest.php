@@ -26,6 +26,9 @@ class PaymentRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return array
+     */
     public function messages(): array
     {
         return [

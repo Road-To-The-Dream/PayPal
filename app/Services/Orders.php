@@ -13,7 +13,11 @@ class Orders
         $this->productsService = $objProduct;
     }
 
-    public function getArrayProductsInfo($request)
+    /**
+     * @param $request
+     * @return array
+     */
+    public function getArrayProductsInfo($request): array
     {
         $productsId = $this->productsService->getProductsId($request);
         $uniqueProductsId = array_unique($productsId);
@@ -21,9 +25,9 @@ class Orders
         $counts = array_count_values($productsId);
 
         $iteration = 0;
-        $productInfo = [];
+        $productsInfo = [];
         foreach ($uniqueProductsId as $item) {
-            array_push($productInfo, [
+            array_push($productsInfo, [
                 'product_id' => $item,
                 'product_price' => $productsPrice[$iteration]->price,
                 'product_amount' => $counts[$item],
@@ -34,6 +38,6 @@ class Orders
             $iteration++;
         }
 
-        return $productInfo;
+        return $productsInfo;
     }
 }

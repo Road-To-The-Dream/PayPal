@@ -4,10 +4,15 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use App\Model\Product;
+use Illuminate\Http\JsonResponse;
 
 class Products
 {
-    public function getProductsId(Request $request)
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function getProductsId(Request $request): array
     {
         $productsId = [];
 
@@ -18,7 +23,11 @@ class Products
         return $productsId;
     }
 
-    public function isAmount(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function isAmount(Request $request): JsonResponse
     {
         $productId = $this->getProductsId($request);
 
@@ -41,7 +50,11 @@ class Products
         return response()->json(200);
     }
 
-    public function getProductAmountInSession(Request $request)
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function getProductAmountInSession(Request $request): array
     {
         $productsId = $this->getProductsId($request);
 
@@ -56,5 +69,26 @@ class Products
         }
 
         return $productInfo;
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function decreaseProductAmount(Request $request): void
+    {
+        $productsId = $this->getProductsId($request);
+        $uniqueProductsId = array_unique($productsId);
+
+        $productsInfo = Product::whereIn('id', $uniqueProductsId)->get();
+
+        $counts = array_count_values($productsId);
+
+        $iteration = 0;
+        foreach ($uniqueProductsId as $product) {
+            Product::where('id', $product)
+                ->update(['amount' => $productsInfo[$iteration]->amount - $counts[$product]]);
+
+            $iteration++;
+        }
     }
 }

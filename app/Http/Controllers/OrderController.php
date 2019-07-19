@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PaymentRequest;
 use App\Model\Order;
+use App\Model\Product;
 use App\Services\Orders;
 use App\Services\PayPal;
 use App\Services\Products;
 use Illuminate\Http\RedirectResponse;
 use Mockery\Exception;
+use Illuminate\Http\JsonResponse;
 
 class OrderController extends Controller
 {
@@ -23,12 +25,17 @@ class OrderController extends Controller
         $this->orderService = $objOrder;
     }
 
-    public function store(PaymentRequest $request)
+    /**
+     * @param PaymentRequest $request
+     * @return JsonResponse
+     */
+    public function store(PaymentRequest $request): JsonResponse
     {
-        $w = 2;
         try {
             $newOrder = Order::create();
             $newOrder->products()->sync($this->orderService->getArrayProductsInfo($request));
+
+            $this->productService->decreaseProductAmount($request);
 
             $request->session()->forget('productsId');
         } catch (Exception $ex) {
