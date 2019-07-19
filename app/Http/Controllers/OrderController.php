@@ -11,6 +11,7 @@ use App\Services\Products;
 use Illuminate\Http\RedirectResponse;
 use Mockery\Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -23,6 +24,15 @@ class OrderController extends Controller
         $this->payService = $objPayPal;
         $this->productService = $objProduct;
         $this->orderService = $objOrder;
+    }
+
+    public function index()
+    {
+        $w = Order::find(1)->products()->get();
+
+        return response()->json([
+            'orders' => Order::find(1)->products()->get(),
+        ], 200);
     }
 
     /**
