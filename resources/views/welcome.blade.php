@@ -24,7 +24,6 @@
             color: #636b6f;
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
-            height: 100vh;
             margin: 0;
         }
 
@@ -170,24 +169,26 @@
                 <div class="miltiply-items-button">0</div>
                 <img src="https://www.freepngimg.com/thumb/cart/8-2-cart-picture.png"/>Cart
             </button>
-            <div class="cart">
-                <button class="x">x</button>
-                <p class="total"></p>
-                <div class='cart-cart'></div>
-                <form id="pay-form" action="{!! URL::to('pay') !!}" method="POST">
-                    @csrf
-                    <div class="pay-pal-inputs">
-                        <p id="errors-pay"></p>
-                        <span>Email</span>
-                        <input id="pay_email" type="text" name="pay_email" placeholder="Enter EMAIL"
-                               value="@guest @else {{ Auth::user()->email }} @endguest">
-                        <span>Phone</span>
-                        <input id="pay_phone" type="text" name="pay_phone" placeholder="Enter Phone"
-                               value="@guest @else {{ Auth::user()->phone }} @endguest">
-                        <input class="w3-input w3-border" id="total-price" type="hidden" name="total_price" value="">
-                    </div>
-                </form>
-                <button id="btn-pay" class="w3-btn w3-blue">Pay with PayPal</button>
+            <div class="cart-wrapper">
+                <div class="cart">
+                    <button class="x">x</button>
+                    <p class="total"></p>
+                    <div class='cart-cart'></div>
+                    <form id="pay-form" action="{!! URL::to('pay') !!}" method="POST">
+                        @csrf
+                        <div class="pay-pal-inputs">
+                            <p id="errors-pay"></p>
+                            <span>Email</span>
+                            <input maxlength="25" id="pay_email" type="text" name="pay_email" placeholder="Enter EMAIL"
+                                   value="@guest @else {{ Auth::user()->email }} @endguest">
+                            <span>Phone</span>
+                            <input maxlength="25" id="pay_phone" type="text" name="pay_phone" placeholder="Enter Phone"
+                                   value="@guest @else {{ Auth::user()->phone }} @endguest">
+                            <input class="w3-input w3-border" id="total-price" type="hidden" name="total_price" value="">
+                        </div>
+                    </form>
+                    <button id="btn-pay" class="w3-btn w3-blue">Pay with PayPal</button>
+                </div>
             </div>
             <div class="products"></div>
         </div>
@@ -231,22 +232,23 @@
             </div>
         </div>
     </footer>
-
-    <div class="product-info">
-        <div class="close-info">X</div>
-        <p class="product-info-id"></p>
-        <div class="product-info-content">
-            <div class="slider single-item">
-                <ul id="slides"></ul>
-                <button class="controls" id="previous"><<<</button>
-                <button class="controls" id="pause">||</button>
-                <button class="controls" id="next">>>></button>
-            </div>
-            <div class="product-info-content-details">
-                <h2 class="product-info-title"></h2>
-                <h3 class="product-info-description"></h3>
-                <div class="product-info-characteristics"></div>
-                <h3 class="product-info-price"></h3>
+    <div class="product-info-wrapper">
+        <div class="product-info">
+            <div class="close-info">X</div>
+            <p class="product-info-id"></p>
+            <div class="product-info-content">
+                <div class="slider single-item">
+                    <ul id="slides"></ul>
+                    <button class="controls" id="previous"><<<</button>
+                    <button class="controls" id="pause">||</button>
+                    <button class="controls" id="next">>>></button>
+                </div>
+                <div class="product-info-content-details">
+                    <h2 class="product-info-title"></h2>
+                    <h3 class="product-info-description"></h3>
+                    <div class="product-info-characteristics"></div>
+                    <h3 class="product-info-price"></h3>
+                </div>
             </div>
         </div>
     </div>
@@ -263,23 +265,23 @@
                 <p id="errors-register"></p>
                 <label>
                     <span>Name</span>
-                    <input type="text" id="name" name="name">
+                    <input maxlength="25" type="text" id="name" name="name">
                 </label>
                 <label for="email">
                     <span>Email</span>
-                    <input type="text" id="email-register" name="email">
+                    <input maxlength="25" type="text" id="email-register" name="email">
                 </label>
                 <label>
                     <span>Phone</span>
-                    <input type="text" id="phone-register" name="phone">
+                    <input maxlength="25" type="text" id="phone-register" name="phone">
                 </label>
                 <label>
                     <span>Password</span>
-                    <input type="password" id="password-register" name="password">
+                    <input maxlength="25" type="password" id="password-register" name="password">
                 </label>
                 <label>
                     <span>Confirm password</span>
-                    <input type="password" id="password_confirmation" name="password_confirmation">
+                    <input maxlength="25" type="password" id="password_confirmation" name="password_confirmation">
                 </label>
                 <button type="button" id="submit-register" name="submit" class="form_button_registration">Go on</button>
             </div>
@@ -299,11 +301,11 @@
                 <p id="errors-login"></p>
                 <label for="email">
                     <span>Email</span>
-                    <input id="email" type="text" name="email">
+                    <input maxlength="25" id="email" type="text" name="email">
                 </label>
                 <label for="password">
                     <span>Password</span>
-                    <input id="password" type="password" name="password">
+                    <input maxlength="25" id="password" type="password" name="password">
                 </label>
                 <button id="submit-login" type="button" name="submit" class="form_button_log_in">Go on</button>
             </div>

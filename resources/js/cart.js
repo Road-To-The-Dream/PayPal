@@ -1,7 +1,7 @@
 document.querySelector('.but-cart').onclick = e => {
     let identifier = document.querySelector('.miltiply-items-button')
     if (+identifier.textContent !== 0) {
-        document.querySelector('.cart').style = `display: block; z-index: 9999;`
+        document.querySelector('.cart-wrapper').style = `display: block; z-index: 9999;`
         document.documentElement.style = `overflow: hidden !important;`
     } else {
         allertFunc("The cart is empty", 'allert')
@@ -12,7 +12,7 @@ document.querySelector('.but-cart').onclick = e => {
 }
 let x = document.querySelector('.x')
 x.onclick = e => {
-    document.querySelector('.cart').style = `display: none; z-index: -1;`
+    document.querySelector('.cart-wrapper').style = `display: none; z-index: -1;`
     document.documentElement.style.overflow = 'auto'
 }
 

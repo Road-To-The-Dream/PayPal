@@ -281,8 +281,9 @@ class CustomElementNew extends HTMLElement {
             parag.appendChild(pivot)
             characteristics.appendChild(parag)
         })
-        let infoBox = document.querySelector('.product-info')
-        infoBox.style = `display: block; z-index: 9999999999;`
+        let infoBox = document.querySelector('.product-info-wrapper')
+        infoBox.style = `display: block; z-index: 999999999999999999;`
+        document.documentElement.style = 'overflow: hidden;'
     }
     plusItem() {
         this.increaseDecreaseProductAmount('decrease-product-amount');
@@ -378,15 +379,25 @@ class CustomElementNew extends HTMLElement {
         document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
         this.remove()
         if (!document.querySelector('.cart-cart').children.length) {
-            document.querySelector('.cart').style = `display: none; z-index: -1;`
+            document.querySelector('.cart-wrapper').style = `display: none; z-index: -1;`
             document.documentElement.style.overflow = 'auto'
         }
     }
 }
 customElements.define('new-element', CustomElementNew)
 let allertFunc = function (mess, clas) {
+    let wrapper = document.createElement('div')
     let allert = document.createElement("div")
-    allert.className = `${clas}`
+
+    wrapper.className = `${clas}`
+    wrapper.style = `
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 99999999999;`
     allert.style = `
                     max-width: 550px;
                     height: max-content;
@@ -418,12 +429,13 @@ let allertFunc = function (mess, clas) {
 
     message.textContent = `${mess}`
     allert.appendChild(message)
-    document.body.appendChild(allert)
+    wrapper.appendChild(allert)
+    document.body.appendChild(wrapper)
 }
 document.querySelector('.but-cart').onclick = e => {
     let identifier = document.querySelector('.miltiply-items-button')
     if (+identifier.textContent !== 0) {
-        document.querySelector('.cart').style = `display: block; z-index: 9999;`
+        document.querySelector('.cart-wrapper').style = `display: block; z-index: 9999;`
         document.documentElement.style = `overflow: hidden !important;`
     } else {
         allertFunc("The cart is empty", 'allert')
@@ -434,7 +446,7 @@ document.querySelector('.but-cart').onclick = e => {
 }
 let x = document.querySelector('.x')
 x.onclick = e => {
-    document.querySelector('.cart').style = `display: none; z-index: -1;`
+    document.querySelector('.cart-wrapper').style = `display: none; z-index: -1;`
     document.documentElement.style.overflow = 'auto'
 }
 
@@ -473,8 +485,9 @@ document.querySelector('.close-info').onclick = () => {
     while (toRemoveContent.firstChild) {
         toRemoveContent.removeChild(toRemoveContent.firstChild)
     }
-    document.querySelector('.product-info')
+    document.querySelector('.product-info-wrapper')
         .style = `display: none; z-index: -1;`
+    document.documentElement.style = 'overflow: auto;'
 }
 function diplay_hide(blockId) {
     if ($(blockId).css('display') === 'none') {
@@ -614,16 +627,19 @@ oldPass.type = 'password'
 oldPass.className = 'pas-change-input'
 oldPass.placeholder = 'Old pasword'
 oldPass.name = 'old_password'
+oldPass.maxLength = '23'
 let newPass = document.createElement('input')
 newPass.type = 'password'
 newPass.className = 'pas-change-input'
 newPass.placeholder = 'New password'
 newPass.name = 'new_password'
+newPass.maxLength = '23'
 let comfim = document.createElement('input')
 comfim.type = 'password'
 comfim.className = 'pas-change-input'
 comfim.placeholder = 'Confirm new password'
 comfim.name = 'password_confirmation'
+comfim.maxLength = '23'
 let btn = document.createElement('button')
 btn.textContent = 'Submit'
 btn.id = 'submit-change-password';

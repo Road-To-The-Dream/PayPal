@@ -490,6 +490,15 @@ body {
     color: white;
 }
 
+.cart-wrapper{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+}
 .cart {
     border: solid 3px #6a9ba0;
     border-radius: 20px;
@@ -497,7 +506,6 @@ body {
     top: 0px;
     right: 0;
     left: 0;
-    display: none;
     width: 700px;
     padding: 20px;
     margin: 0 auto;
@@ -1293,12 +1301,19 @@ footer {
     text-align: center;
     font-size: 14px;
 }
-
+.product-info-wrapper{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+}
 .product-info {
     width: 79vw;
     height: max-content;
     text-align: center;
-    display: none;
     flex-direction: column;
     border-radius: 10px;
     border: solid 1px #e5e5e5;
