@@ -108,7 +108,7 @@
             <li class="main_tab">Categories
                 <ul class="submenu">
                     @foreach($categories as $category)
-                        <li onclick="onloadGetData(0, {{ $category->id }}), diplay_hide('.top_page_main_menu')">{{ $category->name }}</li>
+                        <li onclick="onloadGetData(0, {{ $category->id }}), hideMenu()">{{ $category->name }}</li>
                     @endforeach
                 </ul>
             </li>

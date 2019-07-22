@@ -45,3 +45,6 @@ let allertFunc = function (mess, clas) {
     wrapper.appendChild(allert)
     document.body.appendChild(wrapper)
 }
+let hideMenu = function () {
+    (window.innerWidth < 768) ? diplay_hide('.top_page_main_menu') : null
+}
