@@ -73,8 +73,9 @@ dropdownHistory.onclick = (e)=> {
         currentId = item.order_id
     })
     document.querySelector('.dropdown-xxx').style = `display: none; z-index: -1;`
-    let orderHistory = document.querySelector('.order-history')
+    let orderHistory = document.querySelector('.order-history-wrapper')
     orderHistory.style = `display: block; z-index: 9999999999;`
+    document.documentElement.style =`overflow: hidden;`
 }
 
 document.querySelector('.close-history').onclick = () => {
@@ -82,8 +83,9 @@ document.querySelector('.close-history').onclick = () => {
     while (toRemoveContent.firstChild) {
         toRemoveContent.removeChild(toRemoveContent.firstChild)
     }
-    document.querySelector('.order-history')
+    document.querySelector('.order-history-wrapper')
         .style = `display: none; z-index: -1;`
+    document.documentElement.style =`overflow: auto;`
 }
 
 let dropdownA = dropdown.appendChild(document.createElement('a'))
@@ -113,16 +115,19 @@ oldPass.type = 'password'
 oldPass.className = 'pas-change-input'
 oldPass.placeholder = 'Old pasword'
 oldPass.name = 'old_password'
+oldPass.maxLength = '23'
 let newPass = document.createElement('input')
 newPass.type = 'password'
 newPass.className = 'pas-change-input'
 newPass.placeholder = 'New password'
 newPass.name = 'new_password'
+newPass.maxLength = '23'
 let comfim = document.createElement('input')
 comfim.type = 'password'
 comfim.className = 'pas-change-input'
 comfim.placeholder = 'Confirm new password'
 comfim.name = 'password_confirmation'
+comfim.maxLength = '23'
 let btn = document.createElement('button')
 btn.textContent = 'Submit'
 btn.id = 'submit-change-password';

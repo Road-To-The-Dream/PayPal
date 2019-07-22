@@ -7,6 +7,7 @@ document.querySelector('.close-info').onclick = () => {
     while (toRemoveContent.firstChild) {
         toRemoveContent.removeChild(toRemoveContent.firstChild)
     }
-    document.querySelector('.product-info')
+    document.querySelector('.product-info-wrapper')
         .style = `display: none; z-index: -1;`
+    document.documentElement.style = 'overflow: auto;'
 }

@@ -281,8 +281,9 @@ class CustomElementNew extends HTMLElement {
             parag.appendChild(pivot)
             characteristics.appendChild(parag)
         })
-        let infoBox = document.querySelector('.product-info')
-        infoBox.style = `display: block; z-index: 9999999999;`
+        let infoBox = document.querySelector('.product-info-wrapper')
+        infoBox.style = `display: block; z-index: 999999999999999999;`
+        document.documentElement.style = 'overflow: hidden;'
     }
     plusItem() {
         this.increaseDecreaseProductAmount('decrease-product-amount');
@@ -378,7 +379,7 @@ class CustomElementNew extends HTMLElement {
         document.querySelector('#total-price').value = `${+total.textContent.slice(12)}`
         this.remove()
         if (!document.querySelector('.cart-cart').children.length) {
-            document.querySelector('.cart').style = `display: none; z-index: -1;`
+            document.querySelector('.cart-wrapper').style = `display: none; z-index: -1;`
             document.documentElement.style.overflow = 'auto'
         }
     }

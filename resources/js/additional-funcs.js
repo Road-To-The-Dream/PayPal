@@ -1,6 +1,16 @@
 let allertFunc = function (mess, clas) {
+    let wrapper = document.createElement('div')
     let allert = document.createElement("div")
-    allert.className = `${clas}`
+
+    wrapper.className = `${clas}`
+    wrapper.style = `
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 99999999999;`
     allert.style = `
                     max-width: 550px;
                     height: max-content;
@@ -32,5 +42,6 @@ let allertFunc = function (mess, clas) {
 
     message.textContent = `${mess}`
     allert.appendChild(message)
-    document.body.appendChild(allert)
+    wrapper.appendChild(allert)
+    document.body.appendChild(wrapper)
 }
