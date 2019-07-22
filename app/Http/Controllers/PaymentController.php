@@ -49,14 +49,14 @@ class PaymentController extends Controller
         $item_1->setName('Телевизор')
             ->setCurrency('USD')
             ->setQuantity(1)
-            ->setPrice($request->get('total-price'));
+            ->setPrice($request->get('total_price'));
 
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
 
         $amount = new Amount();
         $amount->setCurrency('USD')
-            ->setTotal($request->get('total-price'));
+            ->setTotal($request->get('total_price'));
 
         $transaction = new Transaction();
         $transaction->setAmount($amount)

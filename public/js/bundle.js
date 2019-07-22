@@ -460,7 +460,7 @@ document.getElementById("btn-pay").onclick = (function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             data: {
-                total_price: $('input[name="total-price"]').val(),
+                total_price: $('input[name="total_price"]').val(),
                 pay_email: $('input[name="pay_email"]').val(),
                 pay_phone: $('input[name="pay_phone"]').val(),
             },
@@ -471,7 +471,9 @@ document.getElementById("btn-pay").onclick = (function () {
                 //     document.querySelector('.allert').remove()
                 //     location.reload()
                 // }, 2000)
-                sendPay();
+
+                document.getElementById('pay-form').submit();
+                //document.querySelector('#dynamic-pay').click();
             },
             error: function (response) {
                 $('#errors-pay').empty();
@@ -483,29 +485,6 @@ document.getElementById("btn-pay").onclick = (function () {
         })
     }
 });
-
-function sendPay() {
-    $.ajax({
-        url: 'pay',
-        type: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: {
-            total_price: $('input[name="total-price"]').val(),
-        },
-        success: function (response) {
-        },
-        error: function (response) {
-            $('#errors-pay').empty();
-
-            $.each(response['responseJSON']['errors'], function (key, value) {
-                $('#errors-pay').append(key + ": " + value + "</br>");
-            });
-        }
-    })
-}
-
 document.querySelector('.close-info').onclick = () => {
     let elemq = document.querySelector('#slides')
     while (elemq.firstChild) {
@@ -557,7 +536,7 @@ dropdownHistory.onclick = (e)=> {
                                 padding: 30px 0;
                                 border-top: solid 2px #6a9ba0;
                                 margin: 0 auto;
-                                max-height: 45vh;
+                                max-height: 30vh;
                                 overflow-y: auto;
                                 `
     let currentId = 0

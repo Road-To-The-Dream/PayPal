@@ -15,7 +15,7 @@ dropdownHistory.onclick = (e)=> {
                                 padding: 30px 0;
                                 border-top: solid 2px #6a9ba0;
                                 margin: 0 auto;
-                                max-height: 45vh;
+                                max-height: 30vh;
                                 overflow-y: auto;
                                 `
     let currentId = 0
