@@ -50,7 +50,6 @@ class CustomElementNew extends HTMLElement {
         let style = document.createElement('style')
         style.textContent = `
             .wrapper{
-                cursor: pointer;
                 width: 200px;
                 height: auto;
                 border: solid 3px #6a9ba0;
