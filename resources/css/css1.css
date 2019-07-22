@@ -810,9 +810,8 @@ body {
 }
 
 .top_page_logo img {
-    filter: brightness(0);
-    width: 300px;
-    height: 65px;
+    width: 400px;
+    height: 95px;
     margin: 16px 0 19px 0;
 }
 
@@ -1005,7 +1004,6 @@ footer {
 }
 
 .bottom_page_logo img {
-    filter: brightness(0);
     width: 320px;
     height: auto;
 }
@@ -2031,7 +2029,7 @@ footer {
         display: block;
     }
     .order-history{
-        width: 97vw;
+        width: 79vw;
     }
 
 
@@ -2054,7 +2052,6 @@ footer {
     }
 
     .top_page_logo_small img {
-        filter: brightness(0);
         width: 36px;
         height: 26px;
     }

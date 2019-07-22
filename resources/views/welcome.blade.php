@@ -47,11 +47,11 @@
     <header>
         <div class="top_page">
             <div class="top_page_logo">
-                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Coca-Cola_Light_logo.png"
+                <a href="#"><img src="https://cdn.pixabay.com/photo/2018/03/14/16/15/loading-bar-3225607_960_720.png"
                                  alt="top_log"></a>
             </div>
             <div class="top_page_logo_small">
-                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Coca-Cola_Light_logo.png"
+                <a href="#"><img src="https://cdn.pixabay.com/photo/2018/03/14/16/15/loading-bar-3225607_960_720.png"
                                  alt="top_log"></a>
             </div>
             <div class="top_page_navigation">
@@ -193,7 +193,7 @@
     <footer>
         <div class="bottom_page">
             <div class="bottom_page_logo">
-                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Coca-Cola_Light_logo.png"
+                <a href="#"><img src="https://cdn.pixabay.com/photo/2018/03/14/16/15/loading-bar-3225607_960_720.png"
                                  alt="top_log"></a>
                 <p class="under_logo_bottom">© Test-TEST 2019</p>
             </div>
