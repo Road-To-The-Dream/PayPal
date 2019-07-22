@@ -29,7 +29,7 @@ class OrderController extends Controller
 
     public function index(Request $request)
     {
-        $w = DB::table('orders')
+        $orders = DB::table('orders')
             ->join('orders_products', 'orders_products.order_id', '=', 'orders.id')
             ->join('products', 'orders_products.product_id', '=', 'products.id')
             ->select(
@@ -49,7 +49,7 @@ class OrderController extends Controller
 //        })->get();
 
         return response()->json([
-            'orders' => $w
+            'orders' => $orders
         ], 200);
     }
 
