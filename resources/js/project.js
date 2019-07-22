@@ -140,6 +140,31 @@ class CustomElementNew extends HTMLElement {
                 color: #6a9ba0;
                 border: solid 2px #6a9ba0;
                 }
+            @media (max-width: 767px){
+                .wrapper{
+                    justify-content: space-between;
+                    width: 87vw;
+                    display: flex;
+                    align-items: center;
+                    margin: 10px auto;
+                    padding: 20px 5px;
+                }
+                .item-description{
+                display: none;
+                }
+                .button-item{
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+                }
+                .img-holder img{
+                    max-height: 70px;
+                }
+                .plus-minus{
+                top: 5%;
+                right: -43px;
+                }
+             }
         `
         this.imgHolder.appendChild(this.imgItem)
         this.minusPlus.appendChild(this.buttonPlus)
@@ -308,10 +333,11 @@ class CustomElementNew extends HTMLElement {
             let elem = document.querySelector('.cart-cart')
             let elemCart = document.createElement('new-element')
             elemCart.wrapper.style = `
-                justify-content: space-between;
-                width: 80%;
-                display: flex;
-                align-items: center;`
+                    justify-content: space-between;
+    width: 75%;
+    display: flex;
+    align-items: center;
+    margin: 10px;`
             elemCart.minusPlus.style.display = 'block'
             elemCart.buttonItem.style.display = 'none'
             elemCart.itemDescription.style.display = 'none'

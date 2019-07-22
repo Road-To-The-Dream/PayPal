@@ -546,7 +546,6 @@ body {
 
 .order-history {
     width: 79vw;
-    max-height: 680px;
     text-align: center;
     display: none;
     flex-direction: column;
@@ -1701,7 +1700,12 @@ footer {
         align-items: center;
         padding: 40px 30px;
     }
-
+    .product-info-content{
+        display: block;
+    }
+    .product-info{
+        width: 92vw;
+    }
     .top_page {
         align-items: center;
         padding: 0 115px;
@@ -1952,7 +1956,40 @@ footer {
         padding: 0 15px;
     }
 
+    .order{
+        padding: 40px 0;
+    }
+    .products{
+        padding: 40px 10px;
+    }
+    .but-cart{
+        width: 60px;
+        font-size: 16px;
+    }
+    .but-cart img{
+        width: 20px;
+    }
+    .miltiply-items-button{
+        width: 25px;
+        height: 25px;
+        top: -15px;
+        left: -15px;
+    }
+    .cart{
+        width: 90vw;
+        padding: 10px 0;
+    }
+    .cart-cart{
+        width: 90vw;
+    }
+    .product-info-content{
+        display: block;
+    }
+
+
+
     .top_page_navigation {
+
         align-items: center;
         display: flex;
         flex-direction: row;

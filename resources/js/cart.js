@@ -29,7 +29,7 @@ document.getElementById("btn-pay").onclick = (function () {
             total_price: $('#total-price').val(),
         },
         success: function () {
-            //document.getElementById('pay-form').submit();
+            document.getElementById('pay-form').submit();
             console.log("success");
         },
         error: function (response) {

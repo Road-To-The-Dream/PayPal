@@ -100,5 +100,40 @@ onloadPage = function () {
             document.querySelector('#total-price').value = `${totalPrice}`
             return;
         }
+        null
+    }
+    let info = JSON.parse(xhr.response);
+    let totalPrice = 0;
+    let iteration = 0;
+    if (info !== 200) {
+        info.productsInfo.forEach(item => {
+            let elem = document.createElement('new-element')
+            elem.wrapper.style = `
+                    justify-content: space-between;
+    width: 75%;
+    display: flex;
+    align-items: center;
+    margin: 10px;`
+            elem.minusPlus.style.display = 'block'
+            elem.buttonItem.style.display = 'none'
+            elem.itemDescription.style.display = 'none'
+            elem.xButton.style.display = 'block'
+            elem.id = `${item.id}copy`
+            elem.idNum.textContent = `product ID: ${item.id}`
+            elem.idNum.id = `${item.id}`
+            elem.imgItem.src = item.img
+            elem.itemTitle.textContent = item.title
+            elem.itemDescription.style.display = 'none'
+            elem.itemPrise.textContent = `${item.price} USD`
+            elem.counterItem.textContent = info.productsAmount[iteration].amount
+            document.querySelector('.cart-cart').appendChild(elem)
+            let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
+            totalPrice += info.productsAmount[iteration].amount * item.price
+            multiplyItemsCartButton.textContent = document.querySelector('.cart-cart').children.length
+            iteration++;
+        })
+        total.textContent = `total price: ${totalPrice}`
+        document.querySelector('#total-price').value = `${totalPrice}`
+        return;
     }
 }
