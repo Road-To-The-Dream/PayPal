@@ -452,17 +452,22 @@ document.getElementById("btn-pay").onclick = (function () {
         },
         success: function () {
             document.getElementById('pay-form').submit();
-            console.log("success");
         },
         error: function (response) {
-            $('#errors-pay').empty();
+            if (response['status'] === 300) {
+                allertFunc(response['responseJSON']['message'], 'allert')
+                setTimeout(function () {
+                    document.querySelector('.allert').remove()
+                }, 3000)
+            } else {
+                $('#errors-pay').empty();
 
-            $.each(response['responseJSON']['errors'], function (key, value) {
-                $('#errors-pay').append(key + ": " + value + "</br>");
-            });
+                $.each(response['responseJSON']['errors'], function (key, value) {
+                    $('#errors-pay').append(key + ": " + value + "</br>");
+                });
+            }
         }
     })
-
 });
 document.querySelector('.close-info').onclick = () => {
     let elemq = document.querySelector('#slides')
@@ -607,8 +612,7 @@ passwordChangeBlock.style = `
                     
         `
 let errorsBlockChangePassword = document.createElement('div')
-errorsBlockChangePassword.id = 'errors-block-change-password'
-errorsBlockChangePassword.style.color = '#6a9ba0'
+errorsBlockChangePassword.id = 'errors-change-password'
 let oldPass = document.createElement('input')
 oldPass.type = 'password'
 oldPass.className = 'pas-change-input'
@@ -720,12 +724,12 @@ document.getElementById("submit-change-password").onclick = (function () {
             location.reload();
         },
         error: function (response) {
-            $('#errors-block-change-password').empty();
+            $('#errors-change-password').empty();
             if (response['responseJSON']['response'] === 'false') {
-                $('#errors-block-change-password').append(response['responseJSON']['errors']);
+                $('#errors-change-password').append(response['responseJSON']['errors']);
             } else {
                 $.each(response['responseJSON']['errors'], function (key, value) {
-                    $('#errors-block-change-password').append(key + ": " + value + "</br></br>");
+                    $('#errors-change-password').append(key + ": " + value + "</br></br>");
                 });
             }
         }

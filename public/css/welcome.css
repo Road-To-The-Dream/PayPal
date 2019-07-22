@@ -539,7 +539,7 @@ body {
 /*    z-index: -8;*/
 /*}*/
 
-#errors-pay, #errors-register, #errors-login {
+#errors-pay, #errors-register, #errors-login, #errors-change-password {
     color: #aa0000;
 }
 
