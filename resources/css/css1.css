@@ -2030,7 +2030,9 @@ footer {
     .product-info-content{
         display: block;
     }
-
+    .order-history{
+        width: 97vw;
+    }
 
 
     .top_page_navigation {
@@ -2090,6 +2092,7 @@ footer {
         background-color: #fff;
         -webkit-transition: opacity 600ms, visibility 600ms;
         transition: opacity 600ms, visibility 600ms;
+        margin: 60px 25px 0;
     }
 
     .top_page_main_menu .tab_navi, .top_page_main_menu .main_tab_lang {
@@ -2105,7 +2108,6 @@ footer {
         text-align: left;
         color: black;
         font-size: 14px;
-        font-family: RobotoRegular;
         border-bottom: solid 1px #80808052;
     }
 
@@ -2143,7 +2145,10 @@ footer {
     }
 
     ul.top_page_main_menu > li {
+        padding: 30px;
         position: relative;
+        font-size: 22px;
+        color: #6a9ba0;
     }
 
     ul.top_page_main_menu > li > a {
@@ -2172,12 +2177,13 @@ footer {
     }
 
     ul.submenu > li {
-        padding: 0;
+        color: #6a9ba0;
+        font-size: 20px;
+        padding: 26px;
         display: block;
         width: 100%;
         border: none;
         height: 25px;
-
     }
 
     ul.submenu > li > a {

@@ -433,10 +433,6 @@ let allertFunc = function (mess, clas) {
     document.body.appendChild(wrapper)
 }
 
-let hideMenu = function () {
-    document.querySelector('.top_page_main_menu').style.display === 'block' ?
-        document.querySelector('.top_page_main_menu').style.display = 'none' : null
-}
 document.querySelector('.but-cart').onclick = e => {
     let identifier = document.querySelector('.miltiply-items-button')
     if (+identifier.textContent !== 0) {

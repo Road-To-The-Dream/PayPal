@@ -99,34 +99,28 @@
             </div>
         </div>
         <ul class="top_page_main_menu">
-            <li class="tab_navi"><a href="#">Shop</a>
+{{--            <li class="tab_navi"><a href="#">Shop</a>--}}
 
-            </li>
-            <li class="tab_navi"><a href="#">Contacts</a>
+{{--            </li>--}}
+{{--            <li class="tab_navi"><a href="#">Contacts</a>--}}
 
-            </li>
+{{--            </li>--}}
             <li class="main_tab">Categories
                 <ul class="submenu">
                     @foreach($categories as $category)
-                        <li onclick="onloadGetData(0, {{ $category->id }}), hideMenu()">{{ $category->name }}</li>
+                        <li onclick="onloadGetData(0, {{ $category->id }}), diplay_hide('.top_page_main_menu')">{{ $category->name }}</li>
                     @endforeach
                 </ul>
             </li>
-            <li class="main_tab"><a href="#">Repearing servise</a>
-
-            </li>
-            <li class="main_tab"><a href="#">Repearing servise</a>
-
-            </li>
-            <li class="main_tab"><a href="#">Repearing servise</a>
-
-            </li>
-            <li class="main_tab_lang"><a href="#">Choose your language</a>
-                <ul class="submenu">
-                    <li><a href=#>Russian</a></li>
-                    <li><a href=#>English</a></li>
-                </ul>
-            </li>
+            <li class="main_tab">Repearing servise</li>
+            <li class="main_tab">Repearing servise</li>
+            <li class="main_tab">Repearing servise</li>
+{{--            <li class="main_tab_lang"><a href="#">Choose your language</a>--}}
+{{--                <ul class="submenu">--}}
+{{--                    <li><a href=#>Russian</a></li>--}}
+{{--                    <li><a href=#>English</a></li>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
         </ul>
     </header>
     @if ($message = Session::get('success'))
