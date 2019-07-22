@@ -45,3 +45,8 @@ let allertFunc = function (mess, clas) {
     wrapper.appendChild(allert)
     document.body.appendChild(wrapper)
 }
+
+let hideMenu = function () {
+    document.querySelector('.top_page_main_menu').style.display === 'block' ?
+        document.querySelector('.top_page_main_menu').style.display = 'none' : null
+}

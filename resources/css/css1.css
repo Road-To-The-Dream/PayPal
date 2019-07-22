@@ -503,7 +503,7 @@ body {
     border: solid 3px #6a9ba0;
     border-radius: 20px;
     position: absolute;
-    top: 130px;
+    top: 30px;
     right: 0;
     left: 0;
     width: 700px;
@@ -2566,15 +2566,21 @@ footer {
     }
 }
 
+
 .message-pay-success, .message-pay-error {
-    color: black;
+    padding: 5px;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    /* color: black; */
     margin-top: 30px;
-    width: 50%;
+    /* width: 50%; */
     font-size: 22px;
     font-family: 'Open Sans', sans-serif;
     line-height: 27.9px;
+    margin: 30px auto;
+    width: 73vw;
 }
-
 .message-pay-success {
     background-color: #38c172;
 }

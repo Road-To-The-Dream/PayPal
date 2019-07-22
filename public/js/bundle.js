@@ -432,6 +432,11 @@ let allertFunc = function (mess, clas) {
     wrapper.appendChild(allert)
     document.body.appendChild(wrapper)
 }
+
+let hideMenu = function () {
+    document.querySelector('.top_page_main_menu').style.display === 'block' ?
+        document.querySelector('.top_page_main_menu').style.display = 'none' : null
+}
 document.querySelector('.but-cart').onclick = e => {
     let identifier = document.querySelector('.miltiply-items-button')
     if (+identifier.textContent !== 0) {
@@ -534,63 +539,68 @@ dropdownHistory.onclick = (e)=> {
                                 padding: 30px 0;
                                 border-top: solid 2px #6a9ba0;
                                 margin: 0 auto;
-                                max-height: 30vh;
+                                max-height: 50vh;
                                 overflow-y: auto;
                                 `
     let currentId = 0
-    JSON.parse(xhr.response).orders.forEach(item => {
-        if (currentId === item.order_id) {
-            let currentDiv = document.querySelector(`#order-${currentId}`)
-            let parag = document.createElement('p')
-            parag.style =`display: flex; justify-content: space-around; align-items: center;`
-            let spanID = document.createElement('span')
-            spanID.textContent = item.order_id
-            let spanImg = document.createElement('span')
-            let imgProduct = document.createElement('img')
-            imgProduct.style.width = '100px'
-            imgProduct.src = item.img
-            let spanTitle = document.createElement('span')
-            spanTitle.textContent = item.title
-            let spanPrice = document.createElement('span')
-            spanPrice.textContent = `${item.product_price} USD  x ${item.product_amount}`
-            let spanTotalPrice = document.createElement('span')
-            spanTotalPrice.textContent = `${item.product_price * item.product_amount} USD`
-            parag.appendChild(spanID)
-            spanImg.appendChild(imgProduct)
-            parag.appendChild(spanImg)
-            parag.appendChild(spanTitle)
-            parag.appendChild(spanPrice)
-            parag.appendChild(spanTotalPrice)
-            currentDiv.appendChild(parag)
-        }else {
-            let elenm = document.createElement('div')
-            elenm.className = 'orders'
-            elenm.id = `order-${item.order_id}`
-            let parag = document.createElement('p')
-            parag.style =`display: flex; justify-content: space-around; align-items: center;`
-            let spanID = document.createElement('span')
-            spanID.textContent = item.order_id
-            let spanImg = document.createElement('span')
-            let imgProduct = document.createElement('img')
-            imgProduct.style.width = '100px'
-            imgProduct.src = item.img
-            let spanTitle = document.createElement('span')
-            spanTitle.textContent = item.title
-            let spanPrice = document.createElement('span')
-            spanPrice.textContent = `${item.product_price} USD  x ${item.product_amount}`
-            let spanTotalPrice = document.createElement('span')
-            spanTotalPrice.textContent = `${item.product_price * item.product_amount} USD`
-            parag.appendChild(spanID)
-            spanImg.appendChild(imgProduct)
-            parag.appendChild(spanImg)
-            parag.appendChild(spanTitle)
-            parag.appendChild(spanPrice)
-            parag.appendChild(spanTotalPrice)
-            elenm.appendChild(parag)
-            orderHistoryContent.appendChild(elenm)
-        }
-        currentId = item.order_id
-    })
+    if (JSON.parse(xhr.response).orders.length) {
+
+        JSON.parse(xhr.response).orders.forEach(item => {
+            if (currentId === item.order_id) {
+                let currentDiv = document.querySelector(`#order-${currentId}`)
+                let parag = document.createElement('p')
+                parag.style = `display: flex; justify-content: space-around; align-items: center;`
+                let spanID = document.createElement('span')
+                spanID.textContent = item.order_id
+                let spanImg = document.createElement('span')
+                let imgProduct = document.createElement('img')
+                imgProduct.style.width = '100px'
+                imgProduct.src = item.img
+                let spanTitle = document.createElement('span')
+                spanTitle.textContent = item.title
+                let spanPrice = document.createElement('span')
+                spanPrice.textContent = `${item.product_price} USD  x ${item.product_amount}`
+                let spanTotalPrice = document.createElement('span')
+                spanTotalPrice.textContent = `${item.product_price * item.product_amount} USD`
+                parag.appendChild(spanID)
+                spanImg.appendChild(imgProduct)
+                parag.appendChild(spanImg)
+                parag.appendChild(spanTitle)
+                parag.appendChild(spanPrice)
+                parag.appendChild(spanTotalPrice)
+                currentDiv.appendChild(parag)
+            } else {
+                let elenm = document.createElement('div')
+                elenm.className = 'orders'
+                elenm.id = `order-${item.order_id}`
+                let parag = document.createElement('p')
+                parag.style = `display: flex; justify-content: space-around; align-items: center;`
+                let spanID = document.createElement('span')
+                spanID.textContent = item.order_id
+                let spanImg = document.createElement('span')
+                let imgProduct = document.createElement('img')
+                imgProduct.style.width = '100px'
+                imgProduct.src = item.img
+                let spanTitle = document.createElement('span')
+                spanTitle.textContent = item.title
+                let spanPrice = document.createElement('span')
+                spanPrice.textContent = `${item.product_price} USD  x ${item.product_amount}`
+                let spanTotalPrice = document.createElement('span')
+                spanTotalPrice.textContent = `${item.product_price * item.product_amount} USD`
+                parag.appendChild(spanID)
+                spanImg.appendChild(imgProduct)
+                parag.appendChild(spanImg)
+                parag.appendChild(spanTitle)
+                parag.appendChild(spanPrice)
+                parag.appendChild(spanTotalPrice)
+                elenm.appendChild(parag)
+                orderHistoryContent.appendChild(elenm)
+            }
+            currentId = item.order_id
+        })
+    }else {
+        document.querySelector('.order-history-content').appendChild(document.createElement('h1')).textContent = 'No any orders yet'
+    }
     document.querySelector('.dropdown-xxx').style = `display: none; z-index: -1;`
     let orderHistory = document.querySelector('.order-history-wrapper')
     orderHistory.style = `display: block; z-index: 9999999999;`
