@@ -25,7 +25,7 @@ class Products
         for ($i = 0; $i < $productsIdAmount; $i++) {
             if ($productsInfo[$i]->amount < $arrayProductsAmount[$productsIdUnique[$i]]) {
                 return response()->json([
-                    'message' => "Недостаточное количество продукта под номером {$productsIdUnique[$i]}"
+                    'message' => "На складе нет заданного количества продукта под номером {$productsIdUnique[$i]}"
                 ], 300);
             }
         }
@@ -40,7 +40,8 @@ class Products
     {
         $productsId = $this->getProductsIdInSession($productsIdSession);
         $productsIdUnique = $this->getProductsUniqueInSession($productsIdSession);
-        //$productsInfo = Product::whereIn('id', $productsIdUnique)->get();
+
+        sort($productsIdUnique);
 
         $arrayProductsAmounts = $this->getEveryProductsAmountInSession($productsId);
 
