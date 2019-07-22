@@ -19,23 +19,21 @@ class Orders
      */
     public function getArrayProductsInfo($request): array
     {
-        $productsId = $this->productsService->getProductsId($request);
-        $uniqueProductsId = array_unique($productsId);
-        $productsPrice = Product::whereIn('id', $uniqueProductsId)->get();
-        $counts = array_count_values($productsId);
+        $productsId = $this->productsService->getProductsIdInSession($request->session()->get('productsId'));
+        $productsIdUnique = $this->productsService->getProductsUniqueInSession($request->session()->get('productsId'));
+        $productsPrice = Product::whereIn('id', $productsIdUnique)->get();
+        $arrayProductsAmount = $this->productsService->getEveryProductsAmountInSession($productsId);
 
-        $iteration = 0;
         $productsInfo = [];
-        foreach ($uniqueProductsId as $item) {
+        $productsIdAmount = count($productsIdUnique);
+        for ($i = 0; $i < $productsIdAmount; $i++) {
             array_push($productsInfo, [
-                'product_id' => $item,
-                'product_price' => $productsPrice[$iteration]->price,
-                'product_amount' => $counts[$item],
-                'user_email' => $request->input('pay_email'),
-                'user_phone' => $request->input('pay_phone')
+                'product_id' => $productsIdUnique[$i],
+                'product_price' => $productsPrice[$i]->price,
+                'product_amount' => $arrayProductsAmount[$productsIdUnique[$i]],
+                'user_email' => $request->session()->get('email.0'),
+                'user_phone' => $request->session()->get('phone.0')
             ]);
-
-            $iteration++;
         }
 
         return $productsInfo;

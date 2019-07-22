@@ -45,26 +45,6 @@
 </head>
 <body onload="onloadPage()">
 <div class="container">
-
-
-    @if ($message = Session::get('success'))
-        <div id="message-destroy-recipe" class="alert alert-success mt-5" role="alert">
-            <p>{!! $message !!}</p>
-        </div>
-        <?php Session::forget('success');?>
-    @endif
-
-    @if ($message = Session::get('error'))
-        <div id="message-destroy-recipe" class="alert alert-error mt-5  " role="alert">
-            <p>{!! $message !!}</p>
-        </div>
-        <?php Session::forget('error');?>
-    @endif
-
-    @error('total-price')
-    <div class="alert alert-danger mt-5">{{ $message }}</div>
-    @enderror
-
     <header>
         <div class="top_page">
             <div class="top_page_logo">
@@ -149,6 +129,42 @@
             </li>
         </ul>
     </header>
+    @if ($message = Session::get('success'))
+        <div class="message-pay-success">
+            <p>{!! $message !!}</p>
+        </div>
+        <script>
+            $.ajax({
+                url: 'create-order',
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                    console.log("Success");
+                },
+                error: function (response) {
+                    $('#errors-pay').empty();
+
+                    $.each(response['responseJSON']['errors'], function (key, value) {
+                        $('#errors-pay').append(key + ": " + value + "</br>");
+                    });
+                }
+            })
+        </script>
+        <?php Session::forget('success');?>
+    @endif
+
+    @if ($message = Session::get('error'))
+        <div class="message-pay-error">
+            <p>{!! $message !!}</p>
+        </div>
+        <?php Session::forget('error');?>
+    @endif
+
+    @error('total-price')
+    <div class="alert alert-danger mt-5">{{ $message }}</div>
+    @enderror
     <div class="order">
         <div>
             <button class="but-cart">
@@ -159,16 +175,18 @@
                 <button class="x">x</button>
                 <p class="total"></p>
                 <div class='cart-cart'></div>
-                <div class="pay-pal-inputs">
-                    <p id="errors-pay"></p>
-                    <span>Email</span>
-                    <input id="pay_email" type="text" name="pay_email" placeholder="Enter EMAIL" value="@guest @else {{ Auth::user()->email }} @endguest">
-                    <span>Phone</span>
-                    <input id="pay_phone" type="text" name="pay_phone" placeholder="Enter Phone" value="@guest @else {{ Auth::user()->phone }} @endguest">
-                </div>
                 <form id="pay-form" action="{!! URL::to('pay') !!}" method="POST">
                     @csrf
-                    <input class="w3-input w3-border" id="total-price" type="hidden" name="total_price" value="">
+                    <div class="pay-pal-inputs">
+                        <p id="errors-pay"></p>
+                        <span>Email</span>
+                        <input id="pay_email" type="text" name="pay_email" placeholder="Enter EMAIL"
+                               value="@guest @else {{ Auth::user()->email }} @endguest">
+                        <span>Phone</span>
+                        <input id="pay_phone" type="text" name="pay_phone" placeholder="Enter Phone"
+                               value="@guest @else {{ Auth::user()->phone }} @endguest">
+                        <input class="w3-input w3-border" id="total-price" type="hidden" name="total_price" value="">
+                    </div>
                 </form>
                 <button id="btn-pay" class="w3-btn w3-blue">Pay with PayPal</button>
             </div>

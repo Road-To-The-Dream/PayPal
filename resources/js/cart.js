@@ -17,47 +17,28 @@ x.onclick = e => {
 }
 
 document.getElementById("btn-pay").onclick = (function () {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', `/check-amount-products`, false);
-    xhr.send();
-    if (xhr.status != 200) {
-        allertFunc(`${JSON.parse(xhr.response).message}`, 'allert')
-        setTimeout(function () {
-            document.querySelector('.allert').remove()
-        }, 3000)
+    $.ajax({
+        url: 'check-amount-products',
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            pay_email: $('#pay_email').val(),
+            pay_phone: $('#pay_phone').val(),
+            total_price: $('#total-price').val(),
+        },
+        success: function () {
+            //document.getElementById('pay-form').submit();
+            console.log("success");
+        },
+        error: function (response) {
+            $('#errors-pay').empty();
 
-            `${JSON.parse(xhr.response).message}`
+            $.each(response['responseJSON']['errors'], function (key, value) {
+                $('#errors-pay').append(key + ": " + value + "</br>");
+            });
+        }
+    })
 
-    } else {
-        $.ajax({
-            url: 'create-order',
-            type: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            data: {
-                total_price: $('input[name="total_price"]').val(),
-                pay_email: $('input[name="pay_email"]').val(),
-                pay_phone: $('input[name="pay_phone"]').val(),
-            },
-            success: function (response) {
-                // allertFunc('Order had been successfully sent', 'allert')
-                //
-                // setTimeout(function () {
-                //     document.querySelector('.allert').remove()
-                //     location.reload()
-                // }, 2000)
-
-                document.getElementById('pay-form').submit();
-                //document.querySelector('#dynamic-pay').click();
-            },
-            error: function (response) {
-                $('#errors-pay').empty();
-
-                $.each(response['responseJSON']['errors'], function (key, value) {
-                    $('#errors-pay').append(key + ": " + value + "</br>");
-                });
-            }
-        })
-    }
 });

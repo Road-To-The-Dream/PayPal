@@ -7,12 +7,12 @@ use App\Model\Order;
 use App\Services\Orders;
 use App\Services\PayPal;
 use App\Services\Products;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Throwable;
 
 class OrderController extends Controller
 {
@@ -53,35 +53,25 @@ class OrderController extends Controller
         ], 200);
     }
 
-    /**
-     * @param PaymentRequest $request
-     * @return JsonResponse
-     */
-    public function store(PaymentRequest $request): JsonResponse
+    public function store(Request $request)
     {
         try {
             $newOrder = Order::create();
             $newOrder->products()->sync($this->orderService->getArrayProductsInfo($request));
 
-            $this->productService->decreaseProductAmount($request);
-
-            $request->session()->forget('productsId');
+            $this->productService->decreaseProductAmountInDatabase($request->session()->get('productsId'));
         } catch (Exception $ex) {
             return response()->json([
                 'message' => "Ошибка, повторите попытку позже!"
             ], 500);
         }
 
+        $request->session()->forget('productsId');
+        $request->session()->forget('email');
+        $request->session()->forget('phone');
+
         return response()->json([
             'message' => "Заказ успешно оформлен !"
         ], 200);
-    }
-
-    /**
-     * @return RedirectResponse
-     */
-    public function getPaymentStatus(): RedirectResponse
-    {
-        return $this->payService->getPaymentStatus();
     }
 }

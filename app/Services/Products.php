@@ -2,93 +2,124 @@
 
 namespace App\Services;
 
-use Illuminate\Http\Request;
 use App\Model\Product;
 use Illuminate\Http\JsonResponse;
 
 class Products
 {
     /**
-     * @param Request $request
-     * @return array
-     */
-    public function getProductsId(Request $request): array
-    {
-        $productsId = [];
-
-        foreach ($request->session()->get('productsId') as $product) {
-            array_push($productsId, $product[0]);
-        }
-
-        return $productsId;
-    }
-
-    /**
-     * @param Request $request
+     * @param $productsIdSession
      * @return JsonResponse
      */
-    public function isAmount(Request $request): JsonResponse
+    public function isProductsAmount($productsIdSession): JsonResponse
     {
-        $productId = $this->getProductsId($request);
+        $productsId = $this->getProductsIdInSession($productsIdSession);
+        $productsIdUnique = $this->getProductsUniqueInSession($productsIdSession);
+        $productsInfo = Product::whereIn('id', $productsIdUnique)->get();
 
-        $productsId = array_unique($productId);
+        $arrayProductsAmount = $this->getEveryProductsAmountInSession($productsId);
 
-        $products = Product::whereIn('id', $productsId)->get();
+        sort($productsIdUnique);
 
-        $counts = array_count_values($productId);
-        $iteration = 0;
-        foreach ($productsId as $item) {
-            if ($products[$iteration]->amount < $counts[$item]) {
+        $productsIdAmount = count($productsIdUnique);
+        for ($i = 0; $i < $productsIdAmount; $i++) {
+            if ($productsInfo[$i]->amount < $arrayProductsAmount[$productsIdUnique[$i]]) {
                 return response()->json([
-                    'message' => "Недостаточное количество продукта под номером {$item}"
+                    'message' => "Недостаточное количество продукта под номером {$productsIdUnique[$i]}"
                 ], 300);
             }
-
-            $iteration++;
         }
 
         return response()->json(200);
     }
 
     /**
-     * @param Request $request
+     * @param $productsIdSession
+     */
+    public function decreaseProductAmountInDatabase($productsIdSession): void
+    {
+        $productsId = $this->getProductsIdInSession($productsIdSession);
+        $productsIdUnique = $this->getProductsUniqueInSession($productsIdSession);
+        //$productsInfo = Product::whereIn('id', $productsIdUnique)->get();
+
+        $arrayProductsAmounts = $this->getEveryProductsAmountInSession($productsId);
+
+        $productsIdAmount = count($productsIdUnique);
+        for ($i = 0; $i < $productsIdAmount; $i++) {
+            Product::where('id', $productsIdUnique[$i])
+                ->decrement('amount', $arrayProductsAmounts[$productsIdUnique[$i]]);
+        }
+    }
+
+    /**
+     * @param $productsIdSession
      * @return array
      */
-    public function getProductAmountInSession(Request $request): array
+    public function getProductsInfoInSession($productsIdSession): array
     {
-        $productsId = $this->getProductsId($request);
-
-        $counts = array_count_values($productsId);
+        $productsId = $this->getProductsIdInSession($productsIdSession);
+        $arrayProductsAmounts = $this->getEveryProductsAmountInSession($productsId);
 
         $productInfo = [];
         foreach (array_unique($productsId) as $item) {
             array_push($productInfo, [
                 'id' => $item,
-                'amount' => $counts[$item],
+                'amount' => $arrayProductsAmounts[$item],
             ]);
         }
+
+        sort($productInfo);
 
         return $productInfo;
     }
 
     /**
-     * @param Request $request
+     * @param $productsIdSession
+     * @return array
      */
-    public function decreaseProductAmount(Request $request): void
+    public function getProductsIdInSession($productsIdSession): array
     {
-        $productsId = $this->getProductsId($request);
-        $uniqueProductsId = array_unique($productsId);
+        $productKeys = $this->getProductsKeyInSession($productsIdSession);
 
-        $productsInfo = Product::whereIn('id', $uniqueProductsId)->get();
+        $productsId = [];
 
-        $counts = array_count_values($productsId);
-
-        $iteration = 0;
-        foreach ($uniqueProductsId as $product) {
-            Product::where('id', $product)
-                ->update(['amount' => $productsInfo[$iteration]->amount - $counts[$product]]);
-
-            $iteration++;
+        $productsAmount = count($productsIdSession);
+        for ($i = 0; $i < $productsAmount; $i++) {
+            array_push($productsId, $productsIdSession[$productKeys[$i]][0]);
         }
+
+        return $productsId;
+    }
+
+    /**
+     * @param $productsId
+     * @return array
+     */
+    public function getProductsUniqueInSession($productsId): array
+    {
+        return array_unique($this->getProductsIdInSession($productsId));
+    }
+
+    /**
+     * @param $productsId
+     * @return array
+     */
+    public function getEveryProductsAmountInSession($productsId): array
+    {
+        return array_count_values($productsId);
+    }
+
+    /**
+     * @param $productsId
+     * @return int|void
+     */
+    public function getProductsAmountInSession($productsId)
+    {
+        return count($productsId);
+    }
+
+    public function getProductsKeyInSession($productsId)
+    {
+        return array_keys($productsId);
     }
 }

@@ -2483,3 +2483,20 @@ footer {
         height: 3px !important;
     }
 }
+
+.message-pay-success, .message-pay-error {
+    color: black;
+    margin-top: 30px;
+    width: 50%;
+    font-size: 22px;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 27.9px;
+}
+
+.message-pay-success {
+    background-color: #38c172;
+}
+
+.message-pay-error {
+    background-color: red;
+}

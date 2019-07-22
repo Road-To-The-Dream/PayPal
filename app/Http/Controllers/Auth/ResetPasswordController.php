@@ -30,16 +30,19 @@ class ResetPasswordController extends Controller
     {
         if ($request->ajax()) {
             $input = Utility::cleanField([
-                $request->get('email'),
                 $request->get('old_password'),
                 $request->get('new_password')
             ]);
 
-            $user = User::where('email', $input[0])->first();
+            $user = User::where('email', Auth::user()->email)->first();
 
-            if (Hash::check($input[1], Auth::user()->getAuthPassword())) {
-                $user->update(['password' => Hash::make($input[2])]);
-                Auth::logout();
+            if (Hash::check($input[0], Auth::user()->getAuthPassword())) {
+                $user->update(['password' => Hash::make($input[1])]);
+            } else {
+                return response()->json([
+                    'response' => 'false',
+                    'errors' => 'These credentials do not match our records.',
+                ], 400);
             }
 
             return response()->json(200);

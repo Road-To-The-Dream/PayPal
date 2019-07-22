@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Http\Controllers\OrderController;
 use App\Http\Requests\PaymentRequest;
+use Illuminate\Support\Facades\Auth;
 use Redirect;
 use Session;
 use URL;
@@ -21,7 +23,7 @@ use PayPal\Exception\PayPalConnectionException;
 use PayPal\Rest\ApiContext;
 use Illuminate\Http\RedirectResponse;
 
-class PayPal
+class PayPal implements \App\Services\Payment
 {
     private $apiContext;
 
@@ -49,14 +51,14 @@ class PayPal
         $item_1->setName('Телевизор')
             ->setCurrency('USD')
             ->setQuantity(1)
-            ->setPrice($request->get('total-price'));
+            ->setPrice($request->get('total_price'));
 
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
 
         $amount = new Amount();
         $amount->setCurrency('USD')
-            ->setTotal($request->get('total-price'));
+            ->setTotal($request->get('total_price'));
 
         $transaction = new Transaction();
         $transaction->setAmount($amount)
@@ -131,5 +133,11 @@ class PayPal
         Session::put('error', 'Payment failed');
 
         return Redirect::to('/');
+    }
+
+    public function saveEmailAndPhoneToSession(PaymentRequest $request)
+    {
+        $request->session()->push('email', $request->input('pay_email'));
+        $request->session()->push('phone', $request->input('pay_phone'));
     }
 }

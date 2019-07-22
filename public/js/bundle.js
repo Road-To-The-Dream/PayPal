@@ -284,7 +284,6 @@ class CustomElementNew extends HTMLElement {
                 productId: this.idNum.id,
             },
             success: function (response) {
-                console.log(url + ", success");
             }
         })
     }
@@ -299,7 +298,6 @@ class CustomElementNew extends HTMLElement {
                 productId: this.idNum.id,
             },
             success: function (response) {
-                console.log(url + ", success");
             }
         })
     }
@@ -415,49 +413,30 @@ x.onclick = e => {
 }
 
 document.getElementById("btn-pay").onclick = (function () {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', `/check-amount-products`, false);
-    xhr.send();
-    if (xhr.status != 200) {
-        allertFunc(`${JSON.parse(xhr.response).message}`, 'allert')
-        setTimeout(function () {
-            document.querySelector('.allert').remove()
-        }, 3000)
+    $.ajax({
+        url: 'check-amount-products',
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            pay_email: $('#pay_email').val(),
+            pay_phone: $('#pay_phone').val(),
+            total_price: $('#total-price').val(),
+        },
+        success: function () {
+            //document.getElementById('pay-form').submit();
+            console.log("success");
+        },
+        error: function (response) {
+            $('#errors-pay').empty();
 
-            `${JSON.parse(xhr.response).message}`
+            $.each(response['responseJSON']['errors'], function (key, value) {
+                $('#errors-pay').append(key + ": " + value + "</br>");
+            });
+        }
+    })
 
-    } else {
-        $.ajax({
-            url: 'create-order',
-            type: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            data: {
-                total_price: $('input[name="total_price"]').val(),
-                pay_email: $('input[name="pay_email"]').val(),
-                pay_phone: $('input[name="pay_phone"]').val(),
-            },
-            success: function (response) {
-                // allertFunc('Order had been successfully sent', 'allert')
-                //
-                // setTimeout(function () {
-                //     document.querySelector('.allert').remove()
-                //     location.reload()
-                // }, 2000)
-
-                document.getElementById('pay-form').submit();
-                //document.querySelector('#dynamic-pay').click();
-            },
-            error: function (response) {
-                $('#errors-pay').empty();
-
-                $.each(response['responseJSON']['errors'], function (key, value) {
-                    $('#errors-pay').append(key + ": " + value + "</br>");
-                });
-            }
-        })
-    }
 });
 document.querySelector('.close-info').onclick = () => {
     let elemq = document.querySelector('#slides')
@@ -516,7 +495,6 @@ dropdownHistory.onclick = (e)=> {
     let currentId = 0
     JSON.parse(xhr.response).orders.forEach(item => {
         if (currentId === item.order_id) {
-            console.log('do not create')
             let currentDiv = document.querySelector(`#order-${currentId}`)
             let parag = document.createElement('p')
             parag.style =`display: flex; justify-content: space-around; align-items: center;`
@@ -540,7 +518,6 @@ dropdownHistory.onclick = (e)=> {
             parag.appendChild(spanTotalPrice)
             currentDiv.appendChild(parag)
         }else {
-            console.log('create')
             let elenm = document.createElement('div')
             elenm.className = 'orders'
             elenm.id = `order-${item.order_id}`
@@ -606,11 +583,6 @@ passwordChangeBlock.style = `
 let errorsBlockChangePassword = document.createElement('div')
 errorsBlockChangePassword.id = 'errors-block-change-password'
 errorsBlockChangePassword.style.color = '#6a9ba0'
-let email = document.createElement('input')
-email.className = 'pas-change-input'
-email.placeholder = 'E-mail'
-email.type = 'text'
-email.name = 'email'
 let oldPass = document.createElement('input')
 oldPass.type = 'password'
 oldPass.className = 'pas-change-input'
@@ -651,7 +623,6 @@ btn.onmouseover = function (e) {
                 `
 }
 passwordChangeBlock.appendChild(errorsBlockChangePassword)
-passwordChangeBlock.appendChild(email)
 passwordChangeBlock.appendChild(oldPass)
 passwordChangeBlock.appendChild(newPass)
 passwordChangeBlock.appendChild(comfim)
@@ -715,21 +686,22 @@ document.getElementById("submit-change-password").onclick = (function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         data: {
-            email: $('input[name="email"]').val(),
             old_password: $('input[name="old_password"]').val(),
             new_password: $('input[name="new_password"]').val(),
             password_confirmation: $('input[name="password_confirmation"]').val(),
         },
-        success: function () {
+        success: function (response) {
             location.reload();
         },
         error: function (response) {
-            console.log("dqwdqwd")
             $('#errors-block-change-password').empty();
-
-            $.each(response['responseJSON']['errors'], function (key, value) {
-                $('#errors-block-change-password').append(key + ": " + value + "</br></br>");
-            });
+            if (response['responseJSON']['response'] === 'false') {
+                $('#errors-block-change-password').append(response['responseJSON']['errors']);
+            } else {
+                $.each(response['responseJSON']['errors'], function (key, value) {
+                    $('#errors-block-change-password').append(key + ": " + value + "</br></br>");
+                });
+            }
         }
     })
 });
@@ -908,39 +880,38 @@ onloadPage = function () {
     if (xhr.status != 200) {
         alert(xhr.status + ': ' + xhr.statusText);
     } else {
-        null
-    }
-    let info = JSON.parse(xhr.response);
-    let totalPrice = 0;
-    let iteration = 0;
-    if (info !== 200) {
-        info.productsInfo.forEach(item => {
-            let elem = document.createElement('new-element')
-            elem.wrapper.style = `
+        let info = JSON.parse(xhr.response);
+        let totalPrice = 0;
+        let iteration = 0;
+        if (info !== 200) {
+            info.productsInfo.forEach(item => {
+                let elem = document.createElement('new-element')
+                elem.wrapper.style = `
                 justify-content: space-between;
                 width: 80%;
                 display: flex;
                 align-items: center;`
-            elem.minusPlus.style.display = 'block'
-            elem.buttonItem.style.display = 'none'
-            elem.itemDescription.style.display = 'none'
-            elem.xButton.style.display = 'block'
-            elem.id = `${item.id}copy`
-            elem.idNum.textContent = `product ID: ${item.id}`
-            elem.idNum.id = `${item.id}`
-            elem.imgItem.src = item.img
-            elem.itemTitle.textContent = item.title
-            elem.itemDescription.style.display = 'none'
-            elem.itemPrise.textContent = `${item.price} USD`
-            elem.counterItem.textContent = info.productsAmount[iteration].amount
-            document.querySelector('.cart-cart').appendChild(elem)
-            let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
-            totalPrice += info.productsAmount[iteration].amount * item.price
-            multiplyItemsCartButton.textContent = document.querySelector('.cart-cart').children.length
-            iteration++;
-        })
-        total.textContent = `total price: ${totalPrice}`
-        document.querySelector('#total-price').value = `${totalPrice}`
-        return;
+                elem.minusPlus.style.display = 'block'
+                elem.buttonItem.style.display = 'none'
+                elem.itemDescription.style.display = 'none'
+                elem.xButton.style.display = 'block'
+                elem.id = `${item.id}copy`
+                elem.idNum.textContent = `product ID: ${item.id}`
+                elem.idNum.id = `${item.id}`
+                elem.imgItem.src = item.img
+                elem.itemTitle.textContent = item.title
+                elem.itemDescription.style.display = 'none'
+                elem.itemPrise.textContent = `${item.price} USD`
+                elem.counterItem.textContent = info.productsAmount[iteration].amount
+                document.querySelector('.cart-cart').appendChild(elem)
+                let multiplyItemsCartButton = document.querySelector('.miltiply-items-button')
+                totalPrice += info.productsAmount[iteration].amount * item.price
+                multiplyItemsCartButton.textContent = document.querySelector('.cart-cart').children.length
+                iteration++;
+            })
+            total.textContent = `total price: ${totalPrice}`
+            document.querySelector('#total-price').value = `${totalPrice}`
+            return;
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaymentRequest;
 use App\Model\Categories;
 use App\Model\Product;
 use Illuminate\Http\Request;
@@ -119,14 +120,17 @@ class ProductController extends Controller
         $request->session()->push('productsId', [$request->get('productId')]);
     }
 
+    /**
+     * @param Request $request
+     */
     public function deleteFromCart(Request $request)
     {
-        $productKeys = array_keys($request->session()->get('productsId'));
+        $productsKey = $this->productService->getProductsKeyInSession($request->session()->get('productsId'));
 
-        $itemAmount = count($request->session()->get('productsId'));
-        for ($i = 0; $i < $itemAmount; $i++) {
-            if ($request->session()->get("productsId.{$productKeys[$i]}.0") === $request->get('productId')) {
-                $request->session()->forget("productsId.{$productKeys[$i]}");
+        $productsAmount = $this->productService->getProductsAmountInSession($request->session()->get('productsId'));
+        for ($i = 0; $i < $productsAmount; $i++) {
+            if ($request->session()->get("productsId.{$productsKey[$i]}.0") === $request->get('productId')) {
+                $request->session()->forget("productsId.{$productsKey[$i]}");
             }
         }
     }
@@ -144,10 +148,10 @@ class ProductController extends Controller
      */
     public function increaseAmount(Request $request)
     {
-        $productKeys = array_keys($request->session()->get('productsId'));
+        $productKeys = $this->productService->getProductsKeyInSession($request->session()->get('productsId'));
 
-        $itemAmount = count($request->session()->get('productsId'));
-        for ($i = 0; $i < $itemAmount; $i++) {
+        $productsAmount = $this->productService->getProductsAmountInSession($request->session()->get('productsId'));
+        for ($i = 0; $i < $productsAmount; $i++) {
             if ($request->session()->get("productsId.{$productKeys[$i]}.0") === $request->get('productId')) {
                 $request->session()->forget("productsId.{$productKeys[$i]}");
                 break;
@@ -162,11 +166,11 @@ class ProductController extends Controller
     public function getProductsFromCart(Request $request): JsonResponse
     {
         if ($request->session()->has('productsId')) {
-            $productsId = $this->productService->getProductsId($request);
+            $productsId = $this->productService->getProductsUniqueInSession($request->session()->get('productsId'));
 
             return response()->json([
                 'productsInfo' => Product::whereIn('id', $productsId)->get(),
-                'productsAmount' => $this->productService->getProductAmountInSession($request)
+                'productsAmount' => $this->productService->getProductsInfoInSession($request->session()->get('productsId'))
             ], 200);
         }
 
@@ -177,8 +181,8 @@ class ProductController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function checkAmountProducts(Request $request): JsonResponse
+    public function checkProductsAmount(PaymentRequest $request): JsonResponse
     {
-        return $this->productService->isAmount($request);
+        return $this->productService->isProductsAmount($request->session()->get('productsId'));
     }
 }

@@ -284,7 +284,6 @@ class CustomElementNew extends HTMLElement {
                 productId: this.idNum.id,
             },
             success: function (response) {
-                console.log(url + ", success");
             }
         })
     }
@@ -299,7 +298,6 @@ class CustomElementNew extends HTMLElement {
                 productId: this.idNum.id,
             },
             success: function (response) {
-                console.log(url + ", success");
             }
         })
     }
