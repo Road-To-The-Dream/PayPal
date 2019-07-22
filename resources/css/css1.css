@@ -551,11 +551,15 @@ body {
     color: #aa0000;
 }
 
-
+.order-history-wrapper{
+    width: 400vw;
+    height: 400vh;
+    position: absolute;
+    z-index: -1;
+}
 .order-history {
     width: 79vw;
     text-align: center;
-    display: none;
     flex-direction: column;
     border-radius: 10px;
     border: solid 1px #e5e5e5;
@@ -1301,6 +1305,7 @@ footer {
     text-align: center;
     font-size: 14px;
 }
+
 .product-info-wrapper{
     width: 100vw;
     height: 100vh;

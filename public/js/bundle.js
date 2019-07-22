@@ -463,18 +463,24 @@ document.getElementById("btn-pay").onclick = (function () {
             total_price: $('#total-price').val(),
         },
         success: function () {
+            allertFunc("Passion while your order will be sent to PayPal service", 'success')
             document.getElementById('pay-form').submit();
-            console.log("success");
         },
         error: function (response) {
-            $('#errors-pay').empty();
+            if (response['status'] === 300) {
+                allertFunc(response['responseJSON']['message'], 'allert')
+                setTimeout(function () {
+                    document.querySelector('.allert').remove()
+                }, 3000)
+            } else {
+                $('#errors-pay').empty();
 
-            $.each(response['responseJSON']['errors'], function (key, value) {
-                $('#errors-pay').append(key + ": " + value + "</br>");
-            });
+                $.each(response['responseJSON']['errors'], function (key, value) {
+                    $('#errors-pay').append(key + ": " + value + "</br>");
+                });
+            }
         }
     })
-
 });
 document.querySelector('.close-info').onclick = () => {
     let elemq = document.querySelector('#slides')
@@ -586,8 +592,9 @@ dropdownHistory.onclick = (e)=> {
         currentId = item.order_id
     })
     document.querySelector('.dropdown-xxx').style = `display: none; z-index: -1;`
-    let orderHistory = document.querySelector('.order-history')
+    let orderHistory = document.querySelector('.order-history-wrapper')
     orderHistory.style = `display: block; z-index: 9999999999;`
+    document.documentElement.style =`overflow: hidden;`
 }
 
 document.querySelector('.close-history').onclick = () => {
@@ -595,8 +602,9 @@ document.querySelector('.close-history').onclick = () => {
     while (toRemoveContent.firstChild) {
         toRemoveContent.removeChild(toRemoveContent.firstChild)
     }
-    document.querySelector('.order-history')
+    document.querySelector('.order-history-wrapper')
         .style = `display: none; z-index: -1;`
+    document.documentElement.style =`overflow: auto;`
 }
 
 let dropdownA = dropdown.appendChild(document.createElement('a'))
@@ -930,7 +938,7 @@ onloadPage = function () {
                 let elem = document.createElement('new-element')
                 elem.wrapper.style = `
                 justify-content: space-between;
-                width: 80%;
+                width: 75%;
                 display: flex;
                 align-items: center;`
                 elem.minusPlus.style.display = 'block'

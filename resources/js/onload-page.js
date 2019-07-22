@@ -75,7 +75,7 @@ onloadPage = function () {
                 let elem = document.createElement('new-element')
                 elem.wrapper.style = `
                 justify-content: space-between;
-                width: 80%;
+                width: 75%;
                 display: flex;
                 align-items: center;`
                 elem.minusPlus.style.display = 'block'

@@ -81,18 +81,20 @@
                         </form>
                     @endguest
                 </div>
-                <div class="order-history">
-                    <div class="close-history">X</div>
-                    <h1>@guest @else {{ Auth::user()->name }} @endguest this is your Order History</h1>
-                    <p class="order-history-head">
-                        <span>Order ID</span>
-                        <span>Product details</span>
-                    </p>
+                <div class="order-history-wrapper">
+                    <div class="order-history">
+                        <div class="close-history">X</div>
+                        <h1>@guest @else {{ Auth::user()->name }} @endguest this is your Order History</h1>
+                        <p class="order-history-head">
+                            <span>Order ID</span>
+                            <span>Product details</span>
+                        </p>
 
-                    <div class="order-history-content">
+                        <div class="order-history-content">
+
+                        </div>
 
                     </div>
-
                 </div>
             </div>
         </div>

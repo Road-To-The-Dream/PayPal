@@ -73,8 +73,9 @@ dropdownHistory.onclick = (e)=> {
         currentId = item.order_id
     })
     document.querySelector('.dropdown-xxx').style = `display: none; z-index: -1;`
-    let orderHistory = document.querySelector('.order-history')
+    let orderHistory = document.querySelector('.order-history-wrapper')
     orderHistory.style = `display: block; z-index: 9999999999;`
+    document.documentElement.style =`overflow: hidden;`
 }
 
 document.querySelector('.close-history').onclick = () => {
@@ -82,8 +83,9 @@ document.querySelector('.close-history').onclick = () => {
     while (toRemoveContent.firstChild) {
         toRemoveContent.removeChild(toRemoveContent.firstChild)
     }
-    document.querySelector('.order-history')
+    document.querySelector('.order-history-wrapper')
         .style = `display: none; z-index: -1;`
+    document.documentElement.style =`overflow: auto;`
 }
 
 let dropdownA = dropdown.appendChild(document.createElement('a'))

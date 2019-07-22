@@ -29,16 +29,22 @@ document.getElementById("btn-pay").onclick = (function () {
             total_price: $('#total-price').val(),
         },
         success: function () {
+            allertFunc("Passion while your order will be sent to PayPal service", 'success')
             document.getElementById('pay-form').submit();
-            console.log("success");
         },
         error: function (response) {
-            $('#errors-pay').empty();
+            if (response['status'] === 300) {
+                allertFunc(response['responseJSON']['message'], 'allert')
+                setTimeout(function () {
+                    document.querySelector('.allert').remove()
+                }, 3000)
+            } else {
+                $('#errors-pay').empty();
 
-            $.each(response['responseJSON']['errors'], function (key, value) {
-                $('#errors-pay').append(key + ": " + value + "</br>");
-            });
+                $.each(response['responseJSON']['errors'], function (key, value) {
+                    $('#errors-pay').append(key + ": " + value + "</br>");
+                });
+            }
         }
     })
-
 });
