@@ -55,8 +55,8 @@
                                  alt="top_log"></a>
             </div>
             <div class="top_page_navigation">
-                <span><a href="#">Contacts</a></span>
-                <span><a href="#">Shop</a></span>
+{{--                <span><a href="#">Contacts</a></span>--}}
+{{--                <span><a href="#">Shop</a></span>--}}
                 <div class="menu_rects" onclick="diplay_hide('.top_page_main_menu')">
                     <div class="menu_rect1"></div>
                     <div class="menu_rect2"></div>
